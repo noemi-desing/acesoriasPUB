@@ -1,0 +1,18 @@
+[
+  {
+    "id":1,
+    "sexo":"HOMBRE"
+  },
+  {
+    "id":2,
+    "sexo":"MUJER"
+  },
+  {
+    "id":3,
+    "sexo":"OTRO"
+  },
+  {
+    "id":4,
+    "sexo":"PREFIERO NO DECIR"
+  }
+]

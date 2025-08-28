@@ -1,0 +1,30 @@
+[
+  {
+    "id":1,
+    "estado_civil":"SOLTERA(O)"
+  },
+  {
+    "id":2,
+    "estado_civil":"CASADA(O)"
+  },
+  {
+    "id":3,
+    "estado_civil":"DIVORCIADA(O)"
+  },
+  {
+    "id":4,
+    "estado_civil":"UNION LIBRE"
+  },
+  {
+    "id":5,
+    "estado_civil":"VIUDA(O)"
+  },
+  {
+    "id":6,
+    "estado_civil":"SEPARADA(O)"
+  },
+  {
+    "id":7,
+    "estado_civil":"PREFIERO NO DECIR"
+  }
+]

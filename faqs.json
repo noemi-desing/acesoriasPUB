@@ -1,0 +1,1439 @@
+{
+  "generated_at": "2025-08-28T03:59:30.684379Z",
+  "faqs": [
+    {
+      "category": "Asentamiento",
+      "question": "¿Cuál es la abreviatura oficial para Aeropuerto?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "AER",
+      "question": "¿Qué tipo de asentamiento corresponde a la abreviatura CD IND?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Ciudad Industrial",
+      "question": "¿Cuál es la abreviatura para Conjunto Habitacional?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CONJ HAB",
+      "question": "¿Qué significa la abreviatura PBL?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Pueblo",
+      "question": "¿Cuál es la abreviatura de Zona Federal?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "ZF",
+      "question": "¿Qué significa la abreviatura FRACC?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Fraccionamiento",
+      "question": "¿Cuál es la abreviatura de Colonia?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "COL",
+      "question": "¿Qué tipo de asentamiento corresponde a la abreviatura HAC?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Hacienda",
+      "question": "¿Cuál es la abreviatura oficial para Privada?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "PRIV",
+      "question": "¿Qué significa la abreviatura ZN?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Zona Naval",
+      "question": "¿Se permite texto libre para asentamiento?",
+      "answer": "No; usar catálogo de asentamientos. 15. Relación con claves territoriales. Debe ser congruente con entidad/municipio/localidad. 16. Errores frecuentes de asentamiento. Confundir COL (colonia) con FRACC (fraccionamiento); validar con comprobante.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Qué código corresponde a Discapacidad Intelectual?",
+      "answer": "1",
+      "source": "Catálogo de Discapacidades – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Qué código corresponde a Discapacidad Psicosocial?",
+      "answer": "2",
+      "source": "Catálogo de Discapacidades – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Cuál es la clave de Discapacidad Auditiva?",
+      "answer": "3",
+      "source": "Catálogo de Discapacidades – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Qué código corresponde a Discapacidad Motora?",
+      "answer": "4",
+      "source": "Catálogo de Discapacidades – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Cuál es la clave para Discapacidad Visual?",
+      "answer": "5",
+      "source": "Catálogo de Discapacidades – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Qué significa el código 6?",
+      "answer": "Discapacidad Múltiple",
+      "source": "Catálogo de Discapacidades – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Cuál es la clave para Limitación Psicosocial?",
+      "answer": "8",
+      "source": "Catálogo de Discapacidades – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Qué significa el código 11?",
+      "answer": "Limitación Visual",
+      "source": "Catálogo de Discapacidades – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Cuál es la clave para Limitaciones Múltiples?",
+      "answer": "12",
+      "source": "Catálogo de Discapacidades – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Qué diferencia hay entre discapacidad y limitación?",
+      "answer": "La discapacidad es permanente, la limitación puede ser parcial o temporal. 11. Diferencia entre discapacidad y limitación. Discapacidad: permanente; Limitación: parcial/temporal. 12. Campo asociado al tipo. id_discapacidad. 13. Ejemplos del catálogo. Intelectual, Psicosocial, Auditiva, Motora, Visual, Múltiple; y sus limitaciones.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Se registra porcentaje?",
+      "answer": "Sí, cuando aplique según lineamientos locales.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Discapacidad",
+      "question": "¿Es obligatorio el registro de discapacidad?",
+      "answer": "Sí; se completa en automático o se selecciona; obligatorio. 16. Consistencia del dato de discapacidad. Evitar combinaciones incompatibles (p. ej., múltiple con otra específica).",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Entidad Federativa",
+      "question": "¿Cuál es la abreviatura oficial de Aguascalientes?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "AS",
+      "question": "¿Qué abreviatura corresponde a Baja California Sur?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "BS",
+      "question": "¿Cuál es la abreviatura de Ciudad de México?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "DF",
+      "question": "¿Qué abreviatura corresponde a Guanajuato?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "GT",
+      "question": "¿Cuál es la abreviatura de Querétaro?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "QT",
+      "question": "¿Qué abreviatura se utiliza para Veracruz?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "VZ",
+      "question": "¿Cuál es la abreviatura de Michoacán de Ocampo?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "MN",
+      "question": "¿Qué abreviatura corresponde a Yucatán?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "YN",
+      "question": "¿Cuál es la abreviatura de Nuevo León?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "NL",
+      "question": "¿Qué abreviatura se usa para Sonora?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "SR",
+      "question": "¿Se permite texto libre?",
+      "answer": "No; seleccionar del catálogo institucional. 15. Corrección de inconsistencias. Solicitar verificación y ajustar conforme a documentos.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "SR",
+      "question": "¿Campo obligatorio?",
+      "answer": "Sí; según tabla de condición/obligatoriedad.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Escolaridad",
+      "question": "¿Qué código corresponde a Primaria?",
+      "answer": "2",
+      "source": "SEP – Sistema Educativo Nacional."
+    },
+    {
+      "category": "Escolaridad",
+      "question": "¿Cuál es la clave para Secundaria?",
+      "answer": "3",
+      "source": "SEP – Sistema Educativo Nacional."
+    },
+    {
+      "category": "Escolaridad",
+      "question": "¿Qué significa el código 4?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Bachillerato",
+      "question": "¿Cuál es la clave para Licenciatura?",
+      "answer": "5",
+      "source": "SEP – Sistema Educativo Nacional."
+    },
+    {
+      "category": "Bachillerato",
+      "question": "¿Qué representa el código 6?",
+      "answer": "Maestría",
+      "source": "SEP – Sistema Educativo Nacional."
+    },
+    {
+      "category": "Bachillerato",
+      "question": "¿Cuál es la clave para Doctorado?",
+      "answer": "7",
+      "source": "SEP – Sistema Educativo Nacional."
+    },
+    {
+      "category": "Bachillerato",
+      "question": "¿Qué significa el código 8?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Preescolar",
+      "question": "¿Cuál es la clave para Especialidad?",
+      "answer": "9",
+      "source": "SEP – Sistema Educativo Nacional."
+    },
+    {
+      "category": "Preescolar",
+      "question": "¿Qué significa el código 1?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Ninguna escolaridad",
+      "question": "¿Qué institución es fuente oficial del catálogo?",
+      "answer": "Secretaría de Educación Pública (SEP) 11. Campo que captura la escolaridad. id_escolaridad. 12. Escala típica del catálogo. 1 Ninguna, 2 Primaria, 3 Secundaria, 4 Bachillerato, 5 Licenciatura, 6 Maestría, 7 Doctorado, 8 Preescolar, 9 Especialidad.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Ninguna escolaridad",
+      "question": "¿Es obligatoria la escolaridad?",
+      "answer": "Sí; se completa en automático o se selecciona; obligatoria. 14. Criterio de codificación. Registrar el último nivel concluido o declarado según guía. 15. Validación recomendada. Evitar valores inconsistentes con edad o documentación.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Ninguna escolaridad",
+      "question": "¿Se permite texto libre para escolaridad?",
+      "answer": "No; usar catálogo controlado.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Qué código corresponde a Soltera(o)?",
+      "answer": "1",
+      "source": "Catálogo de Estados Civiles – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Cuál es la clave para Casada(o)?",
+      "answer": "2",
+      "source": "Catálogo de Estados Civiles – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Qué código representa Divorciada(o)?",
+      "answer": "3",
+      "source": "Catálogo de Estados Civiles – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Qué valor identifica Unión Libre?",
+      "answer": "4",
+      "source": "Catálogo de Estados Civiles – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Cuál es la clave de Viuda(o)?",
+      "answer": "5",
+      "source": "Catálogo de Estados Civiles – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Qué código corresponde a Separada(o)?",
+      "answer": "6",
+      "source": "Catálogo de Estados Civiles – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Cuál es la clave para Prefiero no decir?",
+      "answer": "7 8. Si un registro tiene el valor 3, ¿a qué estado civil pertenece? Divorciada(o) 9. Si encuentras el código 5, ¿qué estado civil representa? Viuda(o)",
+      "source": "Catálogo de Estados Civiles – Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Qué fuente oficial respalda este catálogo?",
+      "answer": "Catálogo de Estados Civiles – Documento 'carpetas PUB.docx' 11. Definición operativa de estado civil. Situación conyugal respecto a derechos/obligaciones legales o de costumbre. 12. Catálogo de estado civil. Soltera(o), Casada(o), Divorciada(o), Unión libre, Viuda(o), Separada(o), Prefiero no decir.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Cómo registrar id_est_civil?",
+      "answer": "Se completa en automático o se selecciona; es obligatorio.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Campo asociado en la plantilla?",
+      "answer": "id_est_civil. 15. Regla ante cambios (p. ej., divorcio). Actualizar el valor seleccionado conforme a documentos probatorios.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Estado Civil",
+      "question": "¿Múltiple selección permitida?",
+      "answer": "No; seleccionar solo un estado civil vigente.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Genero",
+      "question": "¿Qué código corresponde a Hombre?",
+      "answer": "1",
+      "source": "CEDHJ (2023) – Cédula descriptiva sobre la diversidad sexual."
+    },
+    {
+      "category": "Genero",
+      "question": "¿Cuál es la clave para Hombre Trans?",
+      "answer": "2",
+      "source": "CEDHJ (2023) – Cédula descriptiva sobre la diversidad sexual."
+    },
+    {
+      "category": "Genero",
+      "question": "¿Qué valor identifica a Intersexual?",
+      "answer": "3",
+      "source": "CEDHJ (2023) – Cédula descriptiva sobre la diversidad sexual."
+    },
+    {
+      "category": "Genero",
+      "question": "¿Cuál es la clave para Mujer?",
+      "answer": "4",
+      "source": "CEDHJ (2023) – Cédula descriptiva sobre la diversidad sexual."
+    },
+    {
+      "category": "Genero",
+      "question": "¿Qué código corresponde a Mujer Trans?",
+      "answer": "5",
+      "source": "CEDHJ (2023) – Cédula descriptiva sobre la diversidad sexual."
+    },
+    {
+      "category": "Genero",
+      "question": "¿Qué representa el código 6?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Muxe",
+      "question": "¿Cuál es la clave para No Binario?",
+      "answer": "7",
+      "source": "CEDHJ (2023) – Cédula descriptiva sobre la diversidad sexual."
+    },
+    {
+      "category": "Muxe",
+      "question": "¿Qué código se utiliza para Prefiero no decir?",
+      "answer": "8",
+      "source": "CEDHJ (2023) – Cédula descriptiva sobre la diversidad sexual."
+    },
+    {
+      "category": "Muxe",
+      "question": "¿Qué organismo respalda este catálogo de géneros?",
+      "answer": "Comisión Estatal de Derechos Humanos Jalisco (CEDHJ)",
+      "source": "CEDHJ (2023) – Cédula descriptiva sobre la diversidad sexual."
+    },
+    {
+      "category": "Muxe",
+      "question": "¿En qué año se actualizó este catálogo?",
+      "answer": "2023",
+      "source": "CEDHJ (2023) – Cédula descriptiva sobre la diversidad sexual."
+    },
+    {
+      "category": "Muxe",
+      "question": "¿Qué es 'género' según la guía?",
+      "answer": "Construcción social/cultural vinculada a identidad y expresión. 12. Categorías contempladas de género. Cisgénero, Mujer, Hombre, No binarie, Transgénero, Transexual, Muxe, Otro, No conforme, Prefiero no decir.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Muxe",
+      "question": "¿Cómo registrar id_genero?",
+      "answer": "Se completa en automático o se selecciona; es obligatorio.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Muxe",
+      "question": "¿Campo asociado en la plantilla?",
+      "answer": "id_genero.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Muxe",
+      "question": "¿Se permite texto libre para género?",
+      "answer": "No; se usa catálogo definido en la guía.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Muxe",
+      "question": "¿Relación con sexo?",
+      "answer": "Variables distintas: sexo es biológico; género es identidad/expresión.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Qué código identifica la lengua indígena Paipai?",
+      "answer": "111",
+      "source": "INALI (2009) – Catálogo de Lenguas Indígenas Nacionales."
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Cuál es la clave de la lengua Kiliwa?",
+      "answer": "112",
+      "source": "INALI (2009) – Catálogo de Lenguas Indígenas Nacionales."
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Qué código corresponde a Cucapá?",
+      "answer": "113",
+      "source": "INALI (2009) – Catálogo de Lenguas Indígenas Nacionales."
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Cuál es la clave para la lengua Seri?",
+      "answer": "121",
+      "source": "INALI (2009) – Catálogo de Lenguas Indígenas Nacionales."
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Qué código corresponde a Chontal de Oaxaca?",
+      "answer": "131",
+      "source": "INALI (2009) – Catálogo de Lenguas Indígenas Nacionales."
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Cuál es la clave para Zapoteco?",
+      "answer": "400",
+      "source": "INALI (2009) – Catálogo de Lenguas Indígenas Nacionales."
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Qué código representa Mixteco?",
+      "answer": "450",
+      "source": "INALI (2009) – Catálogo de Lenguas Indígenas Nacionales."
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Cuál es la clave para Huichol?",
+      "answer": "1032",
+      "source": "INALI (2009) – Catálogo de Lenguas Indígenas Nacionales."
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Qué código corresponde a Maya?",
+      "answer": "922",
+      "source": "INALI (2009) – Catálogo de Lenguas Indígenas Nacionales."
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Cuál es la fuente oficial del catálogo?",
+      "answer": "Instituto Nacional de Lenguas Indígenas (INALI, 2009)",
+      "source": "INALI (2009) – Catálogo de Lenguas Indígenas Nacionales."
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Cómo registrar la lengua indígena?",
+      "answer": "Seleccionando clave del catálogo INALI en clave_leng_indi.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Es obligatoria la lengua indígena?",
+      "answer": "No; puede estar vacío si no se cuenta con el dato.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Qué se registra si habla varias lenguas?",
+      "answer": "La lengua indígena principal declarada por la persona. 14. Validación recomendada. Verificar que la clave exista en el catálogo vigente.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Lengua Indigena",
+      "question": "¿Se acepta texto libre?",
+      "answer": "No; se usa clave del catálogo. 16. Campo asociado. clave_leng_indi.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Municipio",
+      "question": "¿Qué institución es la fuente oficial del catálogo de municipios?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Cuál es la utilidad del catálogo de municipios?",
+      "answer": "Identificar y clasificar municipios de México mediante claves únicas.",
+      "source": "INEGI – Catálogo Único de Claves de Áreas Geoestadísticas."
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Qué campo clave se utiliza para identificar cada municipio?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Clave del municipio",
+      "question": "¿Qué código se utiliza para Ciudad de México?",
+      "answer": "9",
+      "source": "INEGI – Catálogo Único de Claves de Áreas Geoestadísticas."
+    },
+    {
+      "category": "Clave del municipio",
+      "question": "¿Qué código corresponde al estado de Jalisco?",
+      "answer": "14",
+      "source": "INEGI – Catálogo Único de Claves de Áreas Geoestadísticas."
+    },
+    {
+      "category": "Clave del municipio",
+      "question": "¿Cuál es la clave que identifica un municipio dentro de una entidad?",
+      "answer": "clave_mun",
+      "source": "INEGI – Catálogo Único de Claves de Áreas Geoestadísticas."
+    },
+    {
+      "category": "Clave del municipio",
+      "question": "¿Qué dato acompaña a la clave del municipio en los registros?",
+      "answer": "La clave de la entidad federativa.",
+      "source": "INEGI – Catálogo Único de Claves de Áreas Geoestadísticas."
+    },
+    {
+      "category": "Clave del municipio",
+      "question": "¿Cuál es la estructura básica de identificación de municipios?",
+      "answer": "Entidad federativa + clave municipal.",
+      "source": "INEGI – Catálogo Único de Claves de Áreas Geoestadísticas."
+    },
+    {
+      "category": "Clave del municipio",
+      "question": "¿Qué sitio oficial permite consultar este catálogo?",
+      "answer": "https://www.inegi.org.mx/app/ageeml/",
+      "source": "INEGI – Catálogo Único de Claves de Áreas Geoestadísticas."
+    },
+    {
+      "category": "Clave del municipio",
+      "question": "¿Qué organismo actualiza periódicamente estas claves?",
+      "answer": "Instituto Nacional de Estadística y Geografía (INEGI)",
+      "source": "INEGI – Catálogo Único de Claves de Áreas Geoestadísticas."
+    },
+    {
+      "category": "Nacionalidad",
+      "question": "¿Cuál es la clave de nacionalidad para Argentina?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "ARG",
+      "question": "¿Qué código corresponde a México?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "MEX",
+      "question": "¿Cuál es la abreviatura oficial para Canadá?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CAN",
+      "question": "¿Qué clave identifica a España?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "ESP",
+      "question": "¿Cuál es la clave para Estados Unidos?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "USA",
+      "question": "¿Qué código se utiliza para Japón?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "JPN",
+      "question": "¿Cuál es la abreviatura de Brasil?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "BRA",
+      "question": "¿Qué código identifica a Alemania?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "DEU",
+      "question": "¿Cuál es la clave para Francia?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "FRA",
+      "question": "¿Qué organismo valida este catálogo de nacionalidades?",
+      "answer": "Comisión Nacional Bancaria y de Valores (CNBV) 11. Campo que almacena la nacionalidad. id_nacionalidad. 12. Formato del catálogo de nacionalidad. Clave de tres letras (p. ej., MEX, USA, ESP).",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "FRA",
+      "question": "¿Es obligatoria la nacionalidad?",
+      "answer": "Sí; se completa en automático o se selecciona; obligatoria. 14. Ejemplo esperado para México. MEX.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "FRA",
+      "question": "¿Se permite texto libre para nacionalidad?",
+      "answer": "No; se usa catálogo institucional. 16. Revisión de coherencia del código. Verificar que la clave exista y corresponda al país indicado.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Ocupacion",
+      "question": "¿Qué institución es responsable del catálogo de ocupaciones?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Cuál es el objetivo principal del SINCO?",
+      "answer": "Clasificar y codificar las ocupaciones en México.",
+      "source": "INEGI (2019) – SINCO."
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Qué campo se utiliza para registrar el código de ocupación?",
+      "answer": "id_ocupacion",
+      "source": "INEGI (2019) – SINCO."
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Cuál es la fuente oficial para verificar los códigos?",
+      "answer": "Sistema Nacional de Clasificación de Ocupaciones (SINCO)",
+      "source": "INEGI (2019) – SINCO."
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Qué organismo actualiza el catálogo?",
+      "answer": "Instituto Nacional de Estadística y Geografía (INEGI)",
+      "source": "INEGI (2019) – SINCO."
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Qué clave corresponde a un Ingeniero Industrial?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Depende de la tabla SINCO",
+      "question": "¿Cuál es la utilidad del código de ocupación?",
+      "answer": "Identificar de forma única la profesión o actividad de una persona.",
+      "source": "INEGI (2019) – SINCO."
+    },
+    {
+      "category": "Depende de la tabla SINCO",
+      "question": "¿Dónde se puede consultar el catálogo completo?",
+      "answer": "https://www.inegi.org.mx",
+      "source": "INEGI (2019) – SINCO."
+    },
+    {
+      "category": "Depende de la tabla SINCO",
+      "question": "¿Qué año corresponde a la última actualización oficial?",
+      "answer": "2019",
+      "source": "INEGI (2019) – SINCO."
+    },
+    {
+      "category": "Depende de la tabla SINCO",
+      "question": "¿Qué variable se captura en la Plantilla PUB para registrar ocupación?",
+      "answer": "id_ocupacion 11. Campo asociado a la ocupación. id_ocupacion (catálogo SINCO). 12. Objetivo del catálogo de ocupaciones. Clasificar y codificar ocupaciones de forma homogénea.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Depende de la tabla SINCO",
+      "question": "¿Es obligatoria la ocupación?",
+      "answer": "Sí; se completa en automático o se selecciona; obligatoria. 14. Recomendación ante ambigüedad. Usar descripción funcional y seleccionar el código más específico.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Depende de la tabla SINCO",
+      "question": "¿Se permite texto libre para ocupación?",
+      "answer": "No; se usa catálogo SINCO. 16. Actualización del dato de ocupación. Actualizar cuando la persona cambie de ocupación principal.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Plantilla Pub",
+      "question": "¿Qué campo se utiliza para capturar la CURP?",
+      "answer": "curp",
+      "source": "Documento 'carpetas PUB.docx' – Plantilla PUB."
+    },
+    {
+      "category": "Plantilla Pub",
+      "question": "¿Cuál es la variable para registrar el nombre completo?",
+      "answer": "nombre",
+      "source": "Documento 'carpetas PUB.docx' – Plantilla PUB."
+    },
+    {
+      "category": "Plantilla Pub",
+      "question": "¿Qué campo contiene el primer apellido?",
+      "answer": "primer_ap",
+      "source": "Documento 'carpetas PUB.docx' – Plantilla PUB."
+    },
+    {
+      "category": "Plantilla Pub",
+      "question": "¿Cuál es el identificador para estado civil?",
+      "answer": "id_est_civil",
+      "source": "Documento 'carpetas PUB.docx' – Plantilla PUB."
+    },
+    {
+      "category": "Plantilla Pub",
+      "question": "¿Qué campo almacena la clave de ocupación?",
+      "answer": "id_ocupacion",
+      "source": "Documento 'carpetas PUB.docx' – Plantilla PUB."
+    },
+    {
+      "category": "Plantilla Pub",
+      "question": "¿Cuál es el campo para capturar correo electrónico?",
+      "answer": "email",
+      "source": "Documento 'carpetas PUB.docx' – Plantilla PUB."
+    },
+    {
+      "category": "Plantilla Pub",
+      "question": "¿Qué variable guarda el número de teléfono?",
+      "answer": "tel",
+      "source": "Documento 'carpetas PUB.docx' – Plantilla PUB."
+    },
+    {
+      "category": "Plantilla Pub",
+      "question": "¿Cuál es el campo para registrar la nacionalidad?",
+      "answer": "id_nacionalidad",
+      "source": "Documento 'carpetas PUB.docx' – Plantilla PUB."
+    },
+    {
+      "category": "Plantilla Pub",
+      "question": "¿Qué dato corresponde a la fecha de nacimiento?",
+      "answer": "fh_nacimiento",
+      "source": "Documento 'carpetas PUB.docx' – Plantilla PUB."
+    },
+    {
+      "category": "Plantilla Pub",
+      "question": "¿Qué campo identifica la clave del municipio?",
+      "answer": "clave_mun",
+      "source": "Documento 'carpetas PUB.docx' – Plantilla PUB."
+    },
+    {
+      "category": "Pueblo Indigena",
+      "question": "¿Qué clave identifica al pueblo indígena Akateko?",
+      "answer": "1",
+      "source": "INPI (2025) – Catálogo Nacional de Pueblos Indígenas."
+    },
+    {
+      "category": "Pueblo Indigena",
+      "question": "¿Cuál es la clave para Amuzgo?",
+      "answer": "2",
+      "source": "INPI (2025) – Catálogo Nacional de Pueblos Indígenas."
+    },
+    {
+      "category": "Pueblo Indigena",
+      "question": "¿Qué código corresponde al pueblo Apache?",
+      "answer": "3",
+      "source": "INPI (2025) – Catálogo Nacional de Pueblos Indígenas."
+    },
+    {
+      "category": "Pueblo Indigena",
+      "question": "¿Cuál es la clave para Ayapaneco?",
+      "answer": "4",
+      "source": "INPI (2025) – Catálogo Nacional de Pueblos Indígenas."
+    },
+    {
+      "category": "Pueblo Indigena",
+      "question": "¿Qué código se asigna al pueblo Chatino?",
+      "answer": "6",
+      "source": "INPI (2025) – Catálogo Nacional de Pueblos Indígenas."
+    },
+    {
+      "category": "Pueblo Indigena",
+      "question": "¿Cuál es la clave para Chinanteco?",
+      "answer": "8",
+      "source": "INPI (2025) – Catálogo Nacional de Pueblos Indígenas."
+    },
+    {
+      "category": "Pueblo Indigena",
+      "question": "¿Qué código identifica a Huichol?",
+      "answer": "22",
+      "source": "INPI (2025) – Catálogo Nacional de Pueblos Indígenas."
+    },
+    {
+      "category": "Pueblo Indigena",
+      "question": "¿Cuál es la clave para Maya?",
+      "answer": "34",
+      "source": "INPI (2025) – Catálogo Nacional de Pueblos Indígenas."
+    },
+    {
+      "category": "Pueblo Indigena",
+      "question": "¿Qué organismo es responsable de este catálogo?",
+      "answer": "Instituto Nacional de los Pueblos Indígenas (INPI)",
+      "source": "INPI (2025) – Catálogo Nacional de Pueblos Indígenas."
+    },
+    {
+      "category": "Pueblo Indigena",
+      "question": "¿En qué año se publicó la última actualización oficial?",
+      "answer": "2025",
+      "source": "INPI (2025) – Catálogo Nacional de Pueblos Indígenas."
+    },
+    {
+      "category": "Sexo",
+      "question": "¿Qué código se utiliza para Hombre?",
+      "answer": "1",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Sexo",
+      "question": "¿Qué valor identifica a Mujer?",
+      "answer": "2",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Sexo",
+      "question": "¿Qué campo registra el sexo en la Plantilla PUB?",
+      "answer": "id_sexo",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Sexo",
+      "question": "¿Dónde se capturan estos datos?",
+      "answer": "En la Plantilla PUB del documento oficial.",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Sexo",
+      "question": "¿Qué institución valida esta información?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Definición operativa de sexo?",
+      "answer": "Características biológicas/anatómicas que distinguen mujer y hombre. 7. Valores permitidos para id_sexo. 1 Hombre, 2 Mujer, 3 Otro, 4 Prefiero no decir.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Cómo se registra id_sexo?",
+      "answer": "Se completa en automático o se selecciona en catálogo; es obligatorio.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Campo asociado en la plantilla?",
+      "answer": "id_sexo.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Se permite texto libre para sexo?",
+      "answer": "No; solo valores del catálogo controlado.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Cuándo revisar consistencia del dato de sexo?",
+      "answer": "Cuando el valor no corresponde con documentación presentada.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Vialidad",
+      "question": "¿Cuál es la abreviatura para Avenida?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "AV",
+      "question": "¿Qué abreviatura corresponde a Boulevard?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "BLVD",
+      "question": "¿Qué clave identifica Callejón?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CJON",
+      "question": "¿Cuál es la abreviatura de Calzada?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CALZ",
+      "question": "¿Qué clave representa Circuito?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CIR",
+      "question": "¿Cuál es la abreviatura de Privada?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "PRIV",
+      "question": "¿Qué significa la abreviatura RET?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Retorno",
+      "question": "¿Qué clave corresponde a Prolongación?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "PROL",
+      "question": "¿Cuál es la abreviatura de Viaducto?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "VDTO",
+      "question": "¿Qué institución actualiza el catálogo de vialidades?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Qué clave corresponde a Ampliación?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "AMP",
+      "question": "¿Cuál es la abreviatura para Andador?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "AND",
+      "question": "¿Qué código identifica Calle?",
+      "answer": "C.",
+      "source": "INEGI (2025) – Marco Geoestadístico."
+    },
+    {
+      "category": "AND",
+      "question": "¿Cuál es la abreviatura de Pasaje?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "PSJ",
+      "question": "¿Qué significa la abreviatura PERIF?",
+      "answer": "Periférico",
+      "source": "INEGI (2025) – Marco Geoestadístico."
+    },
+    {
+      "category": "PSJ",
+      "question": "¿Cuál es la abreviatura de Camino?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CAM",
+      "question": "¿Qué clave representa Carretera?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CARR",
+      "question": "¿Qué institución publica estas claves?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Se permite texto libre para tipo de vialidad?",
+      "answer": "No; usar catálogo de vialidades. 22. Coherencia con el domicilio. Elegir el tipo que corresponda a la evidencia documental.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Es obligatorio el tipo de vialidad?",
+      "answer": "Se completa en automático o se selecciona; puede ser obligatorio según flujo. 24. Ejemplo práctico. Una avenida debe registrarse como AV, no como C. 25. Campos usados para referencias. id_tipo_ref1/2/3 y nom1/2/3. 26. Uso principal de las referencias. Agregar referencias personales o geográficas de apoyo.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Son obligatorias las referencias?",
+      "answer": "Generalmente opcionales; verificar la tabla de condición. 28. Calidad del dato en referencias. Registrar información útil y vigente. 29. Estandarización del tipo de referencia. Seleccionar el tipo del catálogo; evitar texto libre. 30. Privacidad al registrar referencias. Evitar información sensible en campos de texto libre.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Referencias",
+      "question": "¿Qué campo almacena el primer tipo de referencia?",
+      "answer": "id_tipo_ref1",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Referencias",
+      "question": "¿Dónde se guarda el nombre de la primera referencia?",
+      "answer": "nom1",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Referencias",
+      "question": "¿Qué identificador corresponde a la segunda referencia?",
+      "answer": "id_tipo_ref2",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Referencias",
+      "question": "¿En qué campo se captura la segunda referencia?",
+      "answer": "nom2",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Referencias",
+      "question": "¿Qué clave se usa para la tercera referencia?",
+      "answer": "id_tipo_ref3",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Referencias",
+      "question": "¿Dónde se ingresa el nombre de la tercera referencia?",
+      "answer": "nom3",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Referencias",
+      "question": "¿Cuál es el uso principal de estos campos?",
+      "answer": "Registrar referencias personales o geográficas.",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Referencias",
+      "question": "¿Qué documento define estos datos?",
+      "answer": "Documento 'carpetas PUB.docx'.",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Vialidad",
+      "question": "¿Cuál es la abreviatura para Avenida?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "AV",
+      "question": "¿Qué abreviatura corresponde a Boulevard?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "BLVD",
+      "question": "¿Qué clave identifica Callejón?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CJON",
+      "question": "¿Cuál es la abreviatura de Calzada?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CALZ",
+      "question": "¿Qué clave representa Circuito?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CIR",
+      "question": "¿Cuál es la abreviatura de Privada?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "PRIV",
+      "question": "¿Qué significa la abreviatura RET?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "Retorno",
+      "question": "¿Qué clave corresponde a Prolongación?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "PROL",
+      "question": "¿Cuál es la abreviatura de Viaducto?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "VDTO",
+      "question": "¿Qué institución actualiza el catálogo de vialidades?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Qué clave corresponde a Ampliación?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "AMP",
+      "question": "¿Cuál es la abreviatura para Andador?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "AND",
+      "question": "¿Qué código identifica Calle?",
+      "answer": "C.",
+      "source": "INEGI (2025) – Marco Geoestadístico."
+    },
+    {
+      "category": "AND",
+      "question": "¿Cuál es la abreviatura de Pasaje?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "PSJ",
+      "question": "¿Qué significa la abreviatura PERIF?",
+      "answer": "Periférico",
+      "source": "INEGI (2025) – Marco Geoestadístico."
+    },
+    {
+      "category": "PSJ",
+      "question": "¿Cuál es la abreviatura de Camino?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CAM",
+      "question": "¿Qué clave representa Carretera?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "CARR",
+      "question": "¿Qué institución publica estas claves?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Se permite texto libre para tipo de vialidad?",
+      "answer": "No; usar catálogo de vialidades. 22. Coherencia con el domicilio. Elegir el tipo que corresponda a la evidencia documental.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Es obligatorio el tipo de vialidad?",
+      "answer": "Se completa en automático o se selecciona; puede ser obligatorio según flujo. 24. Ejemplo práctico. Una avenida debe registrarse como AV, no como C. 25. Campos usados para referencias. id_tipo_ref1/2/3 y nom1/2/3. 26. Uso principal de las referencias. Agregar referencias personales o geográficas de apoyo.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Son obligatorias las referencias?",
+      "answer": "Generalmente opcionales; verificar la tabla de condición. 28. Calidad del dato en referencias. Registrar información útil y vigente. 29. Estandarización del tipo de referencia. Seleccionar el tipo del catálogo; evitar texto libre. 30. Privacidad al registrar referencias. Evitar información sensible en campos de texto libre.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Codigo Postal",
+      "question": "¿Qué institución es responsable de asignar códigos postales?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "SEPOMEX",
+      "question": "¿Qué estructura tienen los códigos postales en México?",
+      "answer": "Cinco dígitos numéricos.",
+      "source": "SEPOMEX – Sistema Nacional de Códigos Postales."
+    },
+    {
+      "category": "SEPOMEX",
+      "question": "¿Dónde se consulta el catálogo oficial?",
+      "answer": "https://www.correosdemexico.gob.mx",
+      "source": "SEPOMEX – Sistema Nacional de Códigos Postales."
+    },
+    {
+      "category": "SEPOMEX",
+      "question": "¿Qué campo en la plantilla almacena el código postal?",
+      "answer": "cp",
+      "source": "SEPOMEX – Sistema Nacional de Códigos Postales."
+    },
+    {
+      "category": "SEPOMEX",
+      "question": "¿Qué organismo valida la integración de CP con localidades?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Cuál es la relación entre CP y claves municipales?",
+      "answer": "El CP se asocia a la clave del municipio.",
+      "source": "SEPOMEX – Sistema Nacional de Códigos Postales."
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Cuántos dígitos tiene un código postal estándar?",
+      "answer": "5",
+      "source": "SEPOMEX – Sistema Nacional de Códigos Postales."
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Qué dato adicional puede derivarse de un CP?",
+      "answer": "La localidad a la que pertenece.",
+      "source": "SEPOMEX – Sistema Nacional de Códigos Postales."
+    },
+    {
+      "category": "Otros Catalogos Menores",
+      "question": "¿Qué código representa Ninguno en asentamientos?",
+      "answer": "N/A",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Otros Catalogos Menores",
+      "question": "¿Qué abreviatura identifica Zona Militar?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "ZM",
+      "question": "¿Qué clave se asigna a Zona Naval?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "ZN",
+      "question": "¿Cuál es la clave para Zona Industrial?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "ZI",
+      "question": "¿Qué institución publica estas claves?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Dónde se consultan los catálogos completos?",
+      "answer": "https://www.inegi.org.mx",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "INEGI",
+      "question": "¿Cuál es la clave para Super Manzana?",
+      "answer": "",
+      "source": ""
+    },
+    {
+      "category": "SUP MZ",
+      "question": "¿Qué documento compila todas estas tablas?",
+      "answer": "Documento 'carpetas PUB.docx'",
+      "source": "Documento 'carpetas PUB.docx'."
+    },
+    {
+      "category": "Identificacion Civil",
+      "question": "¿Qué CURP debe registrarse?",
+      "answer": "La CURP certificada del beneficiario (18 caracteres alfanuméricos).",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Identificacion Civil",
+      "question": "¿Cómo se captura la fecha de nacimiento?",
+      "answer": "Formato dd/mm/aaaa en el campo fh_nacimiento.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Identificacion Civil",
+      "question": "¿Cómo registrar primer y segundo apellido?",
+      "answer": "Igual que en la CURP certificada, en primer_ap y segundo_ap.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Identificacion Civil",
+      "question": "¿Cómo registrar los nombres?",
+      "answer": "Igual que en la CURP certificada, en el campo nombre.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Identificacion Civil",
+      "question": "¿La CURP es obligatoria?",
+      "answer": "Sí; se captura como dato obligatorio.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Identificacion Civil",
+      "question": "¿Qué validaciones mínimas aplicar a CURP?",
+      "answer": "Longitud 18 y estructura alfanumérica coherente con nombre y fecha.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Origen Afrodescendiente",
+      "question": "¿Cómo registrar el dato?",
+      "answer": "En origen_afro; se completa en automático o se selecciona.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Origen Afrodescendiente",
+      "question": "¿Es obligatorio?",
+      "answer": "Sí; según la tabla de condición/obligatoriedad.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Origen Afrodescendiente",
+      "question": "¿Se admite evidencia documental?",
+      "answer": "Se prioriza autorreconocimiento; seguir lineamientos de la guía. 5. Uso del dato. Desagregación estadística con enfoque de derechos.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Origen Afrodescendiente",
+      "question": "¿Valor por omisión?",
+      "answer": "No debe asumirse; requerir respuesta informada.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Grupo Indigena",
+      "question": "¿Cómo registrar el grupo indígena?",
+      "answer": "Seleccionando clave en clave_grupo_indi.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Grupo Indigena",
+      "question": "¿Es obligatorio el grupo indígena?",
+      "answer": "No; puede estar vacío si no se cuenta con el dato. 3. Diferencia con lengua indígena. Lengua es idioma; grupo es adscripción al pueblo/comunidad. 4. Validación recomendada. Usar catálogo actualizado y coherente con el territorio. 5. Campo asociado. clave_grupo_indi.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Grupo Indigena",
+      "question": "¿Se permite texto libre?",
+      "answer": "No; se selecciona del catálogo.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Contacto",
+      "question": "¿Cómo registrar el teléfono?",
+      "answer": "En tel; puede quedar vacío si no se cuenta con el dato.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Contacto",
+      "question": "¿Cómo registrar el correo electrónico?",
+      "answer": "En email; puede quedar vacío si no se cuenta con el dato. 3. Validación mínima para email. Estructura usuario@dominio con dominio válido. 4. Uso del teléfono. Canal de contacto para aclaraciones o seguimiento.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Contacto",
+      "question": "¿Son obligatorios teléfono y correo?",
+      "answer": "No; son opcionales según la guía. 6. Protección de datos personales. Evitar publicar datos de contacto; uso interno con lineamientos.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Claves Territoriales",
+      "question": "¿Se permite texto libre en claves?",
+      "answer": "No; seleccionar claves válidas del catálogo.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Claves Territoriales",
+      "question": "¿Son obligatorias?",
+      "answer": "Según tabla de condición/obligatoriedad por campo. 6. Buenas prácticas de validación. Cruzar con CP y tipo de asentamiento para mayor precisión.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Metadatos Del Sistema",
+      "question": "¿Cuáles son metadatos del sistema?",
+      "answer": "created_at, updated_at, estatus, estatus_curp.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Metadatos Del Sistema",
+      "question": "¿Quién llena los metadatos?",
+      "answer": "El sistema los completa automáticamente. 3. Uso de los metadatos. Trazabilidad, auditoría y validación de CURP.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Metadatos Del Sistema",
+      "question": "¿Se editan manualmente los metadatos?",
+      "answer": "No; se actualizan por procesos del sistema. 5. Visibilidad común en reportes. Permiten cortes por fecha y estado del registro. 6. Relación con la captura manual. No dependen del capturista para su llenado.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    },
+    {
+      "category": "Reglas De Obligatoriedad",
+      "question": "¿Dónde revisar la obligatoriedad exacta?",
+      "answer": "En la tabla de 'Condición' y 'Obligatorio/Puede estar vacío'. 4. Regla general de captura. Preferir catálogo controlado antes que texto libre siempre que sea posible. 5. Validaciones mínimas sugeridas. Formato, longitud y coherencia entre campos relacionados. 6. Trazabilidad del registro. Usar metadatos para auditoría y control de cambios.",
+      "source": "Plantilla Guía PUB Personas.docx"
+    }
+  ]
+}

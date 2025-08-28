@@ -1,0 +1,34 @@
+[
+  {
+    "id":1,
+    "genero":"HOMBRE"
+  },
+  {
+    "id":2,
+    "genero":"HOMBRE TRANS"
+  },
+  {
+    "id":3,
+    "genero":"INTERSEXUAL"
+  },
+  {
+    "id":4,
+    "genero":"MUJER"
+  },
+  {
+    "id":5,
+    "genero":"MUJER TRANS"
+  },
+  {
+    "id":6,
+    "genero":"MUXE"
+  },
+  {
+    "id":7,
+    "genero":"NO BINARIO"
+  },
+  {
+    "id":8,
+    "genero":"PREFIERO NO DECIR"
+  }
+]

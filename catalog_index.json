@@ -1,0 +1,117 @@
+{
+  "generated_at": "",
+  "catalogs": [
+    {
+      "name": "Asentamientos",
+      "slug": "asentamientos",
+      "json": "asentamientos.json",
+      "csv": "asentamientos.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Comunidades",
+      "slug": "comunidades",
+      "json": "comunidades.json",
+      "csv": "comunidades.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Discapacidad",
+      "slug": "discapacidad",
+      "json": "discapacidad.json",
+      "csv": "discapacidad.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Entidades",
+      "slug": "entidades",
+      "json": "entidades.json",
+      "csv": "entidades.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Escolaridad",
+      "slug": "escolaridad",
+      "json": "escolaridad.json",
+      "csv": "escolaridad.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Estado Civil",
+      "slug": "estadocivil",
+      "json": "estadocivil.json",
+      "csv": "estadocivil.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Géneros",
+      "slug": "generos",
+      "json": "generos.json",
+      "csv": "generos.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Lenguas Indígenas",
+      "slug": "lenguasindig",
+      "json": "lenguasindig.json",
+      "csv": "lenguasindig.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Municipios",
+      "slug": "municipios",
+      "json": "municipios.json",
+      "csv": "municipios.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Nacionalidades",
+      "slug": "nacionalidades",
+      "json": "nacionalidades.json",
+      "csv": "nacionalidades.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Ocupaciones",
+      "slug": "ocupaciones",
+      "json": "ocupaciones.json",
+      "csv": "ocupaciones.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Plantilla PUB",
+      "slug": "plantillapub",
+      "json": "plantillapub.json",
+      "csv": "plantillapub.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Pueblos Indígenas",
+      "slug": "pueblosindig",
+      "json": "pueblosindig.json",
+      "csv": "pueblosindig.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Referencias",
+      "slug": "referencias",
+      "json": "referencias.json",
+      "csv": "referencias.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Sexo",
+      "slug": "sexo",
+      "json": "sexo.json",
+      "csv": "sexo.csv",
+      "source": "Documento de catálogos"
+    },
+    {
+      "name": "Vialidades",
+      "slug": "vialidades",
+      "json": "vialidades.json",
+      "csv": "vialidades.csv",
+      "source": "Documento de catálogos"
+    }
+  ]
+}

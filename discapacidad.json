@@ -1,0 +1,50 @@
+[
+  {
+    "id":1,
+    "discapacidad":"DISCAPACIDAD INTELECTUAL"
+  },
+  {
+    "id":2,
+    "discapacidad":"DISCAPACIDAD PSICOSOCIAL"
+  },
+  {
+    "id":3,
+    "discapacidad":"DISCAPACIDAD AUDITIVA"
+  },
+  {
+    "id":4,
+    "discapacidad":"DISCAPACIDAD MOTORA"
+  },
+  {
+    "id":5,
+    "discapacidad":"DISCAPACIDAD VISUAL"
+  },
+  {
+    "id":6,
+    "discapacidad":"DISCAPACIDAD MÚLTIPLE"
+  },
+  {
+    "id":7,
+    "discapacidad":"LIMITACIÓN INTELECTUAL"
+  },
+  {
+    "id":8,
+    "discapacidad":"LIMITACIÓN PSICOSOCIAL"
+  },
+  {
+    "id":9,
+    "discapacidad":"LIMITACIÓN AUDITIVA"
+  },
+  {
+    "id":10,
+    "discapacidad":"LIMITACIÓN MOTORA"
+  },
+  {
+    "id":11,
+    "discapacidad":"LIMITACIÓN VISUAL"
+  },
+  {
+    "id":12,
+    "discapacidad":"LIMITACIONES MÚLTIPLES"
+  }
+]

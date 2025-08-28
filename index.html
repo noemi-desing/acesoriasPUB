@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asesorías PUB – DIF Jalisco</title>
+  <link rel="icon" href="logo-dif-jalisco.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <img src="logo-dif-jalisco.png" alt="Logo DIF Jalisco" class="logo">
+    <div class="titles">
+      <h1>Asesorías PUB</h1>
+      <p>Chatbot con base documental y 16 catálogos descargables</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="tabbar">
+        <button id="tab-chat" class="active">Chat de Asesoría</button>
+        <button id="tab-catalogs">Catálogos</button>
+      </div>
+      <div id="chat-view">
+        <h2 class="section-title">Haz tu consulta sobre el PUB</h2>
+        <div class="chat-log" id="chat-log" aria-live="polite"></div>
+        <div class="row">
+          <input id="user-input" type="text" placeholder="Ej. ¿Qué abreviatura se usa para Avenida?">
+          <button id="consultar-btn" class="primary">Consultar</button>
+        </div>
+        <p class="small">El chatbot responde basado en <code>faqs.json</code> e incluye cita de la fuente.</p>
+      </div>
+      <div id="catalogs-view" style="display:none">
+        <h2 class="section-title">Catálogos (clic para abrir)</h2>
+        <div id="catalog-buttons" class="catalog-grid" role="list"></div>
+        <div id="catalog-output" style="margin-top:14px"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © DIF Jalisco
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+[
+  {
+    "campo":"id_tipo_ref1",
+    "uso":"Tipo de referencia 1"
+  },
+  {
+    "campo":"nom1",
+    "uso":"Nombre de referencia 1"
+  },
+  {
+    "campo":"id_tipo_ref2",
+    "uso":"Tipo de referencia 2"
+  },
+  {
+    "campo":"nom2",
+    "uso":"Nombre de referencia 2"
+  },
+  {
+    "campo":"id_tipo_ref3",
+    "uso":"Tipo de referencia 3"
+  },
+  {
+    "campo":"nom3",
+    "uso":"Nombre de referencia 3"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id":1,
+    "ocupacion":"FUNCIONARIOS, DIRECTORES Y JEFES  "
+  },
+  {
+    "id":2,
+    "ocupacion":"PROFESIONISTAS Y TÉCNICOS"
+  },
+  {
+    "id":3,
+    "ocupacion":"TRABAJADORES AUXILIARES EN ACTIVIDADES ADMINISTRATIVAS"
+  },
+  {
+    "id":4,
+    "ocupacion":"COMERCIANTES, EMPLEADOS EN VENTAS Y AGENTES DE VENTAS"
+  },
+  {
+    "id":5,
+    "ocupacion":"TRABAJADORES EN SERVICIOS PERSONALES Y DE VIGILANCIA"
+  },
+  {
+    "id":6,
+    "ocupacion":"TRABAJADORES EN ACTIVIDADES AGRÍCOLAS, GANADERAS, FORESTALES, CAZA Y PESCA"
+  },
+  {
+    "id":7,
+    "ocupacion":"TRABAJADORES ARTESANALES, EN LA CONSTRUCCIÓN Y OTROS OFICIOS"
+  },
+  {
+    "id":8,
+    "ocupacion":"OPERADORES DE MAQUINARIA INDUSTRIAL, ENSAMBLADORES, CHOFERES Y CONDUCTORES DE TRANSPORTE"
+  },
+  {
+    "id":9,
+    "ocupacion":"TRABAJADORES EN ACTIVIDADES ELEMENTALES Y DE APOYO"
+  },
+  {
+    "id":10,
+    "ocupacion":"NINGUNO"
+  }
+]
