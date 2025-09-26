@@ -62,7 +62,7 @@
       <h1>Padrón Único de Beneficiarios (PUB)</h1>
       <p>DIF Jalisco · Gobierno del Estado</p>
     </div>
-    <!-- Logo (se resuelve automáticamente con fallbacks) -->
+    <!-- El logo se resuelve automáticamente a partir de varios nombres/rutas -->
     <img id="logoDIF" alt="Logo DIF Jalisco">
   </header>
 
@@ -79,23 +79,22 @@
     <section id="catalogos">
       <h2>Catálogos oficiales del PUB</h2>
       <div id="catalogos-list">
-        <!-- OJO: la carpeta tiene acento, por eso uso la ruta URL-encoded cat%C3%A1logos -->
-        <div class="catalogo-item"><span>ASENTAMIENTO</span><a href="cat%C3%A1logos/ASENTAMIENTO.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>CLAVE_ENT</span><a href="cat%C3%A1logos/CLAVE_ENT.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>CLAVE_MUN</span><a href="cat%C3%A1logos/CLAVE_MUN.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>CURP</span><a href="cat%C3%A1logos/CURP.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>DISCAPACIDAD</span><a href="cat%C3%A1logos/DISCAPACIDAD.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>EDO_CIVIL</span><a href="cat%C3%A1logos/EDO_CIVIL.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>ENTIDAD_DE_NAC</span><a href="cat%C3%A1logos/ENTIDAD_DE_NAC.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>ESCOLARIDAD</span><a href="cat%C3%A1logos/ESCOLARIDAD.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>GENERO</span><a href="cat%C3%A1logos/GENERO.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>GRUPO_I</span><a href="cat%C3%A1logos/GRUPO_I.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>LENGUA_I</span><a href="cat%C3%A1logos/LENGUA_I.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>OCUPACION</span><a href="cat%C3%A1logos/OCUPACION.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>UBICACION</span><a href="cat%C3%A1logos/UBICACION.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>VARIABLES</span><a href="cat%C3%A1logos/VARIABLES.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>VIALIDAD</span><a href="cat%C3%A1logos/VIALIDAD.xlsx" download><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>PLANTILLA_MODIFICADO_2025</span><a href="cat%C3%A1logos/Plantilla%20Modificado%2018.08.2025.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>ASENTAMIENTO</span><a href="catalogos/ASENTAMIENTO.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>CLAVE_ENT</span><a href="catalogos/CLAVE_ENT.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>CLAVE_MUN</span><a href="catalogos/CLAVE_MUN.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>CURP</span><a href="catalogos/CURP.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>DISCAPACIDAD</span><a href="catalogos/DISCAPACIDAD.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>EDO_CIVIL</span><a href="catalogos/EDO_CIVIL.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>ENTIDAD_DE_NAC</span><a href="catalogos/ENTIDAD_DE_NAC.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>ESCOLARIDAD</span><a href="catalogos/ESCOLARIDAD.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>GENERO</span><a href="catalogos/GENERO.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>GRUPO_I</span><a href="catalogos/GRUPO_I.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>LENGUA_I</span><a href="catalogos/LENGUA_I.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>OCUPACION</span><a href="catalogos/OCUPACION.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>UBICACION</span><a href="catalogos/UBICACION.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>VARIABLES</span><a href="catalogos/VARIABLES.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>VIALIDAD</span><a href="catalogos/VIALIDAD.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>PLANTILLA_MODIFICADO_2025</span><a href="catalogos/Plantilla Modificado 18.08.2025.xlsx" download><button>Descargar</button></a></div>
       </div>
     </section>
   </main>
@@ -109,24 +108,23 @@
     (function resolveLogo(){
       const img = document.getElementById('logoDIF');
       const candidatos = [
-        "activos/logo-dif.jpg",
-        "activos/LOGO%20DIF.JPG",
-        "activos/LOGO DIF.JPG",
-        "activos/logotipo-dif.jpg.JPG",
-        "cat%C3%A1logos/logo-dif.jpg",
-        "cat%C3%A1logos/LOGO%20DIF.JPG",
-        "cat%C3%A1logos/LOGO DIF.JPG",
-        "assets/logo-dif.jpg"
+        "catalogos/LOGO%20DIF.JPG",
+        "catalogos/LOGO DIF.JPG",
+        "catalogos/logo-dif.jpg",
+        "catalogos/logo-dif.JPG",
+        "catalogos/LOGO_DIF.JPG",
+        "assets/logo-dif.jpg",
+        "assets/LOGO%20DIF.JPG"
       ];
       let i = 0;
-      function tryNext(){
-        if(i >= candidatos.length){ img.style.display = "none"; return; }
+      const tryNext = () => {
+        if (i >= candidatos.length) { img.style.display = "none"; return; }
         const src = candidatos[i++];
         const tester = new Image();
         tester.onload = () => { img.src = src; };
         tester.onerror = tryNext;
         tester.src = src;
-      }
+      };
       tryNext();
     })();
 
@@ -174,6 +172,7 @@
   </script>
 </body>
 </html>
+
 
 
 
