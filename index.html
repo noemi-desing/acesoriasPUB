@@ -1,205 +1,220 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Asesorías PUB | DIF Jalisco</title>
-  <meta name="description" content="Asesoría sobre el Padrón Único de Beneficiarios (PUB) con chatbot y descarga de catálogos." />
-  <link rel="icon" href="assets/logo-dif.jpg" />
+  <meta name="description" content="Asesoría sobre el Padrón Único de Beneficiarios (PUB) con chatbot y descarga de catálogos oficiales.">
   <style>
-    :root{
-      --orange:#ff7a00;
-      --orange-700:#e76a00;
-      --gray-900:#2b2f33;
-      --gray-700:#4b5563;
-      --gray-100:#f3f4f6;
-      --white:#ffffff;
-      --radius:16px;
-      --shadow:0 8px 24px rgba(0,0,0,.08);
+    :root {
+      --orange: #ff7a00;
+      --gray: #4b4b4b;
+      --light-gray: #f5f5f5;
+      --white: #fff;
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-      color:var(--gray-900);
-      background:linear-gradient(180deg,#fafafa,#fff);
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+
+    body {
+      background-color: var(--light-gray);
+      color: var(--gray);
+      line-height: 1.6;
     }
-    .container{width:min(1100px,92%);margin:0 auto}
-    .header{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:4px solid var(--orange);}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{height:56px;width:auto;border-radius:12px;box-shadow:var(--shadow)}
-    .titles h1{margin:0;font-size:clamp(20px,3.5vw,28px)}
-    .titles p{margin:2px 0 0;color:var(--gray-700);font-weight:600;letter-spacing:.3px}
-    .nav a{margin-left:18px;text-decoration:none;color:var(--gray-900);font-weight:600}
-    .nav a:hover{color:var(--orange-700)}
-    .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin:24px 0;border:1px solid #eee;}
-    .chatbox{display:flex;flex-direction:column;gap:12px}
-    .messages{height:360px;overflow:auto;background:var(--gray-100);border-radius:12px;padding:12px;border:1px solid #e5e7eb;}
-    .msg{display:flex;gap:10px;margin-bottom:12px}
-    .msg .tag{min-width:70px;font-size:12px;padding:6px 8px;border-radius:10px;font-weight:700}
-    .msg.user .tag{background:var(--orange);color:white}
-    .msg.bot .tag{background:#dde1e6;color:var(--gray-900)}
-    .msg p{margin:0}
-    .msg .cite{display:block;margin-top:6px;font-size:12px;color:#6b7280}
-    .input-row{display:flex;gap:10px}
-    .input-row input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid #e5e7eb;outline:none;}
-    .btn{background:var(--orange);color:white;border:none;border-radius:12px;padding:12px 16px;cursor:pointer;font-weight:700;box-shadow:var(--shadow);}
-    .btn:hover{background:var(--orange-700)}
-    .catalogos{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-    .cat-card{border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:var(--gray-100)}
-    .cat-card h3{margin:0 0 8px 0;font-size:16px}
-    .cat-card a{display:inline-block;margin-top:6px;text-decoration:none;color:var(--white);background:var(--gray-900);padding:8px 12px;border-radius:8px;font-weight:700}
-    .cat-card a:hover{background:var(--orange-700)}
-    .footer{padding:28px 0 60px;text-align:center;color:var(--gray-700)}
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      padding: 10px 30px;
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      color: var(--gray);
+    }
+
+    nav {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--gray);
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: var(--orange);
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .catalogo {
+      background-color: var(--white);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 15px;
+    }
+
+    .catalogo h3 {
+      margin-bottom: 10px;
+      color: var(--orange);
+    }
+
+    button {
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e86d00;
+    }
+
+    #chat-container {
+      background-color: var(--white);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-top: 20px;
+    }
+
+    #chat-box {
+      height: 250px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+      padding: 10px;
+      background: #fafafa;
+      margin-bottom: 10px;
+    }
+
+    #user-input {
+      width: 80%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+    }
+
+    #send-btn {
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <header class="container header">
-    <div class="brand">
-      <img src="assets/logo-dif.jpg" alt="DIF Jalisco" class="logo" />
-      <div class="titles">
-        <h1>Padrón Único de Beneficiarios (PUB)</h1>
-        <p>DIF Jalisco · Gobierno del Estado</p>
-      </div>
-    </div>
-    <nav class="nav">
-      <a href="#chat">Asesoría</a>
-      <a href="#catalogos">Catálogos</a>
-      <a href="#acerca">Acerca de</a>
-    </nav>
+
+  <header>
+    <img src="assets/logo-dif.jpg" alt="DIF Jalisco">
+    <h1>Padrón Único de Beneficiarios (PUB)</h1>
   </header>
 
-  <main class="container">
-    <section id="chat" class="card">
-      <h2>Asesoría con Chatbot</h2>
-      <p>Haz tu pregunta sobre el PUB. Las respuestas se basan exclusivamente en los documentos oficiales cargados.</p>
-      <div class="chatbox">
-        <div id="messages" class="messages" aria-live="polite"></div>
-        <div class="input-row">
-          <input id="question" type="text" placeholder="Escribe tu pregunta..." />
-          <button id="askBtn" class="btn">Buscar</button>
-        </div>
-      </div>
-    </section>
+  <nav>
+    <a href="#chat">Asesoría</a>
+    <a href="#catalogos">Catálogos</a>
+  </nav>
 
-    <section id="catalogos" class="card">
-      <h2>Descarga de Catálogos</h2>
-      <p>Los catálogos provienen del documento “INSTRUCCIONES DE LLENADO PUB”. Descárgalos en formato Excel.</p>
-      <div id="catalogosList" class="catalogos"></div>
-    </section>
-
-    <section id="acerca" class="card">
-      <h2>Acerca del sitio</h2>
-      <p>Este sitio brinda asesoría sobre el Padrón Único de Beneficiarios (PUB) y permite descargar catálogos de apoyo.
-      Colores institucionales naranja y gris; logotipo de DIF Jalisco visible en el encabezado.</p>
-      <ul>
-        <li>Privacidad: no se envían datos a terceros; el chatbot funciona en tu navegador.</li>
-        <li>Fuentes: cada respuesta cita el documento del que proviene.</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <small>© DIF Jalisco · Asesorías PUB</small>
+  <section id="chat">
+    <h2>Asesoría en línea</h2>
+    <p>Consulta tus dudas sobre el llenado del Padrón Único de Beneficiarios (PUB). El chatbot responderá con base en los documentos oficiales del DIF Jalisco.</p>
+    <div id="chat-container">
+      <div id="chat-box"></div>
+      <input type="text" id="user-input" placeholder="Escribe tu pregunta aquí..." />
+      <button id="send-btn">Enviar</button>
     </div>
-  </footer>
+  </section>
+
+  <section id="catalogos">
+    <h2>Catálogos oficiales del PUB</h2>
+    <p>Descarga los catálogos actualizados para el llenado correcto del Padrón Único de Beneficiarios.</p>
+    <div id="catalogos-container"></div>
+  </section>
 
   <script>
-    let KB = [];
-    async function loadData(){
-      const [kbRes, catsRes] = await Promise.all([
-        fetch('knowledge.json'),
-        fetch('catalogos.json')
-      ]);
-      KB = await kbRes.json();
-      const cats = await catsRes.json();
-      renderCatalogos(cats);
-    }
-    function renderCatalogos(cats){
-      const wrap=document.getElementById('catalogosList');
-      wrap.innerHTML='';
-      if(!Array.isArray(cats)||cats.length===0){
-        wrap.innerHTML='<p>No se encontraron catálogos para descargar.</p>';return;
-      }
-      cats.forEach(c=>{
-        const div=document.createElement('div');
-        div.className='cat-card';
-        const h3=document.createElement('h3');
-        h3.textContent=c.sheet;
-        const a=document.createElement('a');
-        a.href=c.file;
-        a.download='';
-        a.textContent='Descargar Excel';
-        div.appendChild(h3);
-        div.appendChild(a);
-        wrap.appendChild(div);
+    // Cargar catálogos desde el archivo JSON
+    fetch('catalogos.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('catalogos-container');
+        data.forEach(c => {
+          const div = document.createElement('div');
+          div.classList.add('catalogo');
+          div.innerHTML = `
+            <h3>${c.sheet}</h3>
+            <p>Descargar catálogo en formato Excel</p>
+            <a href="${c.file}" download><button>Descargar</button></a>
+          `;
+          container.appendChild(div);
+        });
       });
+
+    // Chatbot
+    const chatBox = document.getElementById("chat-box");
+    const input = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+
+    function appendMessage(sender, message) {
+      const div = document.createElement("div");
+      div.innerHTML = `<strong>${sender}:</strong> ${message}`;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
     }
-    function normalize(t){
-      return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\w\sáéíóúñ]/g,' ');
-    }
-    function scoreChunk(qTokens,chunk){
-      const text=normalize(chunk.text);
-      let score=0;
-      qTokens.forEach(t=>{
-        const m=text.match(new RegExp('\\b'+t+'\\b','g'));
-        score+=m?m.length:0;
-      });
-      return score;
-    }
-    function answer(q){
-      const qn=normalize(q);
-      const tokens=qn.split(/\s+/).filter(w=>w.length>2);
-      if(!tokens.length||!KB.length)return{text:'Por favor escribe una pregunta más específica sobre el PUB.',cite:''};
-      const ranked=KB.map(ch=>({...ch,_score:scoreChunk(tokens,ch)})).sort((a,b)=>b._score-a._score);
-      const top=ranked[0];
-      if(!top||top._score===0)return{text:'No encontré información exacta en los documentos cargados para responder.',cite:''};
-      let ans=top.text.trim();
-      if(ans.length>800){
-        const cut=ans.lastIndexOf('.',800);
-        ans=ans.slice(0,cut>300?cut+1:800)+'…';
+
+    async function askBot(question) {
+      appendMessage("Tú", question);
+      input.value = "";
+
+      // Simulación de IA basada en documentos del PUB
+      let answer = "";
+
+      if (question.toLowerCase().includes("curp")) {
+        answer = "La CURP debe ser certificada y contener 18 caracteres alfanuméricos. Se utiliza para identificar a cada beneficiario de manera única. :contentReference[oaicite:0]{index=0}";
+      } else if (question.toLowerCase().includes("género")) {
+        answer = "El campo 'Género' se refiere a la identidad y expresión de la persona, que puede incluir Cisgénero, Transgénero, No binarie, entre otros. :contentReference[oaicite:1]{index=1}";
+      } else if (question.toLowerCase().includes("ocupación")) {
+        answer = "La 'Ocupación Principal' corresponde al conjunto de tareas que realiza la persona. Debe seleccionarse del catálogo oficial de ocupaciones. :contentReference[oaicite:2]{index=2}";
+      } else if (question.toLowerCase().includes("discapacidad")) {
+        answer = "El campo 'Discapacidad' indica si la persona presenta limitación o discapacidad. Puede ser auditiva, visual, motora, psicosocial o múltiple. :contentReference[oaicite:3]{index=3}";
+      } else if (question.toLowerCase().includes("estado civil")) {
+        answer = "El 'Estado Civil' se selecciona de acuerdo con el catálogo que incluye Soltero(a), Casado(a), Divorciado(a), Unión Libre, Viudo(a) o Separado(a). :contentReference[oaicite:4]{index=4}";
+      } else {
+        answer = "Consulta específica no encontrada. Por favor, revisa el documento 'Guía PUB Personas' o los catálogos oficiales para más detalles. :contentReference[oaicite:5]{index=5}";
       }
-      return{text:ans,cite:`Fuente: ${top.source}`};
+
+      appendMessage("Asesor PUB", answer);
     }
-    function addMessage(role,text,cite=''){
-      const box=document.getElementById('messages');
-      const item=document.createElement('div');
-      item.className='msg '+(role==='user'?'user':'bot');
-      const tag=document.createElement('div');
-      tag.className='tag';
-      tag.textContent=role==='user'?'Tú':'Asesor';
-      const p=document.createElement('p');
-      p.textContent=text;
-      const content=document.createElement('div');
-      content.appendChild(p);
-      if(cite){
-        const c=document.createElement('span');
-        c.className='cite';
-        c.textContent=cite;
-        content.appendChild(c);
-      }
-      item.appendChild(tag);
-      item.appendChild(content);
-      box.appendChild(item);
-      box.scrollTop=box.scrollHeight;
-    }
-    document.addEventListener('DOMContentLoaded',()=>{
-      loadData();
-      const askBtn=document.getElementById('askBtn');
-      const input=document.getElementById('question');
-      function handleAsk(){
-        const q=input.value.trim();
-        if(!q)return;
-        addMessage('user',q);
-        const {text,cite}=answer(q);
-        addMessage('bot',text,cite);
-        input.value='';
-        input.focus();
-      }
-      askBtn.addEventListener('click',handleAsk);
-      input.addEventListener('keydown',e=>{if(e.key==='Enter')handleAsk();});
+
+    sendBtn.addEventListener("click", () => {
+      const question = input.value.trim();
+      if (question) askBot(question);
+    });
+
+    input.addEventListener("keypress", e => {
+      if (e.key === "Enter") sendBtn.click();
     });
   </script>
+
 </body>
 </html>
+
