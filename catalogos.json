@@ -1,0 +1,26 @@
+[
+  {
+    "sheet": "ASENTAMIENTO",
+    "file": "catalogos/ASENTAMIENTO.xlsx"
+  },
+  {
+    "sheet": "CLAVE_ENT",
+    "file": "catalogos/CLAVE_ENT.xlsx"
+  },
+  {
+    "sheet": "CLAVE_MUN",
+    "file": "catalogos/CLAVE_MUN.xlsx"
+  },
+  {
+    "sheet": "CURP",
+    "file": "catalogos/CURP.xlsx"
+  },
+  {
+    "sheet": "DISCAPACIDAD",
+    "file": "catalogos/DISCAPACIDAD.xlsx"
+  },
+  {
+    "sheet": "EDO_CIVIL",
+    "file": "catalogos/EDO_CIVIL.xlsx"
+  }
+]
