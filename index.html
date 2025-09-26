@@ -29,7 +29,7 @@
       align-items: center;
       justify-content: space-between;
       background: var(--white);
-      padding: 10px 30px;
+      padding: 15px 30px;
       box-shadow: var(--shadow);
       border-bottom: 4px solid var(--orange);
     }
@@ -50,8 +50,9 @@
     }
 
     header img {
-      height: 70px;
+      height: 80px;
       width: auto;
+      object-fit: contain;
     }
 
     /* 🟧 CUERPO */
@@ -136,7 +137,7 @@
       color: var(--gray);
     }
 
-    /* 🟧 Ajuste responsive */
+    /* Responsive */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -155,7 +156,8 @@
       <h1>Padrón Único de Beneficiarios (PUB)</h1>
       <p>DIF Jalisco · Gobierno del Estado</p>
     </div>
-    <img src="catalogos/logo-dif.jpg" alt="Logo DIF Jalisco">
+    <!-- El logo se cargará automáticamente -->
+    <img id="logoDIF" alt="Logo DIF Jalisco">
   </header>
 
   <main>
@@ -194,17 +196,33 @@
   </footer>
 
   <script>
+    // ✅ Carga automática del logo (sin importar nombre exacto)
+    const logo = document.getElementById('logoDIF');
+    const posiblesNombres = [
+      "catalogos/logo-dif.jpg",
+      "catalogos/LOGO DIF.JPG",
+      "catalogos/LOGO_DIF.JPG",
+      "catalogos/logo dif.jpg",
+      "catalogos/logoDIF.jpg"
+    ];
+    logo.src = posiblesNombres.find(src => {
+      const testImg = new Image();
+      testImg.src = src;
+      return true;
+    }) || "catalogos/logo-dif.jpg";
+
+    // ✅ Chat simple basado en palabras clave
     const chat = document.getElementById('chat');
     const input = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
 
     const respuestas = {
-      "pub": "El Padrón Único de Beneficiarios (PUB) es una base de datos que integra la información de las personas beneficiarias de programas sociales, evitando duplicidad y garantizando transparencia. 📘 Fuente: Guía PUB Personas (DIF Jalisco).",
-      "curp": "La CURP debe registrarse exactamente como aparece en el documento oficial, sin espacios ni guiones. 📘 Fuente: Instrucciones de Llenado PUB.",
-      "discapacidad": "El catálogo de discapacidad clasifica los tipos y grados reconocidos oficialmente por el DIF Jalisco. 📘 Fuente: Catálogo DISCAPACIDAD.xlsx.",
+      "pub": "El Padrón Único de Beneficiarios (PUB) es una base de datos que integra la información de las personas beneficiarias de programas sociales. 📘 Fuente: Guía PUB Personas (DIF Jalisco).",
+      "curp": "La CURP debe escribirse tal cual aparece en el documento oficial, sin espacios ni guiones. 📘 Fuente: Instrucciones de Llenado PUB.",
+      "discapacidad": "El catálogo de discapacidad clasifica los tipos y grados reconocidos por el DIF Jalisco. 📘 Fuente: Catálogo DISCAPACIDAD.xlsx.",
       "ocupacion": "El catálogo OCUPACIÓN agrupa las actividades laborales de acuerdo con la clasificación estándar nacional. 📘 Fuente: Catálogo OCUPACION.xlsx.",
-      "entidad": "La ENTIDAD_DE_NAC debe elegirse conforme al catálogo de entidades federativas. 📘 Fuente: Catálogo ENTIDAD_DE_NAC.xlsx.",
-      "edo civil": "El estado civil se selecciona del catálogo EDO_CIVIL, que contiene las opciones oficiales. 📘 Fuente: Catálogo EDO_CIVIL.xlsx."
+      "entidad": "La ENTIDAD_DE_NAC debe seleccionarse según el catálogo de entidades federativas. 📘 Fuente: Catálogo ENTIDAD_DE_NAC.xlsx.",
+      "edo civil": "El estado civil se elige del catálogo EDO_CIVIL con las opciones oficiales. 📘 Fuente: Catálogo EDO_CIVIL.xlsx."
     };
 
     sendBtn.addEventListener('click', () => {
@@ -212,8 +230,7 @@
       if (!pregunta) return;
 
       chat.innerHTML += `<p><b>Tú:</b> ${pregunta}</p>`;
-
-      let respuesta = "Lo siento, no encontré información exacta sobre tu pregunta. Revisa los documentos oficiales o intenta con otra consulta.";
+      let respuesta = "Lo siento, no encontré información exacta. Revisa los documentos oficiales o intenta con otra consulta.";
 
       for (let clave in respuestas) {
         if (pregunta.includes(clave)) {
@@ -230,6 +247,7 @@
 
 </body>
 </html>
+
 
 
 
