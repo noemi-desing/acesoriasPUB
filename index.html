@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Asesorías PUB | DIF Jalisco</title>
-  <meta name="description" content="Asesoría sobre el Padrón Único de Beneficiarios (PUB) del DIF Jalisco, con chatbot inteligente y descarga de catálogos oficiales." />
+  <meta name="description" content="Asesoría sobre el Padrón Único de Beneficiarios (PUB) del DIF Jalisco, con chatbot y descarga de catálogos oficiales." />
   <style>
     :root {
       --orange: #ff7a00;
@@ -23,6 +23,7 @@
       line-height: 1.6;
     }
 
+    /* 🟧 ENCABEZADO */
     header {
       display: flex;
       align-items: center;
@@ -30,18 +31,30 @@
       background: var(--white);
       padding: 10px 30px;
       box-shadow: var(--shadow);
+      border-bottom: 4px solid var(--orange);
+    }
+
+    header .titulo {
+      text-align: left;
+    }
+
+    header h1 {
+      font-size: 1.6em;
+      color: var(--orange);
+      margin-bottom: 5px;
+    }
+
+    header p {
+      color: var(--gray);
+      font-weight: 500;
     }
 
     header img {
-      height: 60px;
+      height: 70px;
+      width: auto;
     }
 
-    h1 {
-      font-size: 1.6em;
-      color: var(--orange);
-      margin-bottom: 6px;
-    }
-
+    /* 🟧 CUERPO */
     main {
       max-width: 1000px;
       margin: 40px auto;
@@ -122,16 +135,27 @@
       font-weight: 600;
       color: var(--gray);
     }
+
+    /* 🟧 Ajuste responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      header img {
+        margin-top: 10px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="assets/logo-dif.jpg" alt="DIF Jalisco">
-    <div>
+    <div class="titulo">
       <h1>Padrón Único de Beneficiarios (PUB)</h1>
       <p>DIF Jalisco · Gobierno del Estado</p>
     </div>
+    <img src="catalogos/logo-dif.jpg" alt="Logo DIF Jalisco">
   </header>
 
   <main>
@@ -144,7 +168,6 @@
 
     <section id="catalogos">
       <h2>Catálogos oficiales del PUB</h2>
-
       <div id="catalogos-list">
         <div class="catalogo-item"><span>ASENTAMIENTO</span><a href="catalogos/ASENTAMIENTO.xlsx"><button>Descargar</button></a></div>
         <div class="catalogo-item"><span>CLAVE_ENT</span><a href="catalogos/CLAVE_ENT.xlsx"><button>Descargar</button></a></div>
@@ -180,7 +203,8 @@
       "curp": "La CURP debe registrarse exactamente como aparece en el documento oficial, sin espacios ni guiones. 📘 Fuente: Instrucciones de Llenado PUB.",
       "discapacidad": "El catálogo de discapacidad clasifica los tipos y grados reconocidos oficialmente por el DIF Jalisco. 📘 Fuente: Catálogo DISCAPACIDAD.xlsx.",
       "ocupacion": "El catálogo OCUPACIÓN agrupa las actividades laborales de acuerdo con la clasificación estándar nacional. 📘 Fuente: Catálogo OCUPACION.xlsx.",
-      "entidad": "La ENTIDAD_DE_NAC debe elegirse conforme al catálogo de entidades federativas. 📘 Fuente: Catálogo ENTIDAD_DE_NAC.xlsx."
+      "entidad": "La ENTIDAD_DE_NAC debe elegirse conforme al catálogo de entidades federativas. 📘 Fuente: Catálogo ENTIDAD_DE_NAC.xlsx.",
+      "edo civil": "El estado civil se selecciona del catálogo EDO_CIVIL, que contiene las opciones oficiales. 📘 Fuente: Catálogo EDO_CIVIL.xlsx."
     };
 
     sendBtn.addEventListener('click', () => {
@@ -189,7 +213,7 @@
 
       chat.innerHTML += `<p><b>Tú:</b> ${pregunta}</p>`;
 
-      let respuesta = "Lo siento, no encontré información exacta sobre tu pregunta. Revisa los documentos disponibles o intenta con otra consulta.";
+      let respuesta = "Lo siento, no encontré información exacta sobre tu pregunta. Revisa los documentos oficiales o intenta con otra consulta.";
 
       for (let clave in respuestas) {
         if (pregunta.includes(clave)) {
@@ -206,4 +230,6 @@
 
 </body>
 </html>
+
+
 
