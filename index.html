@@ -2,191 +2,100 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Asesorías PUB | DIF Jalisco</title>
   <meta name="description" content="Asesoría sobre el Padrón Único de Beneficiarios (PUB) del DIF Jalisco, con chatbot y descarga de catálogos oficiales." />
   <style>
-    :root {
-      --orange: #ff7a00;
-      --gray: #4b4b4b;
-      --light-gray: #f5f5f5;
-      --white: #ffffff;
-      --radius: 14px;
-      --shadow: 0 4px 15px rgba(0,0,0,0.1);
+    :root{
+      --orange:#ff7a00; --gray:#4b4b4b; --light:#f5f5f5; --white:#fff;
+      --radius:14px; --shadow:0 4px 15px rgba(0,0,0,.1);
     }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Arial,sans-serif}
+    body{background:var(--light);color:var(--gray);line-height:1.6}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-
-    body {
-      background: var(--light-gray);
-      color: var(--gray);
-      line-height: 1.6;
+    /* Header */
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      background:var(--white);padding:14px 24px;border-bottom:4px solid var(--orange);
+      box-shadow:var(--shadow);
     }
+    .title h1{font-size:1.6rem;color:var(--orange);margin-bottom:4px}
+    .title p{font-weight:500}
+    #logoDIF{height:80px;width:auto;object-fit:contain}
 
-    /* 🟧 ENCABEZADO */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--white);
-      padding: 15px 30px;
-      box-shadow: var(--shadow);
-      border-bottom: 4px solid var(--orange);
+    /* Main */
+    main{
+      max-width:1000px;margin:32px auto;background:var(--white);padding:28px;
+      border-radius:var(--radius);box-shadow:var(--shadow)
     }
+    section{margin-bottom:36px}
+    h2{color:var(--orange);border-bottom:2px solid var(--orange);margin-bottom:14px;padding-bottom:6px}
 
-    header .titulo {
-      text-align: left;
+    /* Chat */
+    #chat{border:1px solid #ddd;border-radius:var(--radius);padding:14px;background:#fafafa;height:300px;overflow-y:auto;margin-bottom:12px}
+    #user-input{width:78%;padding:10px;border:1px solid #ccc;border-radius:var(--radius)}
+    #send-btn{width:20%;background:var(--orange);color:#fff;border:none;padding:10px;border-radius:var(--radius);cursor:pointer}
+    #send-btn:hover{background:#e76e00}
+
+    /* Catálogos */
+    .catalogo-item{
+      display:flex;justify-content:space-between;align-items:center;background:#f9f9f9;
+      border-radius:var(--radius);padding:10px 14px;margin:10px 0;box-shadow:0 2px 6px rgba(0,0,0,.05)
     }
-
-    header h1 {
-      font-size: 1.6em;
-      color: var(--orange);
-      margin-bottom: 5px;
+    .catalogo-item span{font-weight:600}
+    .catalogo-item a button{
+      background:var(--orange);color:#fff;border:none;padding:8px 14px;border-radius:12px;cursor:pointer
     }
+    .catalogo-item a button:hover{background:#e76e00}
 
-    header p {
-      color: var(--gray);
-      font-weight: 500;
-    }
-
-    header img {
-      height: 80px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    /* 🟧 CUERPO */
-    main {
-      max-width: 1000px;
-      margin: 40px auto;
-      background: var(--white);
-      padding: 30px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      color: var(--orange);
-      border-bottom: 2px solid var(--orange);
-      margin-bottom: 20px;
-      padding-bottom: 5px;
-    }
-
-    button {
-      background: var(--orange);
-      color: var(--white);
-      border: none;
-      padding: 10px 20px;
-      margin: 8px;
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #e76e00;
-    }
-
-    #chat {
-      border: 1px solid #ddd;
-      border-radius: var(--radius);
-      padding: 15px;
-      background: #fafafa;
-      height: 300px;
-      overflow-y: auto;
-      margin-bottom: 15px;
-    }
-
-    #user-input {
-      width: 80%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: var(--radius);
-    }
-
-    #send-btn {
-      width: 18%;
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: var(--gray);
-      color: var(--white);
-      font-size: 0.9em;
-      margin-top: 50px;
-    }
-
-    .catalogo-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #f9f9f9;
-      border-radius: var(--radius);
-      padding: 10px 15px;
-      margin: 10px 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-
-    .catalogo-item span {
-      font-weight: 600;
-      color: var(--gray);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-      header img {
-        margin-top: 10px;
-      }
+    footer{margin:40px auto 10px;text-align:center;color:#666}
+    @media(max-width:768px){
+      header{flex-direction:column;text-align:center}
+      #user-input{width:100%;margin-bottom:8px}
+      #send-btn{width:100%}
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="titulo">
+    <div class="title">
       <h1>Padrón Único de Beneficiarios (PUB)</h1>
       <p>DIF Jalisco · Gobierno del Estado</p>
     </div>
-    <!-- El logo se cargará automáticamente -->
+    <!-- Logo (se resuelve automáticamente con fallbacks) -->
     <img id="logoDIF" alt="Logo DIF Jalisco">
   </header>
 
   <main>
     <section id="asesoria">
       <h2>Asesoría en línea</h2>
-      <div id="chat"></div>
-      <input type="text" id="user-input" placeholder="Escribe tu pregunta sobre el PUB..." />
-      <button id="send-btn">Enviar</button>
+      <div id="chat" aria-live="polite"></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input id="user-input" type="text" placeholder="Escribe tu pregunta sobre el PUB…" />
+        <button id="send-btn">Enviar</button>
+      </div>
     </section>
 
     <section id="catalogos">
       <h2>Catálogos oficiales del PUB</h2>
       <div id="catalogos-list">
-        <div class="catalogo-item"><span>ASENTAMIENTO</span><a href="catalogos/ASENTAMIENTO.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>CLAVE_ENT</span><a href="catalogos/CLAVE_ENT.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>CLAVE_MUN</span><a href="catalogos/CLAVE_MUN.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>CURP</span><a href="catalogos/CURP.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>DISCAPACIDAD</span><a href="catalogos/DISCAPACIDAD.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>EDO_CIVIL</span><a href="catalogos/EDO_CIVIL.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>ENTIDAD_DE_NAC</span><a href="catalogos/ENTIDAD_DE_NAC.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>ESCOLARIDAD</span><a href="catalogos/ESCOLARIDAD.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>GENERO</span><a href="catalogos/GENERO.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>GRUPO_I</span><a href="catalogos/GRUPO_I.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>LENGUA_I</span><a href="catalogos/LENGUA_I.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>OCUPACION</span><a href="catalogos/OCUPACION.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>UBICACION</span><a href="catalogos/UBICACION.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>VARIABLES</span><a href="catalogos/VARIABLES.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>VIALIDAD</span><a href="catalogos/VIALIDAD.xlsx"><button>Descargar</button></a></div>
-        <div class="catalogo-item"><span>PLANTILLA_MODIFICADO_2025</span><a href="catalogos/Plantilla Modificado 18.08.2025.xlsx"><button>Descargar</button></a></div>
+        <!-- OJO: la carpeta tiene acento, por eso uso la ruta URL-encoded cat%C3%A1logos -->
+        <div class="catalogo-item"><span>ASENTAMIENTO</span><a href="cat%C3%A1logos/ASENTAMIENTO.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>CLAVE_ENT</span><a href="cat%C3%A1logos/CLAVE_ENT.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>CLAVE_MUN</span><a href="cat%C3%A1logos/CLAVE_MUN.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>CURP</span><a href="cat%C3%A1logos/CURP.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>DISCAPACIDAD</span><a href="cat%C3%A1logos/DISCAPACIDAD.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>EDO_CIVIL</span><a href="cat%C3%A1logos/EDO_CIVIL.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>ENTIDAD_DE_NAC</span><a href="cat%C3%A1logos/ENTIDAD_DE_NAC.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>ESCOLARIDAD</span><a href="cat%C3%A1logos/ESCOLARIDAD.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>GENERO</span><a href="cat%C3%A1logos/GENERO.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>GRUPO_I</span><a href="cat%C3%A1logos/GRUPO_I.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>LENGUA_I</span><a href="cat%C3%A1logos/LENGUA_I.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>OCUPACION</span><a href="cat%C3%A1logos/OCUPACION.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>UBICACION</span><a href="cat%C3%A1logos/UBICACION.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>VARIABLES</span><a href="cat%C3%A1logos/VARIABLES.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>VIALIDAD</span><a href="cat%C3%A1logos/VIALIDAD.xlsx" download><button>Descargar</button></a></div>
+        <div class="catalogo-item"><span>PLANTILLA_MODIFICADO_2025</span><a href="cat%C3%A1logos/Plantilla%20Modificado%2018.08.2025.xlsx" download><button>Descargar</button></a></div>
       </div>
     </section>
   </main>
@@ -196,55 +105,73 @@
   </footer>
 
   <script>
-    // ✅ Carga automática del logo (sin importar nombre exacto)
-    const logo = document.getElementById('logoDIF');
-    const posiblesNombres = [
-      "catalogos/logo-dif.jpg",
-      "catalogos/LOGO DIF.JPG",
-      "catalogos/LOGO_DIF.JPG",
-      "catalogos/logo dif.jpg",
-      "catalogos/logoDIF.jpg"
-    ];
-    logo.src = posiblesNombres.find(src => {
-      const testImg = new Image();
-      testImg.src = src;
-      return true;
-    }) || "catalogos/logo-dif.jpg";
+    /* ---------- 1) LOGO: intenta varias rutas/nombres (espacios y mayúsculas) ---------- */
+    (function resolveLogo(){
+      const img = document.getElementById('logoDIF');
+      const candidatos = [
+        "activos/logo-dif.jpg",
+        "activos/LOGO%20DIF.JPG",
+        "activos/LOGO DIF.JPG",
+        "activos/logotipo-dif.jpg.JPG",
+        "cat%C3%A1logos/logo-dif.jpg",
+        "cat%C3%A1logos/LOGO%20DIF.JPG",
+        "cat%C3%A1logos/LOGO DIF.JPG",
+        "assets/logo-dif.jpg"
+      ];
+      let i = 0;
+      function tryNext(){
+        if(i >= candidatos.length){ img.style.display = "none"; return; }
+        const src = candidatos[i++];
+        const tester = new Image();
+        tester.onload = () => { img.src = src; };
+        tester.onerror = tryNext;
+        tester.src = src;
+      }
+      tryNext();
+    })();
 
-    // ✅ Chat simple basado en palabras clave
+    /* ---------- 2) CHATBOT SIMPLE (respuestas concretas + cita) ---------- */
     const chat = document.getElementById('chat');
     const input = document.getElementById('user-input');
     const sendBtn = document.getElementById('send-btn');
 
-    const respuestas = {
-      "pub": "El Padrón Único de Beneficiarios (PUB) es una base de datos que integra la información de las personas beneficiarias de programas sociales. 📘 Fuente: Guía PUB Personas (DIF Jalisco).",
-      "curp": "La CURP debe escribirse tal cual aparece en el documento oficial, sin espacios ni guiones. 📘 Fuente: Instrucciones de Llenado PUB.",
-      "discapacidad": "El catálogo de discapacidad clasifica los tipos y grados reconocidos por el DIF Jalisco. 📘 Fuente: Catálogo DISCAPACIDAD.xlsx.",
-      "ocupacion": "El catálogo OCUPACIÓN agrupa las actividades laborales de acuerdo con la clasificación estándar nacional. 📘 Fuente: Catálogo OCUPACION.xlsx.",
-      "entidad": "La ENTIDAD_DE_NAC debe seleccionarse según el catálogo de entidades federativas. 📘 Fuente: Catálogo ENTIDAD_DE_NAC.xlsx.",
-      "edo civil": "El estado civil se elige del catálogo EDO_CIVIL con las opciones oficiales. 📘 Fuente: Catálogo EDO_CIVIL.xlsx."
-    };
+    const respuestas = [
+      {k:["pub","padrón único","padron unico"], a:"El Padrón Único de Beneficiarios (PUB) integra la información de personas beneficiarias para evitar duplicidades y dar transparencia. Fuente: Guía PUB Personas (DIF Jalisco)."},
+      {k:["curp"], a:"La CURP debe registrarse exactamente como aparece en el documento oficial (18 caracteres), sin espacios ni guiones. Fuente: Instrucciones de Llenado PUB."},
+      {k:["discapacidad"], a:"Registra la discapacidad según el catálogo oficial (auditiva, visual, motora, psicosocial, intelectual, múltiple). Fuente: DISCAPACIDAD.xlsx."},
+      {k:["ocupacion","ocupación"], a:"Selecciona la ocupación principal desde el catálogo OCUPACION.xlsx. Fuente: OCUPACION.xlsx."},
+      {k:["entidad","nacimiento"], a:"Usa el catálogo ENTIDAD_DE_NAC para registrar la entidad federativa de nacimiento. Fuente: ENTIDAD_DE_NAC.xlsx."},
+      {k:["estado civil","edo civil","civil"], a:"El estado civil se elige del catálogo EDO_CIVIL (soltero, casado, unión libre, divorciado, viudo, separado). Fuente: EDO_CIVIL.xlsx."}
+    ];
 
-    sendBtn.addEventListener('click', () => {
-      const pregunta = input.value.trim().toLowerCase();
-      if (!pregunta) return;
-
-      chat.innerHTML += `<p><b>Tú:</b> ${pregunta}</p>`;
-      let respuesta = "Lo siento, no encontré información exacta. Revisa los documentos oficiales o intenta con otra consulta.";
-
-      for (let clave in respuestas) {
-        if (pregunta.includes(clave)) {
-          respuesta = respuestas[clave];
-          break;
-        }
-      }
-
-      chat.innerHTML += `<p><b>Asesor PUB:</b> ${respuesta}</p>`;
+    function addMsg(who, text){
+      const p = document.createElement('p');
+      p.innerHTML = `<b>${who}:</b> ${text}`;
+      chat.appendChild(p);
       chat.scrollTop = chat.scrollHeight;
-      input.value = "";
-    });
-  </script>
+    }
 
+    function getAnswer(q){
+      const qn = q.toLowerCase();
+      for(const r of respuestas){
+        if(r.k.some(k => qn.includes(k))) return r.a;
+      }
+      return "No encontré una respuesta exacta en los documentos cargados. Revisa la Guía PUB Personas y los catálogos indicados.";
+    }
+
+    function ask(){
+      const q = input.value.trim();
+      if(!q) return;
+      addMsg("Tú", q);
+      const a = getAnswer(q);
+      addMsg("Asesor PUB", a);
+      input.value = "";
+      input.focus();
+    }
+
+    sendBtn.addEventListener('click', ask);
+    input.addEventListener('keydown', e => { if(e.key==="Enter") ask(); });
+  </script>
 </body>
 </html>
 
