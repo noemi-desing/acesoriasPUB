@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PUB — Asesoría y Chatbot</title>
+  <meta name="description" content="Chatbot para asesoría sobre el correcto llenado del Padrón Único de Beneficiarios (PUB) y descargas de catálogos." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="logo">PUB</div>
+        <div class="brand-text">
+          <h1>Padrón Único de Beneficiarios</h1>
+          <p>Asesoría inteligente para el correcto llenado — DIF Jalisco</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card chatbot">
+      <div class="chat-header">
+        <div class="chat-title">
+          <span class="dot"></span>
+          <h2>Asistente de Llenado PUB</h2>
+        </div>
+        <p class="chat-subtitle">Haz tu consulta con palabra, frase o pregunta. Acepta errores ortográficos.</p>
+      </div>
+
+      <div id="chat-messages" class="chat-messages"></div>
+
+      <form id="chat-form" class="chat-input" autocomplete="off">
+        <input id="user-input" type="text" placeholder="Escribe aquí…" />
+        <button class="btn-primary" type="submit">Enviar</button>
+      </form>
+
+      <p class="disclaimer">
+        <strong>Aviso:</strong> Las respuestas se basan en los manuales y catálogos del PUB.
+      </p>
+    </section>
+
+    <section class="card downloads">
+      <h3>Descargas de Catálogos</h3>
+      <div class="grid-buttons">
+        <a class="btn-ghost" href="./catalogos/PLANTILLA_PUB.xlsx" download>Descargar PLANTILLA_PUB.xlsx</a>
+        <a class="btn-ghost" href="./catalogos/CLAVE_ENT.xlsx" download>Descargar CLAVE_ENT.xlsx</a>
+        <a class="btn-ghost" href="./catalogos/CLAVE_MUN.xlsx" download>Descargar CLAVE_MUN.xlsx</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> DIF Jalisco — Asesoría PUB</p>
+  </footer>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

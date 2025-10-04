@@ -1,0 +1,61 @@
+:root{
+  --brand:#f37021;
+  --bg:#f7f7f8;
+  --text:#2c2c2c;
+  --border:#e6e6e8;
+}
+
+body{
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
+
+.site-header{
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+}
+
+.logo{
+  background: var(--brand);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.container{
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.card{
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-ghost{
+  display: inline-block;
+  background: var(--brand);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin: 5px;
+}
+
+.btn-primary{
+  background: var(--brand);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
