@@ -8,19 +8,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
 </head>
 <body>
-  <!-- ====== ENCABEZADO ====== -->
+  <!-- ENCABEZADO -->
   <header class="header">
     <div class="header-text">
       <h1>Padrón Único de Beneficiarios</h1>
       <p>Asesoría inteligente para el correcto llenado — DIF Jalisco</p>
     </div>
-    <img src="catalogos/LOGO_DIF.JPG" alt="Logo DIF Jalisco" class="logo-header" />
+    <img src="logotipo_dif.png" alt="Logo DIF Jalisco" class="logo-header" />
   </header>
 
-  <!-- ====== CONTENIDO PRINCIPAL ====== -->
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="main-container">
-
-    <!-- === SECCIÓN CHATBOT === -->
+    
+    <!-- CHATBOT -->
     <section class="section card chat-section">
       <h2>Asistente de Llenado PUB</h2>
       <p class="subtitle">Haz tu consulta</p>
@@ -28,27 +28,22 @@
       <div id="chatOutput" class="chat-box">
         <div class="bot-message">
           👋 ¡Hola! Soy tu asistente DIF Jalisco.  
-          Puedo ayudarte a llenar el formato PUB o revisar tu plantilla Excel.
+          Puedo ayudarte a llenar el formato PUB, validar tu archivo o aclarar dudas sobre los catálogos oficiales.
         </div>
       </div>
 
       <div class="chat-input">
-        <input
-          type="text"
-          id="userInput"
-          placeholder="Escribe tu pregunta aquí..."
-        />
+        <input type="text" id="userInput" placeholder="Escribe tu pregunta aquí..." />
         <button id="sendBtn">Enviar</button>
       </div>
-      <!-- El botón de borrar historial se genera desde app.js -->
+
+      <button id="clearChat" class="clear-btn">🧹 Borrar historial de consulta</button>
     </section>
 
-    <!-- === SECCIÓN VALIDADOR === -->
+    <!-- VALIDADOR -->
     <section class="section card validator-section">
       <h2>Validador Inteligente del PUB</h2>
-      <p class="subtitle">
-        Sube tu archivo Excel para revisar que cumpla con los campos requeridos
-      </p>
+      <p class="subtitle">Sube tu archivo Excel para verificar su estructura y campos requeridos</p>
 
       <div class="validator-box">
         <input type="file" id="fileInput" accept=".xlsx" />
@@ -57,16 +52,16 @@
       </div>
     </section>
 
-    <!-- === SECCIÓN DESCARGAS === -->
+    <!-- CATÁLOGOS -->
     <section class="section card downloads-section">
       <h2>Descargas de Catálogos</h2>
-      <p class="subtitle">Selecciona el catálogo o manual que necesites</p>
+      <p class="subtitle">Selecciona el documento que necesites</p>
 
       <div class="buttons">
         <a href="catalogos/PLANTILLA_PUB.xlsx" download>PLANTILLA_PUB.xlsx</a>
         <a href="catalogos/INSTRUCCIONES_LLENADO_PUB.xlsx" download>INSTRUCCIONES_LLENADO_PUB.xlsx</a>
-        <a href="catalogos/MANUAL_ACESORIA_PUB.docx" download>MANUAL_ACESORIA_PUB.docx</a>
-        <a href="catalogos/PLANTILLA_GUIA_PUB_PERSONAS.docx" download>PLANTILLA_GUIA_PUB_PERSONAS.docx</a>
+        <a href="MANUAL_ACESORIA_PUB.docx" download>MANUAL_ACESORIA_PUB.docx</a>
+        <a href="PLANTILLA_GUIA_PUB_PERSONAS.docx" download>PLANTILLA_GUIA_PUB_PERSONAS.docx</a>
         <a href="catalogos/CLAVE_ENT.xlsx" download>CLAVE_ENT.xlsx</a>
         <a href="catalogos/CLAVE_MUN.xlsx" download>CLAVE_MUN.xlsx</a>
         <a href="catalogos/ASENTAMIENTO.xlsx" download>ASENTAMIENTO.xlsx</a>
@@ -88,12 +83,10 @@
     </section>
   </main>
 
-  <!-- ====== PIE DE PÁGINA ====== -->
   <footer>
     <p>© 2025 DIF Jalisco — Plataforma Asistente PUB</p>
   </footer>
 
-  <!-- Librerías y scripts -->
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="app.js"></script>
 </body>
