@@ -1,5 +1,5 @@
 /* ============================================================
-   DIF JALISCO — ESTILO EMPRESARIAL MODERNO
+   DIF JALISCO — ESTILO EMPRESARIAL MODERNO (MEJORADO)
    ============================================================ */
 
 :root {
@@ -161,6 +161,24 @@ body {
   background: #e15f0d;
 }
 
+/* --- Botón borrar historial --- */
+.clear-btn {
+  display: block;
+  margin: 12px auto 0;
+  background: var(--gris-medio);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.clear-btn:hover {
+  background: #4d4d4d;
+}
+
 /* ================= VALIDADOR ================= */
 .validator-section {
   background: #fffaf5;
@@ -211,22 +229,27 @@ body {
 /* ================= DESCARGAS ================= */
 .buttons {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+  justify-items: center;
 }
 
 .buttons a {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   text-decoration: none;
-  padding: 12px 10px;
+  padding: 14px 10px;
   border-radius: 8px;
   border: 2px solid var(--naranja);
   color: var(--naranja);
   font-weight: 600;
+  font-size: 14px;
   transition: all 0.25s ease-in-out;
   background: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  min-height: 48px;
 }
 
 .buttons a:hover {
