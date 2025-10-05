@@ -1,318 +1,94 @@
-/* ============================================================
-   DIF JALISCO — ESTILO EMPRESARIAL FINAL (2025)
-   ============================================================ */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIF Jalisco — Asistente PUB</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
+</head>
+<body>
+  <!-- ENCABEZADO -->
+  <header class="header">
+    <div class="header-text">
+      <h1>Padrón Único de Beneficiarios</h1>
+      <p>Asesoría inteligente para el correcto llenado — DIF Jalisco</p>
+    </div>
+    <!-- ✅ LOGO DEFINITIVO -->
+    <img src="./catalogos/logo_dif.png" alt="Logo DIF Jalisco" class="logo-header" />
+  </header>
 
-:root {
-  --naranja: #f37021;
-  --gris-oscuro: #2e2e2e;
-  --gris-medio: #6b6b6b;
-  --gris-claro: #f8f8f8;
-  --borde: #e1e1e1;
-  --blanco: #ffffff;
-  --fuente: "Segoe UI", Roboto, Arial, sans-serif;
-  --sombra: 0 4px 15px rgba(0, 0, 0, 0.06);
-}
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-container">
+    
+    <!-- CHATBOT -->
+    <section class="section card chat-section">
+      <h2>Asistente de Llenado PUB</h2>
+      <p class="subtitle">Haz tu consulta</p>
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      <div id="chatOutput" class="chat-box">
+        <div class="bot-message">
+          👋 ¡Hola! Soy tu asistente DIF Jalisco.  
+          Puedo ayudarte a llenar el formato PUB, validar tu archivo o aclarar dudas sobre los catálogos oficiales.
+        </div>
+      </div>
 
-body {
-  font-family: var(--fuente);
-  background: var(--gris-claro);
-  color: var(--gris-oscuro);
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Escribe tu pregunta aquí..." />
+        <button id="sendBtn">Enviar</button>
+      </div>
 
-/* ================= HEADER ================= */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--blanco);
-  border-bottom: 3px solid var(--naranja);
-  padding: 15px 25px;
-  box-shadow: var(--sombra);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  animation: fadeDown 1s ease;
-}
+      <button id="clearChat" class="clear-btn">🧹 Borrar historial de consulta</button>
+    </section>
 
-.header-text h1 {
-  font-size: 26px;
-  color: var(--gris-oscuro);
-  font-weight: 700;
-}
+    <!-- VALIDADOR -->
+    <section class="section card validator-section">
+      <h2>Validador Inteligente del PUB</h2>
+      <p class="subtitle">Sube tu archivo Excel para verificar su estructura y campos requeridos</p>
 
-.header-text p {
-  color: var(--gris-medio);
-  font-size: 15px;
-}
+      <div class="validator-box">
+        <input type="file" id="fileInput" accept=".xlsx" />
+        <button id="validateBtn">Validar Archivo</button>
+        <div id="validationResult"></div>
+      </div>
+    </section>
 
-.logo-header {
-  height: 85px;
-  width: auto;
-  border-radius: 8px;
-  object-fit: contain;
-  animation: fadeIn 1.2s ease;
-}
+    <!-- CATÁLOGOS -->
+    <section class="section card downloads-section">
+      <h2>Descargas de Catálogos</h2>
+      <p class="subtitle">Selecciona el documento que necesites</p>
 
-/* ================= MAIN ================= */
-.main-container {
-  max-width: 1100px;
-  margin: 25px auto;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
+      <div class="buttons">
+        <a href="catalogos/PLANTILLA_PUB.xlsx" download>PLANTILLA_PUB.xlsx</a>
+        <a href="catalogos/INSTRUCCIONES_LLENADO_PUB.xlsx" download>INSTRUCCIONES_LLENADO_PUB.xlsx</a>
+        <a href="MANUAL_ACESORIA_PUB.docx" download>MANUAL_ACESORIA_PUB.docx</a>
+        <a href="catalogos/CLAVE_ENT.xlsx" download>CLAVE_ENT.xlsx</a>
+        <a href="catalogos/CLAVE_MUN.xlsx" download>CLAVE_MUN.xlsx</a>
+        <a href="catalogos/ASENTAMIENTO.xlsx" download>ASENTAMIENTO.xlsx</a>
+        <a href="catalogos/ENTIDAD_DE_NAC.xlsx" download>ENTIDAD_DE_NAC.xlsx</a>
+        <a href="catalogos/GENERO.xlsx" download>GENERO.xlsx</a>
+        <a href="catalogos/EDO_CIVIL.xlsx" download>EDO_CIVIL.xlsx</a>
+        <a href="catalogos/ESCOLARIDAD.xlsx" download>ESCOLARIDAD.xlsx</a>
+        <a href="catalogos/OCUPACION.xlsx" download>OCUPACION.xlsx</a>
+        <a href="catalogos/GRUPO_ETNICO.xlsx" download>GRUPO_ETNICO.xlsx</a>
+        <a href="catalogos/LENGUA_I.xlsx" download>LENGUA_I.xlsx</a>
+        <a href="catalogos/DISCAPACIDAD.xlsx" download>DISCAPACIDAD.xlsx</a>
+        <a href="catalogos/GRUPO_I.xlsx" download>GRUPO_I.xlsx</a>
+        <a href="catalogos/TIPO_LOCALIDAD.xlsx" download>TIPO_LOCALIDAD.xlsx</a>
+        <a href="catalogos/TIPO_VIVIENDA.xlsx" download>TIPO_VIVIENDA.xlsx</a>
+        <a href="catalogos/PARENTESCO.xlsx" download>PARENTESCO.xlsx</a>
+        <a href="catalogos/MOTIVO_BAJA.xlsx" download>MOTIVO_BAJA.xlsx</a>
+        <a href="catalogos/VARIABLES.xlsx" download>VARIABLES.xlsx</a>
+      </div>
+    </section>
+  </main>
 
-/* ================= CARDS ================= */
-.card {
-  background: var(--blanco);
-  border-radius: 14px;
-  border: 1px solid var(--borde);
-  padding: 25px;
-  box-shadow: var(--sombra);
-  animation: fadeUp 0.8s ease;
-}
+  <footer>
+    <p>© 2025 DIF Jalisco — Plataforma Asistente PUB</p>
+  </footer>
 
-.section h2 {
-  color: var(--naranja);
-  font-size: 22px;
-  margin-bottom: 5px;
-  text-align: center;
-}
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
 
-.subtitle {
-  text-align: center;
-  color: var(--gris-medio);
-  font-size: 15px;
-  margin-bottom: 18px;
-}
-
-/* ================= CHATBOT ================= */
-.chat-box {
-  border: 1px solid var(--borde);
-  border-radius: 10px;
-  background: #fcfcfc;
-  height: 340px;
-  overflow-y: auto;
-  padding: 10px;
-  margin-bottom: 12px;
-  font-size: 15px;
-}
-
-.bot-message,
-.user-message {
-  padding: 10px 14px;
-  border-radius: 10px;
-  max-width: 80%;
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-
-.bot-message {
-  background: #fff6f0;
-  border: 1px solid #ffd9c2;
-  color: #5b3a1e;
-  box-shadow: 0 2px 5px rgba(243, 112, 33, 0.15);
-}
-
-.user-message {
-  background: var(--naranja);
-  color: white;
-  border: 1px solid #e35b12;
-  margin-left: auto;
-}
-
-.chat-input {
-  display: flex;
-  gap: 10px;
-}
-
-.chat-input input {
-  flex: 1;
-  border: 1px solid var(--borde);
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 15px;
-  outline: none;
-}
-
-.chat-input input:focus {
-  border-color: var(--naranja);
-}
-
-.chat-input button {
-  background: var(--naranja);
-  border: none;
-  color: #fff;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 12px 18px;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.chat-input button:hover {
-  background: #e15f0d;
-}
-
-/* --- Botón borrar historial --- */
-.clear-btn {
-  display: block;
-  margin: 12px auto 0;
-  background: var(--gris-medio);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.clear-btn:hover {
-  background: #4d4d4d;
-}
-
-/* ================= VALIDADOR ================= */
-.validator-section {
-  background: #fffaf5;
-}
-
-.validator-box {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-}
-
-#fileInput {
-  border: 1px solid var(--borde);
-  border-radius: 8px;
-  padding: 10px;
-  width: 100%;
-  max-width: 400px;
-}
-
-#validateBtn {
-  background: var(--naranja);
-  border: none;
-  color: white;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 12px 18px;
-  cursor: pointer;
-  width: 200px;
-  transition: 0.25s;
-}
-
-#validateBtn:hover {
-  background: #e35b12;
-}
-
-#validationResult {
-  margin-top: 15px;
-  background: #fff;
-  border: 1px dashed var(--borde);
-  border-radius: 8px;
-  padding: 15px;
-  width: 100%;
-  max-width: 600px;
-  font-size: 14px;
-}
-
-/* ================= DESCARGAS ================= */
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 18px;
-  justify-items: center;
-}
-
-.buttons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  text-decoration: none;
-  padding: 14px 10px;
-  border-radius: 8px;
-  border: 2px solid var(--naranja);
-  color: var(--naranja);
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.25s ease-in-out;
-  background: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  max-width: 260px;
-  min-height: 60px;
-  line-height: 1.3;
-}
-
-.buttons a:hover {
-  background: var(--naranja);
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* ================= FOOTER ================= */
-footer {
-  margin-top: auto;
-  background: var(--gris-oscuro);
-  color: #fff;
-  text-align: center;
-  padding: 18px 10px;
-  font-size: 14px;
-  border-top: 3px solid var(--naranja);
-}
-
-/* ================= ANIMACIONES ================= */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
-  }
-
-  .logo-header {
-    height: 70px;
-  }
-
-  .chat-box {
-    height: 260px;
-  }
-
-  #validateBtn {
-    width: 100%;
-  }
-
-  .buttons a {
-    max-width: 100%;
-  }
-}
