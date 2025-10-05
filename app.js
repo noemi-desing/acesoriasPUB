@@ -6,28 +6,28 @@
 
 // Base de conocimiento inicial (palabras clave)
 const respuestas = [
-  { clave: ["curp", "clave única", "identidad"], respuesta: "Para registrar la CURP, escribe los 18 caracteres tal como aparecen en tu documento oficial. Si el beneficiario no cuenta con CURP, debes generar una clave temporal en el sistema." },
+  { clave: ["curp", "clave única", "identidad"], respuesta: "Para registrar la CURP, escribe los 18 caracteres tal como aparecen en el documento oficial. Si el beneficiario no cuenta con CURP, deberás generar una clave temporal en el sistema conforme al Manual de Asesoría." },
   { clave: ["nombre", "beneficiario", "persona"], respuesta: "El nombre debe escribirse con mayúscula inicial, sin acentos ni caracteres especiales. Usa un solo espacio entre nombres y apellidos." },
   { clave: ["sexo", "género", "masculino", "femenino"], respuesta: "Selecciona el código correspondiente al género: 1 para Masculino, 2 para Femenino, conforme al catálogo GÉNERO.xlsx." },
   { clave: ["dirección", "domicilio"], respuesta: "La dirección debe incluir calle, número, colonia y municipio según los catálogos CLAVE_ENT y CLAVE_MUN." },
-  { clave: ["ocupación"], respuesta: "El campo OCUPACIÓN debe llenarse con el código indicado en el catálogo OCUPACION.xlsx." },
+  { clave: ["ocupación"], respuesta: "El campo OCUPACIÓN debe llenarse con el código indicado en el catálogo OCUPACION.xlsx. Si el beneficiario no tiene ocupación, deja el campo en blanco o usa el código 99 según la guía." },
   { clave: ["escolaridad"], respuesta: "Selecciona el nivel educativo conforme al catálogo ESCOLARIDAD.xlsx. Verifica que coincida con el código oficial." },
-  { clave: ["grupo étnico"], respuesta: "Usa el código correcto del catálogo GRUPO_ETNICO.xlsx según el grupo de pertenencia." },
+  { clave: ["grupo étnico"], respuesta: "Usa el código correcto del catálogo GRUPO_ETNICO.xlsx según el grupo de pertenencia. Si no aplica, deja el campo vacío." },
   { clave: ["discapacidad"], respuesta: "Indica el tipo de discapacidad según el catálogo DISCAPACIDAD.xlsx, usando el código correspondiente." },
   { clave: ["parentesco"], respuesta: "Registra el parentesco del beneficiario con el titular, conforme al catálogo PARENTESCO.xlsx." },
   { clave: ["vivienda"], respuesta: "Selecciona el tipo de vivienda de acuerdo con el catálogo TIPO_VIVIENDA.xlsx." },
   { clave: ["manual", "asesoría"], respuesta: "Puedes consultar el documento 'MANUAL_ACESORIA_PUB.docx' para ejemplos completos del llenado." },
-  { clave: ["instrucciones", "llenado"], respuesta: "Revisa el archivo 'INSTRUCCIONES_LLENADO_PUB.xlsx' dentro de la carpeta CATALOGOS para conocer cada campo del PUB." },
+  { clave: ["instrucciones", "llenado"], respuesta: "Revisa el archivo 'INSTRUCCIONES_LLENADO_PUB.xlsx' dentro de la carpeta CATALOGOS para conocer la descripción de cada campo del PUB." },
   { clave: ["plantilla", "pub", "formato"], respuesta: "Descarga la PLANTILLA_PUB.xlsx disponible en la sección de Catálogos para comenzar tu registro." },
-  { clave: ["error", "validar", "archivo"], respuesta: "Puedes usar el validador inteligente más abajo para revisar si tu archivo PUB tiene los campos completos." },
-  { clave: ["hola", "buenas"], respuesta: "¡Hola! 😊 Soy tu asistente DIF Jalisco. Puedo ayudarte a llenar el PUB o validar tus archivos. Escribe tu pregunta." },
+  { clave: ["error", "validar", "archivo"], respuesta: "Puedes usar el validador inteligente más abajo para revisar si tu archivo PUB tiene los campos completos y bien estructurados." },
+  { clave: ["hola", "buenas", "buenos días"], respuesta: "¡Hola! 😊 Soy tu asistente DIF Jalisco. Puedo ayudarte a llenar el PUB o validar tus archivos. Escribe tu pregunta." },
   { clave: ["gracias", "ok", "excelente"], respuesta: "¡Con gusto! Si tienes otra duda sobre el llenado del PUB, escríbela aquí mismo." },
 ];
 
 // Inicializar Fuse.js para coincidencias difusas
 const fuse = new Fuse(respuestas, {
   keys: ["clave"],
-  threshold: 0.3,
+  threshold: 0.3, // Tolerancia a errores ortográficos o similares
 });
 
 // Elementos del DOM
@@ -51,11 +51,12 @@ function responder(mensajeUsuario) {
   let respuesta =
     resultados.length > 0
       ? resultados[0].item.respuesta
-      : "Lo siento, no tengo información sobre eso aún. Puedes revisar el manual de asesoría o el catálogo correspondiente.";
-  
+      : "Lo siento, no tengo información sobre eso aún. Puedes revisar el manual de asesoría o el catálogo correspondiente. Estoy aprendiendo constantemente.";
+
+  // Simulación de escritura (efecto typing)
   setTimeout(() => {
     agregarMensaje(respuesta, "bot-message");
-  }, 500);
+  }, 600);
 }
 
 // Enviar mensaje al presionar botón
