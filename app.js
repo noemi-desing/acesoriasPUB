@@ -1,272 +1,139 @@
 /* ============================================================
-   ESTILOS GLOBALES — DIF JALISCO
-   Tema: Gris profesional + Naranja institucional
+   CHATBOT DIF JALISCO — ASESOR PUB + VALIDADOR INTELIGENTE
    ============================================================ */
 
-:root {
-  --naranja: #f37021;
-  --gris-oscuro: #2f2f2f;
-  --gris-claro: #f5f5f5;
-  --gris-medio: #9b9b9b;
-  --borde: #e0e0e0;
-  --blanco: #ffffff;
-  --fuente: 'Segoe UI', Roboto, sans-serif;
-}
+// --- Variables principales ---
+const chatOutput = document.getElementById("chatOutput");
+const userInput = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
+const fileInput = document.getElementById("fileInput");
+const validateBtn = document.getElementById("validateBtn");
+const validationResult = document.getElementById("validationResult");
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: var(--fuente);
-  background-color: var(--gris-claro);
-  color: var(--gris-oscuro);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* ================= CABECERA ================= */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  background-color: var(--blanco);
-  border-bottom: 4px solid var(--naranja);
-  padding: 18px 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.logo {
-  height: 70px;
-  width: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.header h1 {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--gris-oscuro);
-  margin-bottom: 4px;
-}
-
-.header h2 {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--gris-medio);
-}
-
-/* ================= SECCIÓN DE CHAT ================= */
-.chat-section {
-  background-color: var(--blanco);
-  border: 1px solid var(--borde);
-  border-radius: 12px;
-  max-width: 900px;
-  margin: 25px auto;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.chat-section h3 {
-  color: var(--naranja);
-  margin-bottom: 6px;
-  text-align: center;
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.lema {
-  text-align: center;
-  color: var(--gris-medio);
-  margin-bottom: 14px;
-  font-size: 15px;
-}
-
-/* Chatbox */
-.chat-container {
-  border: 1px solid var(--borde);
-  background-color: #fafafa;
-  height: 340px;
-  overflow-y: auto;
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 15px;
-}
-
-.bot-message, .user-message {
-  margin-bottom: 12px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  width: fit-content;
-  max-width: 80%;
-  line-height: 1.4;
-}
-
-.bot-message {
-  background-color: #fff6f0;
-  border: 1px solid #ffd9c0;
-  color: #5a3c25;
-  box-shadow: 0 2px 5px rgba(243, 112, 33, 0.15);
-}
-
-.user-message {
-  background-color: var(--naranja);
-  color: white;
-  border: 1px solid #e35c13;
-  margin-left: auto;
-}
-
-/* Input del chat */
-.chat-input {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid var(--borde);
-  font-size: 15px;
-  outline: none;
-}
-
-.chat-input input:focus {
-  border-color: var(--naranja);
-}
-
-.chat-input button {
-  background-color: var(--naranja);
-  color: white;
-  font-weight: 600;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.chat-input button:hover {
-  background-color: #e55d10;
-}
-
-/* ================= VALIDADOR ================= */
-.validator {
-  background-color: #fff7f2;
-  border: 1px solid #ffe3c9;
-  border-radius: 8px;
-  padding: 15px;
-  margin-top: 20px;
-}
-
-.validator h4 {
-  color: var(--naranja);
-  margin-bottom: 8px;
-  text-align: center;
-}
-
-#fileInput {
-  width: 100%;
-  border: 1px solid var(--borde);
-  border-radius: 6px;
-  padding: 10px;
-  margin-bottom: 8px;
-}
-
-#validateBtn {
-  background-color: var(--naranja);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 14px;
-  cursor: pointer;
-  width: 100%;
-  font-weight: 600;
-}
-
-#validateBtn:hover {
-  background-color: #e55d10;
-}
-
-#validationResult {
-  margin-top: 12px;
-  font-size: 14px;
-  color: var(--gris-oscuro);
-}
-
-/* ================= DESCARGAS ================= */
-.downloads {
-  background-color: var(--blanco);
-  border: 1px solid var(--borde);
-  border-radius: 12px;
-  max-width: 900px;
-  margin: 25px auto;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.downloads h3 {
-  color: var(--naranja);
-  text-align: center;
-  font-size: 22px;
-  margin-bottom: 18px;
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 10px;
-}
-
-.buttons a {
-  display: inline-block;
-  text-align: center;
-  padding: 12px 10px;
-  border: 2px solid var(--naranja);
-  color: var(--naranja);
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: all 0.25s;
-  background-color: #fff;
-}
-
-.buttons a:hover {
-  background-color: var(--naranja);
-  color: #fff;
-}
-
-/* ================= FOOTER ================= */
-footer {
-  text-align: center;
-  padding: 15px 10px;
-  background-color: var(--gris-oscuro);
-  color: white;
-  font-size: 14px;
-  margin-top: auto;
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 700px) {
-  .header {
-    flex-direction: column;
-    text-align: center;
+// --- Base de conocimientos simplificada ---
+const baseConocimiento = [
+  {
+    campo: "CURP",
+    respuesta: "La CURP debe contener 18 caracteres en mayúsculas, sin espacios ni guiones. Ejemplo: ABCD010101HDFRRN09.",
+    fuente: "INSTRUCCIONES DE LLENADO DEL PUB"
+  },
+  {
+    campo: "SEXO",
+    respuesta: "En el campo SEXO utiliza 'H' para Hombre y 'M' para Mujer, según la clave del catálogo GENERO.xlsx.",
+    fuente: "MANUAL GUÍA PUB PERSONAS"
+  },
+  {
+    campo: "DOMICILIO",
+    respuesta: "Captura la dirección separando calle, número, colonia y código postal (5 dígitos).",
+    fuente: "MANUAL ASESORÍA DIF JALISCO"
+  },
+  {
+    campo: "ESCOLARIDAD",
+    respuesta: "Selecciona la clave correspondiente del catálogo ESCOLARIDAD.xlsx, según el nivel educativo alcanzado.",
+    fuente: "MANUAL GUÍA PUB PERSONAS"
+  },
+  {
+    campo: "ENTIDAD",
+    respuesta: "Usa la clave de 2 dígitos del catálogo CLAVE_ENT.xlsx.",
+    fuente: "INSTRUCCIONES DE LLENADO DEL PUB"
+  },
+  {
+    campo: "MUNICIPIO",
+    respuesta: "Usa la clave de 3 dígitos del catálogo CLAVE_MUN.xlsx para el municipio correspondiente.",
+    fuente: "INSTRUCCIONES DE LLENADO DEL PUB"
   }
+];
 
-  .chat-container {
-    height: 280px;
-  }
+// --- Configurar Fuse.js (búsqueda con tolerancia a errores) ---
+const fuse = new Fuse(baseConocimiento, {
+  keys: ["campo"],
+  threshold: 0.4
+});
 
-  .buttons {
-    grid-template-columns: 1fr;
-  }
+// --- Función para agregar mensajes al chat ---
+function agregarMensaje(texto, tipo = "bot") {
+  const msg = document.createElement("div");
+  msg.className = tipo === "bot" ? "bot-message" : "user-message";
+  msg.innerText = texto;
+  chatOutput.appendChild(msg);
+  chatOutput.scrollTop = chatOutput.scrollHeight;
+}
 
-  .logo {
-    height: 60px;
+// --- Responder al usuario ---
+function responder(mensaje) {
+  const resultado = fuse.search(mensaje);
+  if (resultado.length > 0) {
+    const data = resultado[0].item;
+    agregarMensaje(`${data.respuesta}\n\nFuente: ${data.fuente}`, "bot");
+  } else {
+    agregarMensaje(
+      "No encontré información exacta, pero puedes revisar los manuales disponibles en la sección de descargas.",
+      "bot"
+    );
   }
 }
+
+// --- Evento: Enviar mensaje ---
+sendBtn.addEventListener("click", () => {
+  const texto = userInput.value.trim();
+  if (!texto) return;
+  agregarMensaje(texto, "user");
+  userInput.value = "";
+  responder(texto);
+});
+
+// --- Permitir enviar con Enter ---
+userInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    sendBtn.click();
+  }
+});
+
+// --- VALIDADOR INTELIGENTE DEL PUB ---
+validateBtn.addEventListener("click", async () => {
+  const file = fileInput.files[0];
+  if (!file) {
+    validationResult.innerHTML = "Por favor selecciona un archivo PLANTILLA_PUB.xlsx para validar.";
+    return;
+  }
+
+  const data = await file.arrayBuffer();
+  const workbook = XLSX.read(data);
+  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  const rows = XLSX.utils.sheet_to_json(sheet);
+
+  let errores = [];
+  let totalRegistros = rows.length;
+
+  rows.forEach((row, i) => {
+    const num = i + 2; // fila (considerando encabezado)
+    if (!row.CURP || row.CURP.length !== 18) {
+      errores.push(`Fila ${num}: CURP inválida o incompleta.`);
+    }
+    if (!row.SEXO || !["H", "M"].includes(row.SEXO)) {
+      errores.push(`Fila ${num}: campo SEXO inválido (usa H o M).`);
+    }
+    if (!row.CODIGO_POSTAL || String(row.CODIGO_POSTAL).length !== 5) {
+      errores.push(`Fila ${num}: Código postal debe tener 5 dígitos.`);
+    }
+    if (!row.ENTIDAD) {
+      errores.push(`Fila ${num}: Falta la clave de ENTIDAD.`);
+    }
+  });
+
+  if (errores.length === 0) {
+    validationResult.innerHTML = `<span style="color:green;font-weight:bold;">✅ Validación completada: ${totalRegistros} registros sin errores.</span>`;
+  } else {
+    validationResult.innerHTML = `
+      <span style="color:#d9534f;font-weight:bold;">⚠️ Se detectaron ${errores.length} posibles errores:</span><br><br>
+      ${errores.slice(0, 10).join("<br>")}
+      <br><br><em>(solo se muestran los primeros 10 resultados)</em>
+    `;
+  }
+});
+
+// --- Mensaje de bienvenida ---
+window.onload = () => {
+  agregarMensaje("👋 Bienvenido al asistente de llenado del PUB. Puedo ayudarte con tus dudas o validar tu archivo Excel.", "bot");
+};
+
