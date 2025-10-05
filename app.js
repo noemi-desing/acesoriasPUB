@@ -113,4 +113,11 @@ validateBtn.addEventListener("click", () => {
 
     if (faltantes.length === 0) {
       validationResult.innerHTML =
-        `<p style="color:green;"><b>✅ Archivo válido.</b> Todos los campos requer
+        `<p style="color:green;"><b>✅ Archivo válido.</b> Todos los campos requeridos están presentes.</p>`;
+    } else {
+      validationResult.innerHTML =
+        `<p style="color:red;"><b>⚠️ Campos faltantes:</b> ${faltantes.join(", ")}</p>`;
+    }
+  };
+  reader.readAsArrayBuffer(file);
+});
