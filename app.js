@@ -1,6 +1,6 @@
 /* ============================================================
    DIF JALISCO — CHATBOT + VALIDADOR INTELIGENTE DEL PUB
-   Versión empresarial optimizada 2025
+   Versión final 2025 con botón para borrar historial
    ============================================================ */
 
 // --- Variables principales ---
@@ -11,7 +11,13 @@ const fileInput = document.getElementById("fileInput");
 const validateBtn = document.getElementById("validateBtn");
 const validationResult = document.getElementById("validationResult");
 
-// --- Base de conocimiento inicial ---
+// Crear botón dinámico para borrar historial
+const clearBtn = document.createElement("button");
+clearBtn.innerText = "🗑️ Borrar historial de consulta";
+clearBtn.classList.add("clear-btn");
+chatOutput.parentNode.insertBefore(clearBtn, chatOutput.nextSibling);
+
+// --- Base de conocimiento simplificada ---
 const baseConocimiento = [
   {
     campo: "CURP",
@@ -57,7 +63,7 @@ const baseConocimiento = [
   }
 ];
 
-// --- Configurar Fuse.js para coincidencias difusas (errores ortográficos) ---
+// --- Configurar Fuse.js para coincidencias con errores ---
 const fuse = new Fuse(baseConocimiento, {
   keys: ["campo"],
   threshold: 0.4
@@ -72,7 +78,7 @@ function agregarMensaje(texto, tipo = "bot") {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
-// --- Generar respuesta automática ---
+// --- Responder al usuario ---
 function responder(mensaje) {
   const resultado = fuse.search(mensaje);
   if (resultado.length > 0) {
@@ -80,7 +86,7 @@ function responder(mensaje) {
     agregarMensaje(`${data.respuesta}\n\n📘 Fuente: ${data.fuente}`, "bot");
   } else {
     agregarMensaje(
-      "No encontré información exacta sobre eso 🤔. Revisa los manuales disponibles en la sección de descargas para más detalles.",
+      "No encontré información exacta sobre eso 🤔. Puedes revisar los manuales disponibles en la sección de descargas.",
       "bot"
     );
   }
@@ -95,11 +101,20 @@ sendBtn.addEventListener("click", () => {
   responder(texto);
 });
 
-// --- Permitir enviar con Enter ---
+// --- Enviar con Enter ---
 userInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     sendBtn.click();
   }
+});
+
+// --- Borrar historial del chat ---
+clearBtn.addEventListener("click", () => {
+  chatOutput.innerHTML = "";
+  agregarMensaje(
+    "🧹 Historial de consulta borrado.\n\n👋 Bienvenido nuevamente al asistente DIF Jalisco. Puedes realizar una nueva consulta cuando gustes.",
+    "bot"
+  );
 });
 
 // --- Validador inteligente del PUB ---
@@ -151,7 +166,7 @@ validateBtn.addEventListener("click", async () => {
   }
 });
 
-// --- Mensaje de bienvenida al cargar ---
+// --- Mensaje de bienvenida ---
 window.onload = () => {
   agregarMensaje(
     "👋 Bienvenido al asistente de llenado PUB del DIF Jalisco.\nPuedo resolver tus dudas o validar tu archivo Excel.",
