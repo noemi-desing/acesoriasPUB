@@ -1,12 +1,12 @@
 /* ============================================================
-   DIF JALISCO — ESTILO EMPRESARIAL MODERNO (MEJORADO)
+   DIF JALISCO — ESTILO EMPRESARIAL FINAL (2025)
    ============================================================ */
 
 :root {
   --naranja: #f37021;
   --gris-oscuro: #2e2e2e;
   --gris-medio: #6b6b6b;
-  --gris-claro: #f5f5f5;
+  --gris-claro: #f8f8f8;
   --borde: #e1e1e1;
   --blanco: #ffffff;
   --fuente: "Segoe UI", Roboto, Arial, sans-serif;
@@ -41,23 +41,26 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
+  animation: fadeDown 1s ease;
 }
 
 .header-text h1 {
-  font-size: 24px;
+  font-size: 26px;
   color: var(--gris-oscuro);
   font-weight: 700;
 }
 
 .header-text p {
   color: var(--gris-medio);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .logo-header {
-  height: 70px;
+  height: 85px;
   width: auto;
   border-radius: 8px;
+  object-fit: contain;
+  animation: fadeIn 1.2s ease;
 }
 
 /* ================= MAIN ================= */
@@ -70,13 +73,14 @@ body {
   gap: 30px;
 }
 
-/* ================= CARDS (GENERAL) ================= */
+/* ================= CARDS ================= */
 .card {
   background: var(--blanco);
   border-radius: 14px;
   border: 1px solid var(--borde);
   padding: 25px;
   box-shadow: var(--sombra);
+  animation: fadeUp 0.8s ease;
 }
 
 .section h2 {
@@ -230,7 +234,7 @@ body {
 .buttons {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 14px;
+  gap: 18px;
   justify-items: center;
 }
 
@@ -249,7 +253,10 @@ body {
   transition: all 0.25s ease-in-out;
   background: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  min-height: 48px;
+  width: 100%;
+  max-width: 260px;
+  min-height: 60px;
+  line-height: 1.3;
 }
 
 .buttons a:hover {
@@ -269,6 +276,22 @@ footer {
   border-top: 3px solid var(--naranja);
 }
 
+/* ================= ANIMACIONES ================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
   .header {
@@ -278,7 +301,7 @@ footer {
   }
 
   .logo-header {
-    height: 60px;
+    height: 70px;
   }
 
   .chat-box {
@@ -287,5 +310,9 @@ footer {
 
   #validateBtn {
     width: 100%;
+  }
+
+  .buttons a {
+    max-width: 100%;
   }
 }
