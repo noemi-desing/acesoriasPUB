@@ -1,5 +1,6 @@
 /* ============================================================
-   CHATBOT DIF JALISCO — ASESOR PUB + VALIDADOR INTELIGENTE
+   DIF JALISCO — CHATBOT + VALIDADOR INTELIGENTE DEL PUB
+   Versión empresarial optimizada 2025
    ============================================================ */
 
 // --- Variables principales ---
@@ -10,47 +11,59 @@ const fileInput = document.getElementById("fileInput");
 const validateBtn = document.getElementById("validateBtn");
 const validationResult = document.getElementById("validationResult");
 
-// --- Base de conocimientos simplificada ---
+// --- Base de conocimiento inicial ---
 const baseConocimiento = [
   {
     campo: "CURP",
-    respuesta: "La CURP debe contener 18 caracteres en mayúsculas, sin espacios ni guiones. Ejemplo: ABCD010101HDFRRN09.",
+    respuesta:
+      "La CURP debe contener 18 caracteres en mayúsculas, sin espacios ni guiones. Ejemplo: ABCD010101HDFRRN09.",
     fuente: "INSTRUCCIONES DE LLENADO DEL PUB"
   },
   {
     campo: "SEXO",
-    respuesta: "En el campo SEXO utiliza 'H' para Hombre y 'M' para Mujer, según la clave del catálogo GENERO.xlsx.",
+    respuesta:
+      "En el campo SEXO utiliza 'H' para Hombre y 'M' para Mujer, conforme al catálogo GENERO.xlsx.",
     fuente: "MANUAL GUÍA PUB PERSONAS"
   },
   {
     campo: "DOMICILIO",
-    respuesta: "Captura la dirección separando calle, número, colonia y código postal (5 dígitos).",
-    fuente: "MANUAL ASESORÍA DIF JALISCO"
+    respuesta:
+      "Captura calle, número y colonia conforme al catálogo ASENTAMIENTO.xlsx. Evita abreviaturas informales.",
+    fuente: "MANUAL DE ASESORÍA DIF JALISCO"
   },
   {
     campo: "ESCOLARIDAD",
-    respuesta: "Selecciona la clave correspondiente del catálogo ESCOLARIDAD.xlsx, según el nivel educativo alcanzado.",
+    respuesta:
+      "Usa las claves del catálogo ESCOLARIDAD.xlsx según el nivel educativo alcanzado por el beneficiario.",
     fuente: "MANUAL GUÍA PUB PERSONAS"
   },
   {
     campo: "ENTIDAD",
-    respuesta: "Usa la clave de 2 dígitos del catálogo CLAVE_ENT.xlsx.",
+    respuesta:
+      "Usa la clave de 2 dígitos del catálogo CLAVE_ENT.xlsx para la entidad federativa correspondiente.",
     fuente: "INSTRUCCIONES DE LLENADO DEL PUB"
   },
   {
     campo: "MUNICIPIO",
-    respuesta: "Usa la clave de 3 dígitos del catálogo CLAVE_MUN.xlsx para el municipio correspondiente.",
+    respuesta:
+      "Usa la clave de 3 dígitos del catálogo CLAVE_MUN.xlsx para el municipio de residencia.",
     fuente: "INSTRUCCIONES DE LLENADO DEL PUB"
+  },
+  {
+    campo: "EDO CIVIL",
+    respuesta:
+      "Selecciona el estado civil correcto de acuerdo con el catálogo EDO_CIVIL.xlsx.",
+    fuente: "MANUAL GUÍA PUB PERSONAS"
   }
 ];
 
-// --- Configurar Fuse.js (búsqueda con tolerancia a errores) ---
+// --- Configurar Fuse.js para coincidencias difusas (errores ortográficos) ---
 const fuse = new Fuse(baseConocimiento, {
   keys: ["campo"],
   threshold: 0.4
 });
 
-// --- Función para agregar mensajes al chat ---
+// --- Agregar mensajes al chat ---
 function agregarMensaje(texto, tipo = "bot") {
   const msg = document.createElement("div");
   msg.className = tipo === "bot" ? "bot-message" : "user-message";
@@ -59,21 +72,21 @@ function agregarMensaje(texto, tipo = "bot") {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
-// --- Responder al usuario ---
+// --- Generar respuesta automática ---
 function responder(mensaje) {
   const resultado = fuse.search(mensaje);
   if (resultado.length > 0) {
     const data = resultado[0].item;
-    agregarMensaje(`${data.respuesta}\n\nFuente: ${data.fuente}`, "bot");
+    agregarMensaje(`${data.respuesta}\n\n📘 Fuente: ${data.fuente}`, "bot");
   } else {
     agregarMensaje(
-      "No encontré información exacta, pero puedes revisar los manuales disponibles en la sección de descargas.",
+      "No encontré información exacta sobre eso 🤔. Revisa los manuales disponibles en la sección de descargas para más detalles.",
       "bot"
     );
   }
 }
 
-// --- Evento: Enviar mensaje ---
+// --- Enviar mensaje ---
 sendBtn.addEventListener("click", () => {
   const texto = userInput.value.trim();
   if (!texto) return;
@@ -89,11 +102,12 @@ userInput.addEventListener("keypress", (e) => {
   }
 });
 
-// --- VALIDADOR INTELIGENTE DEL PUB ---
+// --- Validador inteligente del PUB ---
 validateBtn.addEventListener("click", async () => {
   const file = fileInput.files[0];
   if (!file) {
-    validationResult.innerHTML = "Por favor selecciona un archivo PLANTILLA_PUB.xlsx para validar.";
+    validationResult.innerHTML =
+      "⚠️ Por favor selecciona un archivo PLANTILLA_PUB.xlsx para validar.";
     return;
   }
 
@@ -103,37 +117,44 @@ validateBtn.addEventListener("click", async () => {
   const rows = XLSX.utils.sheet_to_json(sheet);
 
   let errores = [];
-  let totalRegistros = rows.length;
+  let total = rows.length;
 
   rows.forEach((row, i) => {
-    const num = i + 2; // fila (considerando encabezado)
-    if (!row.CURP || row.CURP.length !== 18) {
-      errores.push(`Fila ${num}: CURP inválida o incompleta.`);
-    }
-    if (!row.SEXO || !["H", "M"].includes(row.SEXO)) {
-      errores.push(`Fila ${num}: campo SEXO inválido (usa H o M).`);
-    }
-    if (!row.CODIGO_POSTAL || String(row.CODIGO_POSTAL).length !== 5) {
-      errores.push(`Fila ${num}: Código postal debe tener 5 dígitos.`);
-    }
-    if (!row.ENTIDAD) {
-      errores.push(`Fila ${num}: Falta la clave de ENTIDAD.`);
-    }
+    const n = i + 2;
+    if (!row.CURP || row.CURP.length !== 18)
+      errores.push(`Fila ${n}: CURP inválida o incompleta.`);
+    if (!row.SEXO || !["H", "M"].includes(row.SEXO))
+      errores.push(`Fila ${n}: campo SEXO incorrecto (usa H o M).`);
+    if (!row.CODIGO_POSTAL || String(row.CODIGO_POSTAL).length !== 5)
+      errores.push(`Fila ${n}: Código postal debe tener 5 dígitos.`);
+    if (!row.ENTIDAD)
+      errores.push(`Fila ${n}: Falta clave de ENTIDAD federativa.`);
+    if (!row.MUNICIPIO)
+      errores.push(`Fila ${n}: Falta clave de MUNICIPIO.`);
   });
 
   if (errores.length === 0) {
-    validationResult.innerHTML = `<span style="color:green;font-weight:bold;">✅ Validación completada: ${totalRegistros} registros sin errores.</span>`;
+    validationResult.innerHTML = `
+      <div style="color:green;font-weight:600;">
+        ✅ Validación exitosa: ${total} registros revisados sin errores.
+      </div>`;
   } else {
     validationResult.innerHTML = `
-      <span style="color:#d9534f;font-weight:bold;">⚠️ Se detectaron ${errores.length} posibles errores:</span><br><br>
-      ${errores.slice(0, 10).join("<br>")}
-      <br><br><em>(solo se muestran los primeros 10 resultados)</em>
+      <div style="color:#d9534f;font-weight:600;">
+        ⚠️ Se detectaron ${errores.length} posibles errores.
+      </div>
+      <ul style="margin-top:8px;list-style:disc;padding-left:20px;color:#333;">
+        ${errores.slice(0, 10).map(e => `<li>${e}</li>`).join("")}
+      </ul>
+      <em style="color:#888;">(solo se muestran los primeros 10 errores)</em>
     `;
   }
 });
 
-// --- Mensaje de bienvenida ---
+// --- Mensaje de bienvenida al cargar ---
 window.onload = () => {
-  agregarMensaje("👋 Bienvenido al asistente de llenado del PUB. Puedo ayudarte con tus dudas o validar tu archivo Excel.", "bot");
+  agregarMensaje(
+    "👋 Bienvenido al asistente de llenado PUB del DIF Jalisco.\nPuedo resolver tus dudas o validar tu archivo Excel.",
+    "bot"
+  );
 };
-
