@@ -49,7 +49,7 @@ function agregarMensaje(texto, clase) {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
-// Mostrar lista desplegable
+// Mostrar lista desplegable desde catálogo
 function mostrarListaDesplegable(opciones, titulo = "Opciones disponibles:") {
   const contenedor = document.createElement("div");
   contenedor.classList.add("bot-message");
@@ -78,7 +78,7 @@ function mostrarListaDesplegable(opciones, titulo = "Opciones disponibles:") {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
-// Cargar catálogo específico
+// Cargar catálogo desde /catalogos/
 async function cargarCatalogo(nombreArchivo) {
   try {
     const response = await fetch(`catalogos/${nombreArchivo}`);
@@ -117,8 +117,8 @@ async function responder(mensajeUsuario) {
 
   agregarMensaje(respuesta, "bot-message");
 
-  // ======= NUEVO: detectar palabras clave y mostrar listas =======
-  const catálogos = [
+  // ======== NUEVO: detectar palabras clave y mostrar listas ========
+  const catalogos = [
     { palabras: ["sexo", "género"], archivo: "GENERO.xlsx", titulo: "Opciones de SEXO:" },
     { palabras: ["estado civil", "edo civil"], archivo: "EDO_CIVIL.xlsx", titulo: "Opciones de ESTADO CIVIL:" },
     { palabras: ["ocupación"], archivo: "OCUPACION.xlsx", titulo: "Opciones de OCUPACIÓN:" },
@@ -131,7 +131,7 @@ async function responder(mensajeUsuario) {
     { palabras: ["motivo baja"], archivo: "MOTIVO_BAJA.xlsx", titulo: "Opciones de MOTIVO DE BAJA:" }
   ];
 
-  for (const cat of catálogos) {
+  for (const cat of catalogos) {
     if (cat.palabras.some(p => texto.includes(p))) {
       const opciones = await cargarCatalogo(cat.archivo);
       if (opciones && opciones.length > 0) {
