@@ -1,5 +1,5 @@
 // ============================================================
-// DIF JALISCO — ASISTENTE PUB (Versión 2025 con listas dinámicas de catálogos)
+// DIF JALISCO — ASISTENTE PUB (Versión 2025 con catálogos dinámicos)
 // ============================================================
 
 let fuse;
@@ -40,7 +40,7 @@ const clearBtn = document.getElementById("clearChat");
 
 // ==================== FUNCIONES DEL CHAT ====================
 
-// Agregar mensaje en el chat
+// Agregar mensaje
 function agregarMensaje(texto, clase) {
   const div = document.createElement("div");
   div.classList.add(clase);
@@ -49,7 +49,7 @@ function agregarMensaje(texto, clase) {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
-// Mostrar lista desplegable desde catálogo
+// Mostrar lista desplegable
 function mostrarListaDesplegable(opciones, titulo = "Opciones disponibles:") {
   const contenedor = document.createElement("div");
   contenedor.classList.add("bot-message");
@@ -57,15 +57,15 @@ function mostrarListaDesplegable(opciones, titulo = "Opciones disponibles:") {
   const label = document.createElement("p");
   label.textContent = titulo;
   label.style.fontWeight = "bold";
-  label.style.marginBottom = "6px";
+  label.style.marginBottom = "5px";
   contenedor.appendChild(label);
 
   const select = document.createElement("select");
   select.style.width = "100%";
   select.style.padding = "10px";
-  select.style.borderRadius = "8px";
   select.style.border = "1px solid #ccc";
-  select.style.background = "#fff";
+  select.style.borderRadius = "8px";
+  select.style.backgroundColor = "#fff";
 
   opciones.forEach(op => {
     const option = document.createElement("option");
@@ -78,7 +78,7 @@ function mostrarListaDesplegable(opciones, titulo = "Opciones disponibles:") {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
-// Cargar catálogo específico desde la carpeta /catalogos/
+// Cargar catálogo específico
 async function cargarCatalogo(nombreArchivo) {
   try {
     const response = await fetch(`catalogos/${nombreArchivo}`);
@@ -117,25 +117,25 @@ async function responder(mensajeUsuario) {
 
   agregarMensaje(respuesta, "bot-message");
 
-  // ==== Detectar temas y mostrar catálogos ====
-  const temasCatalogos = [
-    { palabra: ["sexo", "género"], archivo: "GENERO.xlsx", titulo: "Opciones de SEXO:" },
-    { palabra: ["estado civil", "edo civil"], archivo: "EDO_CIVIL.xlsx", titulo: "Opciones de ESTADO CIVIL:" },
-    { palabra: ["ocupación"], archivo: "OCUPACION.xlsx", titulo: "Opciones de OCUPACIÓN:" },
-    { palabra: ["entidad", "nac"], archivo: "ENTIDAD_DE_NAC.xlsx", titulo: "Opciones de ENTIDAD DE NACIMIENTO:" },
-    { palabra: ["escolaridad"], archivo: "ESCOLARIDAD.xlsx", titulo: "Opciones de ESCOLARIDAD:" },
-    { palabra: ["grupo étnico", "etnia"], archivo: "GRUPO_ETNICO.xlsx", titulo: "Opciones de GRUPO ÉTNICO:" },
-    { palabra: ["discapacidad"], archivo: "DISCAPACIDAD.xlsx", titulo: "Opciones de DISCAPACIDAD:" },
-    { palabra: ["tipo vivienda"], archivo: "TIPO_VIVIENDA.xlsx", titulo: "Opciones de TIPO DE VIVIENDA:" },
-    { palabra: ["parentesco"], archivo: "PARENTESCO.xlsx", titulo: "Opciones de PARENTESCO:" },
-    { palabra: ["motivo baja"], archivo: "MOTIVO_BAJA.xlsx", titulo: "Opciones de MOTIVO DE BAJA:" }
+  // ======= NUEVO: detectar palabras clave y mostrar listas =======
+  const catálogos = [
+    { palabras: ["sexo", "género"], archivo: "GENERO.xlsx", titulo: "Opciones de SEXO:" },
+    { palabras: ["estado civil", "edo civil"], archivo: "EDO_CIVIL.xlsx", titulo: "Opciones de ESTADO CIVIL:" },
+    { palabras: ["ocupación"], archivo: "OCUPACION.xlsx", titulo: "Opciones de OCUPACIÓN:" },
+    { palabras: ["entidad", "nac"], archivo: "ENTIDAD_DE_NAC.xlsx", titulo: "Opciones de ENTIDAD DE NACIMIENTO:" },
+    { palabras: ["escolaridad"], archivo: "ESCOLARIDAD.xlsx", titulo: "Opciones de ESCOLARIDAD:" },
+    { palabras: ["grupo étnico", "etnia"], archivo: "GRUPO_ETNICO.xlsx", titulo: "Opciones de GRUPO ÉTNICO:" },
+    { palabras: ["discapacidad"], archivo: "DISCAPACIDAD.xlsx", titulo: "Opciones de DISCAPACIDAD:" },
+    { palabras: ["tipo vivienda"], archivo: "TIPO_VIVIENDA.xlsx", titulo: "Opciones de TIPO DE VIVIENDA:" },
+    { palabras: ["parentesco"], archivo: "PARENTESCO.xlsx", titulo: "Opciones de PARENTESCO:" },
+    { palabras: ["motivo baja"], archivo: "MOTIVO_BAJA.xlsx", titulo: "Opciones de MOTIVO DE BAJA:" }
   ];
 
-  for (const tema of temasCatalogos) {
-    if (tema.palabra.some(p => texto.includes(p))) {
-      const opciones = await cargarCatalogo(tema.archivo);
+  for (const cat of catálogos) {
+    if (cat.palabras.some(p => texto.includes(p))) {
+      const opciones = await cargarCatalogo(cat.archivo);
       if (opciones && opciones.length > 0) {
-        mostrarListaDesplegable(opciones, tema.titulo);
+        mostrarListaDesplegable(opciones, cat.titulo);
       }
     }
   }
@@ -189,6 +189,7 @@ validateBtn.addEventListener("click", () => {
   };
   reader.readAsArrayBuffer(file);
 });
+
 
 
 
