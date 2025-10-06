@@ -1,317 +1,184 @@
-/* ============================================================
-   DIF JALISCO — ESTILO EMPRESARIAL FINAL (2025)
-   ============================================================ */
+// ============================================================
+// DIF JALISCO — ASISTENTE PUB (Versión 2025 con catálogos dinámicos)
+// ============================================================
 
-:root {
-  --naranja: #f37021;
-  --gris-oscuro: #2e2e2e;
-  --gris-medio: #6b6b6b;
-  --gris-claro: #f8f8f8;
-  --borde: #e1e1e1;
-  --blanco: #ffffff;
-  --fuente: "Segoe UI", Roboto, Arial, sans-serif;
-  --sombra: 0 4px 15px rgba(0, 0, 0, 0.06);
-}
+let fuse;
+let baseConocimiento = [];
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+// ==================== CHATBOT ====================
 
-body {
-  font-family: var(--fuente);
-  background: var(--gris-claro);
-  color: var(--gris-oscuro);
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+async function cargarBaseDesdeExcel() {
+  try {
+    const response = await fetch("catalogos/INSTRUCTIVO_LLENADO_PUB.xlsx");
+    const data = await response.arrayBuffer();
+    const workbook = XLSX.read(data, { type: "array" });
+    const hoja = workbook.Sheets[workbook.SheetNames[0]];
+    const filas = XLSX.utils.sheet_to_json(hoja, { header: 1 });
 
-/* ================= HEADER ================= */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--blanco);
-  border-bottom: 3px solid var(--naranja);
-  padding: 15px 25px;
-  box-shadow: var(--sombra);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  animation: fadeDown 1s ease;
-}
+    baseConocimiento = filas.slice(1).map(row => ({
+      pregunta: row[1]?.toLowerCase() || "",
+      respuesta: row[2] || ""
+    }));
 
-.header-text h1 {
-  font-size: 26px;
-  color: var(--gris-oscuro);
-  font-weight: 700;
-}
-
-.header-text p {
-  color: var(--gris-medio);
-  font-size: 15px;
-}
-
-.logo-header {
-  height: 85px;
-  width: auto;
-  border-radius: 8px;
-  object-fit: contain;
-  animation: fadeIn 1.2s ease;
-}
-
-/* ================= MAIN ================= */
-.main-container {
-  max-width: 1100px;
-  margin: 25px auto;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-/* ================= CARDS ================= */
-.card {
-  background: var(--blanco);
-  border-radius: 14px;
-  border: 1px solid var(--borde);
-  padding: 25px;
-  box-shadow: var(--sombra);
-  animation: fadeUp 0.8s ease;
-}
-
-.section h2 {
-  color: var(--naranja);
-  font-size: 22px;
-  margin-bottom: 5px;
-  text-align: center;
-}
-
-.subtitle {
-  text-align: center;
-  color: var(--gris-medio);
-  font-size: 15px;
-  margin-bottom: 18px;
-}
-
-/* ================= CHATBOT ================= */
-.chat-box {
-  border: 1px solid var(--borde);
-  border-radius: 10px;
-  background: #fcfcfc;
-  height: 340px;
-  overflow-y: auto;
-  padding: 10px;
-  margin-bottom: 12px;
-  font-size: 15px;
-}
-
-.bot-message,
-.user-message {
-  padding: 10px 14px;
-  border-radius: 10px;
-  max-width: 80%;
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-
-.bot-message {
-  background: #fff6f0;
-  border: 1px solid #ffd9c2;
-  color: #5b3a1e;
-  box-shadow: 0 2px 5px rgba(243, 112, 33, 0.15);
-}
-
-.user-message {
-  background: var(--naranja);
-  color: white;
-  border: 1px solid #e35b12;
-  margin-left: auto;
-}
-
-.chat-input {
-  display: flex;
-  gap: 10px;
-}
-
-.chat-input input {
-  flex: 1;
-  border: 1px solid var(--borde);
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 15px;
-  outline: none;
-}
-
-.chat-input input:focus {
-  border-color: var(--naranja);
-}
-
-.chat-input button {
-  background: var(--naranja);
-  border: none;
-  color: #fff;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 12px 18px;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.chat-input button:hover {
-  background: #e15f0d;
-}
-
-.clear-btn {
-  display: block;
-  margin: 12px auto 0;
-  background: var(--gris-medio);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.clear-btn:hover {
-  background: #4d4d4d;
-}
-
-/* ================= VALIDADOR ================= */
-.validator-section {
-  background: #fffaf5;
-}
-
-.validator-box {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-}
-
-#fileInput {
-  border: 1px solid var(--borde);
-  border-radius: 8px;
-  padding: 10px;
-  width: 100%;
-  max-width: 400px;
-}
-
-#validateBtn {
-  background: var(--naranja);
-  border: none;
-  color: white;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 12px 18px;
-  cursor: pointer;
-  width: 200px;
-  transition: 0.25s;
-}
-
-#validateBtn:hover {
-  background: #e35b12;
-}
-
-#validationResult {
-  margin-top: 15px;
-  background: #fff;
-  border: 1px dashed var(--borde);
-  border-radius: 8px;
-  padding: 15px;
-  width: 100%;
-  max-width: 600px;
-  font-size: 14px;
-}
-
-/* ================= DESCARGAS ================= */
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 18px;
-  justify-items: center;
-}
-
-.buttons a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  text-decoration: none;
-  padding: 14px 10px;
-  border-radius: 8px;
-  border: 2px solid var(--naranja);
-  color: var(--naranja);
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.25s ease-in-out;
-  background: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  max-width: 260px;
-  min-height: 60px;
-  line-height: 1.3;
-}
-
-.buttons a:hover {
-  background: var(--naranja);
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* ================= FOOTER ================= */
-footer {
-  margin-top: auto;
-  background: var(--gris-oscuro);
-  color: #fff;
-  text-align: center;
-  padding: 18px 10px;
-  font-size: 14px;
-  border-top: 3px solid var(--naranja);
-}
-
-/* ================= ANIMACIONES ================= */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
-  }
-
-  .logo-header {
-    height: 70px;
-  }
-
-  .chat-box {
-    height: 260px;
-  }
-
-  #validateBtn {
-    width: 100%;
-  }
-
-  .buttons a {
-    max-width: 100%;
+    fuse = new Fuse(baseConocimiento, {
+      keys: ["pregunta"],
+      threshold: 0.5,
+      distance: 200,
+      minMatchCharLength: 2
+    });
+  } catch (error) {
+    console.error("❌ Error al cargar el archivo Excel:", error);
   }
 }
+
+const chatOutput = document.getElementById("chatOutput");
+const userInput = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
+const clearBtn = document.getElementById("clearChat");
+
+// ==================== FUNCIONES ====================
+
+function agregarMensaje(texto, clase) {
+  const div = document.createElement("div");
+  div.classList.add(clase);
+  div.textContent = texto;
+  chatOutput.appendChild(div);
+  chatOutput.scrollTop = chatOutput.scrollHeight;
+}
+
+function mostrarListaDesplegable(opciones, titulo = "Opciones disponibles:") {
+  const contenedor = document.createElement("div");
+  contenedor.classList.add("bot-message");
+
+  const label = document.createElement("p");
+  label.textContent = titulo;
+  label.style.fontWeight = "bold";
+  label.style.marginBottom = "6px";
+  contenedor.appendChild(label);
+
+  const select = document.createElement("select");
+  select.style.width = "100%";
+  select.style.padding = "10px";
+  select.style.border = "1px solid #ccc";
+  select.style.borderRadius = "8px";
+  select.style.backgroundColor = "#fff";
+
+  opciones.forEach(op => {
+    const option = document.createElement("option");
+    option.textContent = op;
+    select.appendChild(option);
+  });
+
+  contenedor.appendChild(select);
+  chatOutput.appendChild(contenedor);
+  chatOutput.scrollTop = chatOutput.scrollHeight;
+}
+
+async function cargarCatalogo(nombreArchivo) {
+  try {
+    const response = await fetch(`catalogos/${nombreArchivo}`);
+    const data = await response.arrayBuffer();
+    const workbook = XLSX.read(data, { type: "array" });
+    const hoja = workbook.Sheets[workbook.SheetNames[0]];
+    const filas = XLSX.utils.sheet_to_json(hoja, { header: 1 });
+    const opciones = filas.slice(1).map(row => row[0]).filter(v => v);
+    return opciones;
+  } catch (error) {
+    console.error("⚠️ No se pudo cargar el catálogo:", nombreArchivo);
+    return null;
+  }
+}
+
+// ==================== RESPUESTA DEL BOT ====================
+
+async function responder(mensajeUsuario) {
+  if (baseConocimiento.length === 0) await cargarBaseDesdeExcel();
+
+  const texto = mensajeUsuario.toLowerCase().trim();
+  const resultados = fuse.search(texto);
+  let respuesta = "";
+
+  if (resultados.length > 0) {
+    respuesta = resultados[0].item.respuesta;
+  } else {
+    const palabraCoincidente = baseConocimiento.find(item =>
+      texto.split(" ").some(palabra => item.pregunta.includes(palabra))
+    );
+    respuesta = palabraCoincidente
+      ? palabraCoincidente.respuesta
+      : "No encontré una coincidencia exacta 😔. Intenta usar una palabra relacionada o revisa el archivo INSTRUCTIVO_LLENADO_PUB.xlsx.";
+  }
+
+  agregarMensaje(respuesta, "bot-message");
+
+  // ====== Catálogos detectados ======
+  const catalogos = [
+    { palabras: ["sexo", "género"], archivo: "GENERO.xlsx", titulo: "Opciones de SEXO:" },
+    { palabras: ["estado civil", "edo civil"], archivo: "EDO_CIVIL.xlsx", titulo: "Opciones de ESTADO CIVIL:" },
+    { palabras: ["ocupación"], archivo: "OCUPACION.xlsx", titulo: "Opciones de OCUPACIÓN:" },
+    { palabras: ["entidad", "nac"], archivo: "ENTIDAD_DE_NAC.xlsx", titulo: "Opciones de ENTIDAD DE NACIMIENTO:" },
+    { palabras: ["escolaridad"], archivo: "ESCOLARIDAD.xlsx", titulo: "Opciones de ESCOLARIDAD:" },
+    { palabras: ["grupo étnico", "etnia"], archivo: "GRUPO_ETNICO.xlsx", titulo: "Opciones de GRUPO ÉTNICO:" },
+    { palabras: ["discapacidad"], archivo: "DISCAPACIDAD.xlsx", titulo: "Opciones de DISCAPACIDAD:" },
+    { palabras: ["tipo vivienda"], archivo: "TIPO_VIVIENDA.xlsx", titulo: "Opciones de TIPO DE VIVIENDA:" },
+    { palabras: ["parentesco"], archivo: "PARENTESCO.xlsx", titulo: "Opciones de PARENTESCO:" },
+    { palabras: ["motivo baja"], archivo: "MOTIVO_BAJA.xlsx", titulo: "Opciones de MOTIVO DE BAJA:" }
+  ];
+
+  for (const cat of catalogos) {
+    if (cat.palabras.some(p => texto.includes(p))) {
+      const opciones = await cargarCatalogo(cat.archivo);
+      if (opciones && opciones.length > 0) mostrarListaDesplegable(opciones, cat.titulo);
+    }
+  }
+}
+
+// ==================== EVENTOS ====================
+
+sendBtn.addEventListener("click", () => {
+  const texto = userInput.value.trim();
+  if (texto === "") return;
+  agregarMensaje(texto.toUpperCase(), "user-message");
+  responder(texto);
+  userInput.value = "";
+});
+
+userInput.addEventListener("keypress", e => {
+  if (e.key === "Enter") sendBtn.click();
+});
+
+clearBtn.addEventListener("click", () => {
+  chatOutput.innerHTML = '<div class="bot-message">🧹 Historial borrado. Puedes comenzar una nueva consulta.</div>';
+});
+
+// ==================== VALIDADOR ====================
+
+const fileInput = document.getElementById("fileInput");
+const validateBtn = document.getElementById("validateBtn");
+const validationResult = document.getElementById("validationResult");
+
+validateBtn.addEventListener("click", () => {
+  const file = fileInput.files[0];
+  if (!file) {
+    validationResult.textContent = "Por favor, selecciona un archivo antes de validar.";
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    const data = new Uint8Array(e.target.result);
+    const workbook = XLSX.read(data, { type: "array" });
+    const hoja = workbook.Sheets[workbook.SheetNames[0]];
+    const datos = XLSX.utils.sheet_to_json(hoja, { header: 1 });
+    const encabezados = datos[0];
+    const requeridos = ["CURP", "NOMBRE", "SEXO", "EDAD", "OCUPACION"];
+    const faltantes = requeridos.filter(campo => !encabezados.includes(campo));
+
+    if (faltantes.length === 0) {
+      validationResult.innerHTML = `<p style="color:green;"><b>✅ Archivo válido.</b> Todos los campos requeridos están presentes.</p>`;
+    } else {
+      validationResult.innerHTML = `<p style="color:red;"><b>⚠️ Campos faltantes:</b> ${faltantes.join(", ")}</p>`;
+    }
+  };
+  reader.readAsArrayBuffer(file);
+});
