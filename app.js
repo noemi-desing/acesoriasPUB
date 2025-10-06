@@ -204,3 +204,4 @@ validateBtn.addEventListener("click", () => {
   reader.readAsArrayBuffer(file);
 });
 
+
