@@ -1,5 +1,5 @@
 // ============================================================
-// DIF JALISCO — ASISTENTE PUB (Versión 2025 con Catálogos dinámicos)
+// DIF JALISCO — ASISTENTE PUB (Versión 2025 con listas dinámicas de catálogos)
 // ============================================================
 
 let fuse;
@@ -27,7 +27,6 @@ async function cargarBaseDesdeExcel() {
       distance: 200,
       minMatchCharLength: 2
     });
-
   } catch (error) {
     console.error("❌ Error al cargar el archivo Excel:", error);
   }
@@ -41,7 +40,7 @@ const clearBtn = document.getElementById("clearChat");
 
 // ==================== FUNCIONES DEL CHAT ====================
 
-// Agregar mensajes al chat
+// Agregar mensaje en el chat
 function agregarMensaje(texto, clase) {
   const div = document.createElement("div");
   div.classList.add(clase);
@@ -50,7 +49,7 @@ function agregarMensaje(texto, clase) {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
-// Mostrar lista desplegable
+// Mostrar lista desplegable desde catálogo
 function mostrarListaDesplegable(opciones, titulo = "Opciones disponibles:") {
   const contenedor = document.createElement("div");
   contenedor.classList.add("bot-message");
@@ -58,14 +57,15 @@ function mostrarListaDesplegable(opciones, titulo = "Opciones disponibles:") {
   const label = document.createElement("p");
   label.textContent = titulo;
   label.style.fontWeight = "bold";
+  label.style.marginBottom = "6px";
   contenedor.appendChild(label);
 
   const select = document.createElement("select");
+  select.style.width = "100%";
   select.style.padding = "10px";
   select.style.borderRadius = "8px";
   select.style.border = "1px solid #ccc";
-  select.style.marginTop = "5px";
-  select.style.width = "100%";
+  select.style.background = "#fff";
 
   opciones.forEach(op => {
     const option = document.createElement("option");
@@ -78,7 +78,7 @@ function mostrarListaDesplegable(opciones, titulo = "Opciones disponibles:") {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
-// Cargar catálogo según palabra clave
+// Cargar catálogo específico desde la carpeta /catalogos/
 async function cargarCatalogo(nombreArchivo) {
   try {
     const response = await fetch(`catalogos/${nombreArchivo}`);
@@ -102,7 +102,6 @@ async function responder(mensajeUsuario) {
 
   const texto = mensajeUsuario.toLowerCase().trim();
   const resultados = fuse.search(texto);
-
   let respuesta = "";
 
   if (resultados.length > 0) {
@@ -118,40 +117,27 @@ async function responder(mensajeUsuario) {
 
   agregarMensaje(respuesta, "bot-message");
 
-  // ======== NUEVO: detectar si hay catálogos relevantes ========
-  if (texto.includes("sexo") || texto.includes("género")) {
-    const opciones = await cargarCatalogo("GENERO.xlsx");
-    if (opciones) mostrarListaDesplegable(opciones, "Opciones de SEXO:");
-  }
+  // ==== Detectar temas y mostrar catálogos ====
+  const temasCatalogos = [
+    { palabra: ["sexo", "género"], archivo: "GENERO.xlsx", titulo: "Opciones de SEXO:" },
+    { palabra: ["estado civil", "edo civil"], archivo: "EDO_CIVIL.xlsx", titulo: "Opciones de ESTADO CIVIL:" },
+    { palabra: ["ocupación"], archivo: "OCUPACION.xlsx", titulo: "Opciones de OCUPACIÓN:" },
+    { palabra: ["entidad", "nac"], archivo: "ENTIDAD_DE_NAC.xlsx", titulo: "Opciones de ENTIDAD DE NACIMIENTO:" },
+    { palabra: ["escolaridad"], archivo: "ESCOLARIDAD.xlsx", titulo: "Opciones de ESCOLARIDAD:" },
+    { palabra: ["grupo étnico", "etnia"], archivo: "GRUPO_ETNICO.xlsx", titulo: "Opciones de GRUPO ÉTNICO:" },
+    { palabra: ["discapacidad"], archivo: "DISCAPACIDAD.xlsx", titulo: "Opciones de DISCAPACIDAD:" },
+    { palabra: ["tipo vivienda"], archivo: "TIPO_VIVIENDA.xlsx", titulo: "Opciones de TIPO DE VIVIENDA:" },
+    { palabra: ["parentesco"], archivo: "PARENTESCO.xlsx", titulo: "Opciones de PARENTESCO:" },
+    { palabra: ["motivo baja"], archivo: "MOTIVO_BAJA.xlsx", titulo: "Opciones de MOTIVO DE BAJA:" }
+  ];
 
-  if (texto.includes("estado civil") || texto.includes("edo civil")) {
-    const opciones = await cargarCatalogo("EDO_CIVIL.xlsx");
-    if (opciones) mostrarListaDesplegable(opciones, "Opciones de ESTADO CIVIL:");
-  }
-
-  if (texto.includes("ocupación")) {
-    const opciones = await cargarCatalogo("OCUPACION.xlsx");
-    if (opciones) mostrarListaDesplegable(opciones, "Opciones de OCUPACIÓN:");
-  }
-
-  if (texto.includes("entidad") && texto.includes("nac")) {
-    const opciones = await cargarCatalogo("ENTIDAD_DE_NAC.xlsx");
-    if (opciones) mostrarListaDesplegable(opciones, "Opciones de ENTIDAD DE NACIMIENTO:");
-  }
-
-  if (texto.includes("escolaridad")) {
-    const opciones = await cargarCatalogo("ESCOLARIDAD.xlsx");
-    if (opciones) mostrarListaDesplegable(opciones, "Opciones de ESCOLARIDAD:");
-  }
-
-  if (texto.includes("grupo étnico") || texto.includes("etnia")) {
-    const opciones = await cargarCatalogo("GRUPO_ETNICO.xlsx");
-    if (opciones) mostrarListaDesplegable(opciones, "Opciones de GRUPO ÉTNICO:");
-  }
-
-  if (texto.includes("discapacidad")) {
-    const opciones = await cargarCatalogo("DISCAPACIDAD.xlsx");
-    if (opciones) mostrarListaDesplegable(opciones, "Opciones de DISCAPACIDAD:");
+  for (const tema of temasCatalogos) {
+    if (tema.palabra.some(p => texto.includes(p))) {
+      const opciones = await cargarCatalogo(tema.archivo);
+      if (opciones && opciones.length > 0) {
+        mostrarListaDesplegable(opciones, tema.titulo);
+      }
+    }
   }
 }
 
@@ -203,5 +189,6 @@ validateBtn.addEventListener("click", () => {
   };
   reader.readAsArrayBuffer(file);
 });
+
 
 
