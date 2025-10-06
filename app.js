@@ -24,9 +24,9 @@ async function cargarBaseDesdeExcel() {
     // 🔍 Configuración flexible de Fuse.js para aceptar errores, palabras sueltas, etc.
     fuse = new Fuse(baseConocimiento, {
       keys: ["pregunta"],
-      threshold: 0.5,      // Permite diferencias notables entre el texto
-      distance: 200,       // Amplía la distancia para emparejar palabras parecidas
-      minMatchCharLength: 2 // Solo necesita 2 letras para considerar una coincidencia
+      threshold: 0.5,
+      distance: 200,
+      minMatchCharLength: 2
     });
 
   } catch (error) {
@@ -60,11 +60,9 @@ async function responder(mensajeUsuario) {
 
   let respuesta = "";
 
-  // ✅ Si hay coincidencias difusas, usar la mejor
   if (resultados.length > 0) {
     respuesta = resultados[0].item.respuesta;
   } else {
-    // 🔍 Si no hay coincidencias, buscar palabra clave manualmente
     const palabraCoincidente = baseConocimiento.find(item =>
       texto.split(" ").some(palabra => item.pregunta.includes(palabra))
     );
@@ -75,7 +73,6 @@ async function responder(mensajeUsuario) {
     }
   }
 
-  // Efecto de escritura simulada
   setTimeout(() => {
     agregarMensaje(respuesta, "bot-message");
   }, 500);
@@ -121,7 +118,6 @@ validateBtn.addEventListener("click", () => {
     const hoja = workbook.Sheets[primeraHoja];
     const datos = XLSX.utils.sheet_to_json(hoja, { header: 1 });
 
-    // Validación básica de columnas requeridas
     const encabezados = datos[0];
     const requeridos = ["CURP", "NOMBRE", "SEXO", "EDAD", "OCUPACION"];
     const faltantes = requeridos.filter((campo) => !encabezados.includes(campo));
