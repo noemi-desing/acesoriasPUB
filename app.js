@@ -1,5 +1,5 @@
 // ============================================================
-// DIF JALISCO — ASISTENTE PUB (Versión 2025 Inteligente con Excel)
+// DIF JALISCO — ASISTENTE PUB (Versión 2025 con Catálogos dinámicos)
 // ============================================================
 
 let fuse;
@@ -21,7 +21,6 @@ async function cargarBaseDesdeExcel() {
       respuesta: row[2] || ""
     }));
 
-    // 🔍 Configuración flexible de Fuse.js
     fuse = new Fuse(baseConocimiento, {
       keys: ["pregunta"],
       threshold: 0.5,
@@ -34,11 +33,15 @@ async function cargarBaseDesdeExcel() {
   }
 }
 
+// ==================== ELEMENTOS DEL DOM ====================
 const chatOutput = document.getElementById("chatOutput");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
 const clearBtn = document.getElementById("clearChat");
 
+// ==================== FUNCIONES DEL CHAT ====================
+
+// Agregar mensajes al chat
 function agregarMensaje(texto, clase) {
   const div = document.createElement("div");
   div.classList.add(clase);
@@ -47,6 +50,52 @@ function agregarMensaje(texto, clase) {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
+// Mostrar lista desplegable
+function mostrarListaDesplegable(opciones, titulo = "Opciones disponibles:") {
+  const contenedor = document.createElement("div");
+  contenedor.classList.add("bot-message");
+
+  const label = document.createElement("p");
+  label.textContent = titulo;
+  label.style.fontWeight = "bold";
+  contenedor.appendChild(label);
+
+  const select = document.createElement("select");
+  select.style.padding = "10px";
+  select.style.borderRadius = "8px";
+  select.style.border = "1px solid #ccc";
+  select.style.marginTop = "5px";
+  select.style.width = "100%";
+
+  opciones.forEach(op => {
+    const option = document.createElement("option");
+    option.textContent = op;
+    select.appendChild(option);
+  });
+
+  contenedor.appendChild(select);
+  chatOutput.appendChild(contenedor);
+  chatOutput.scrollTop = chatOutput.scrollHeight;
+}
+
+// Cargar catálogo según palabra clave
+async function cargarCatalogo(nombreArchivo) {
+  try {
+    const response = await fetch(`catalogos/${nombreArchivo}`);
+    const data = await response.arrayBuffer();
+    const workbook = XLSX.read(data, { type: "array" });
+    const hoja = workbook.Sheets[workbook.SheetNames[0]];
+    const filas = XLSX.utils.sheet_to_json(hoja, { header: 1 });
+    // Omitimos encabezado
+    const opciones = filas.slice(1).map(row => row[0]).filter(v => v);
+    return opciones;
+  } catch (error) {
+    console.error("⚠️ No se pudo cargar el catálogo:", nombreArchivo);
+    return null;
+  }
+}
+
+// ==================== RESPUESTA DEL BOT ====================
 async function responder(mensajeUsuario) {
   if (baseConocimiento.length === 0) {
     await cargarBaseDesdeExcel();
@@ -54,6 +103,7 @@ async function responder(mensajeUsuario) {
 
   const texto = mensajeUsuario.toLowerCase().trim();
   const resultados = fuse.search(texto);
+
   let respuesta = "";
 
   if (resultados.length > 0) {
@@ -67,9 +117,32 @@ async function responder(mensajeUsuario) {
       : "No encontré una coincidencia exacta 😔. Intenta usar una palabra relacionada o revisa el archivo INSTRUCTIVO_LLENADO_PUB.xlsx en la sección de Catálogos.";
   }
 
-  setTimeout(() => agregarMensaje(respuesta, "bot-message"), 500);
+  // Mostrar respuesta del bot
+  agregarMensaje(respuesta, "bot-message");
+
+  // ======== NUEVO: detectar si hay catálogos relevantes ========
+  if (texto.includes("sexo") || texto.includes("género")) {
+    const opciones = await cargarCatalogo("GENERO.xlsx");
+    if (opciones) mostrarListaDesplegable(opciones, "Opciones de SEXO:");
+  }
+
+  if (texto.includes("estado civil") || texto.includes("edo civil")) {
+    const opciones = await cargarCatalogo("EDO_CIVIL.xlsx");
+    if (opciones) mostrarListaDesplegable(opciones, "Opciones de ESTADO CIVIL:");
+  }
+
+  if (texto.includes("ocupación")) {
+    const opciones = await cargarCatalogo("OCUPACION.xlsx");
+    if (opciones) mostrarListaDesplegable(opciones, "Opciones de OCUPACIÓN:");
+  }
+
+  if (texto.includes("entidad") && texto.includes("nac")) {
+    const opciones = await cargarCatalogo("ENTIDAD_DE_NAC.xlsx");
+    if (opciones) mostrarListaDesplegable(opciones, "Opciones de ENTIDAD DE NACIMIENTO:");
+  }
 }
 
+// ==================== EVENTOS ====================
 sendBtn.addEventListener("click", () => {
   const texto = userInput.value.trim();
   if (texto === "") return;
@@ -87,7 +160,6 @@ clearBtn.addEventListener("click", () => {
 });
 
 // ==================== VALIDADOR ====================
-
 const fileInput = document.getElementById("fileInput");
 const validateBtn = document.getElementById("validateBtn");
 const validationResult = document.getElementById("validationResult");
