@@ -21,12 +21,12 @@ async function cargarBaseDesdeExcel() {
       respuesta: row[2] || ""
     }));
 
-    // 🔍 Configuración flexible de Fuse.js para aceptar errores, palabras sueltas, etc.
+    // 🔍 Configuración flexible de Fuse.js
     fuse = new Fuse(baseConocimiento, {
       keys: ["pregunta"],
-      threshold: 0.5,      // Permite diferencias notables entre el texto
-      distance: 200,       // Amplía la distancia para emparejar palabras parecidas
-      minMatchCharLength: 2 // Solo necesita 2 letras para considerar una coincidencia
+      threshold: 0.5,
+      distance: 200,
+      minMatchCharLength: 2
     });
 
   } catch (error) {
@@ -34,13 +34,11 @@ async function cargarBaseDesdeExcel() {
   }
 }
 
-// Elementos del DOM
 const chatOutput = document.getElementById("chatOutput");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
 const clearBtn = document.getElementById("clearChat");
 
-// Función para agregar mensajes al chat
 function agregarMensaje(texto, clase) {
   const div = document.createElement("div");
   div.classList.add(clase);
@@ -49,7 +47,6 @@ function agregarMensaje(texto, clase) {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
-// Función para generar respuesta del bot
 async function responder(mensajeUsuario) {
   if (baseConocimiento.length === 0) {
     await cargarBaseDesdeExcel();
@@ -57,31 +54,22 @@ async function responder(mensajeUsuario) {
 
   const texto = mensajeUsuario.toLowerCase().trim();
   const resultados = fuse.search(texto);
-
   let respuesta = "";
 
-  // ✅ Si hay coincidencias difusas, usar la mejor
   if (resultados.length > 0) {
     respuesta = resultados[0].item.respuesta;
   } else {
-    // 🔍 Si no hay coincidencias, buscar palabra clave manualmente
     const palabraCoincidente = baseConocimiento.find(item =>
       texto.split(" ").some(palabra => item.pregunta.includes(palabra))
     );
-    if (palabraCoincidente) {
-      respuesta = palabraCoincidente.respuesta;
-    } else {
-      respuesta = "No encontré una coincidencia exacta 😔. Intenta usar una palabra relacionada o revisa el archivo INSTRUCTIVO_LLENADO_PUB.xlsx en la sección de Catálogos.";
-    }
+    respuesta = palabraCoincidente
+      ? palabraCoincidente.respuesta
+      : "No encontré una coincidencia exacta 😔. Intenta usar una palabra relacionada o revisa el archivo INSTRUCTIVO_LLENADO_PUB.xlsx en la sección de Catálogos.";
   }
 
-  // Efecto de escritura simulada
-  setTimeout(() => {
-    agregarMensaje(respuesta, "bot-message");
-  }, 500);
+  setTimeout(() => agregarMensaje(respuesta, "bot-message"), 500);
 }
 
-// Enviar mensaje al presionar el botón
 sendBtn.addEventListener("click", () => {
   const texto = userInput.value.trim();
   if (texto === "") return;
@@ -90,17 +78,15 @@ sendBtn.addEventListener("click", () => {
   userInput.value = "";
 });
 
-// Enviar mensaje con Enter
 userInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendBtn.click();
 });
 
-// Borrar historial del chat
 clearBtn.addEventListener("click", () => {
   chatOutput.innerHTML = '<div class="bot-message">🧹 Historial borrado. Puedes comenzar una nueva consulta.</div>';
 });
 
-// ==================== VALIDADOR DE ARCHIVOS ====================
+// ==================== VALIDADOR ====================
 
 const fileInput = document.getElementById("fileInput");
 const validateBtn = document.getElementById("validateBtn");
@@ -117,14 +103,12 @@ validateBtn.addEventListener("click", () => {
   reader.onload = function (e) {
     const data = new Uint8Array(e.target.result);
     const workbook = XLSX.read(data, { type: "array" });
-    const primeraHoja = workbook.SheetNames[0];
-    const hoja = workbook.Sheets[primeraHoja];
+    const hoja = workbook.Sheets[workbook.SheetNames[0]];
     const datos = XLSX.utils.sheet_to_json(hoja, { header: 1 });
 
-    // Validación básica de columnas requeridas
     const encabezados = datos[0];
     const requeridos = ["CURP", "NOMBRE", "SEXO", "EDAD", "OCUPACION"];
-    const faltantes = requeridos.filter((campo) => !encabezados.includes(campo));
+    const faltantes = requeridos.filter(campo => !encabezados.includes(campo));
 
     if (faltantes.length === 0) {
       validationResult.innerHTML = `<p style="color:green;"><b>✅ Archivo válido.</b> Todos los campos requeridos están presentes.</p>`;
