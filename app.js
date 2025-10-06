@@ -86,7 +86,6 @@ async function cargarCatalogo(nombreArchivo) {
     const workbook = XLSX.read(data, { type: "array" });
     const hoja = workbook.Sheets[workbook.SheetNames[0]];
     const filas = XLSX.utils.sheet_to_json(hoja, { header: 1 });
-    // Omitimos encabezado
     const opciones = filas.slice(1).map(row => row[0]).filter(v => v);
     return opciones;
   } catch (error) {
@@ -117,7 +116,6 @@ async function responder(mensajeUsuario) {
       : "No encontré una coincidencia exacta 😔. Intenta usar una palabra relacionada o revisa el archivo INSTRUCTIVO_LLENADO_PUB.xlsx en la sección de Catálogos.";
   }
 
-  // Mostrar respuesta del bot
   agregarMensaje(respuesta, "bot-message");
 
   // ======== NUEVO: detectar si hay catálogos relevantes ========
@@ -139,6 +137,21 @@ async function responder(mensajeUsuario) {
   if (texto.includes("entidad") && texto.includes("nac")) {
     const opciones = await cargarCatalogo("ENTIDAD_DE_NAC.xlsx");
     if (opciones) mostrarListaDesplegable(opciones, "Opciones de ENTIDAD DE NACIMIENTO:");
+  }
+
+  if (texto.includes("escolaridad")) {
+    const opciones = await cargarCatalogo("ESCOLARIDAD.xlsx");
+    if (opciones) mostrarListaDesplegable(opciones, "Opciones de ESCOLARIDAD:");
+  }
+
+  if (texto.includes("grupo étnico") || texto.includes("etnia")) {
+    const opciones = await cargarCatalogo("GRUPO_ETNICO.xlsx");
+    if (opciones) mostrarListaDesplegable(opciones, "Opciones de GRUPO ÉTNICO:");
+  }
+
+  if (texto.includes("discapacidad")) {
+    const opciones = await cargarCatalogo("DISCAPACIDAD.xlsx");
+    if (opciones) mostrarListaDesplegable(opciones, "Opciones de DISCAPACIDAD:");
   }
 }
 
@@ -190,3 +203,4 @@ validateBtn.addEventListener("click", () => {
   };
   reader.readAsArrayBuffer(file);
 });
+
