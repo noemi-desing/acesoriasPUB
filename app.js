@@ -5,7 +5,6 @@
 let fuse;
 let baseConocimiento = [];
 
-// ---------- Normaliza texto ----------
 function normaliza(str = "") {
   return str.toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -13,7 +12,6 @@ function normaliza(str = "") {
     .trim();
 }
 
-// ---------- Detecta columnas ----------
 function detectarColumnas(headers) {
   const H = headers.map(h => normaliza(String(h || "")));
   let qIdx = H.findIndex(h => h.includes("pregunta"));
@@ -24,7 +22,6 @@ function detectarColumnas(headers) {
   return { qIdx, aIdx };
 }
 
-// ==================== CARGA DE BASE DE CONOCIMIENTO ====================
 async function cargarBaseDesdeExcel() {
   try {
     const archivos = [
@@ -48,7 +45,7 @@ async function cargarBaseDesdeExcel() {
         const pregunta = normaliza(row[qIdx] || "");
         let respuesta = (row[aIdx] || "").toString().trim();
 
-        // 🚫 Eliminar cualquier referencia a “Catálogo” o “1 Catálogo”
+        // 🚫 Limpieza de palabras no deseadas
         respuesta = respuesta.replace(/\b\d*\s*cat[aá]logo\b:?/gi, "")
                              .replace(/\bcat[aá]logo\b:?/gi, "")
                              .replace(/\s{2,}/g, " ")
@@ -66,11 +63,11 @@ async function cargarBaseDesdeExcel() {
     });
 
   } catch (error) {
-    console.error("❌ Error al cargar los archivos Excel:", error);
+    console.error("❌ Error al cargar bases:", error);
   }
 }
 
-// ==================== CHATBOT ====================
+// ===== CHATBOT =====
 const chatOutput = document.getElementById("chatOutput");
 const userInput  = document.getElementById("userInput");
 const sendBtn    = document.getElementById("sendBtn");
@@ -104,7 +101,6 @@ async function responder(mensajeUsuario) {
   agregarMensajeHTML(`${respuesta}<br><button class='copy-btn' data-copy='${respuesta}'>Copiar respuesta</button>`);
 }
 
-// Eventos del Chatbot
 sendBtn.addEventListener("click", () => {
   const texto = userInput.value.trim();
   if (!texto) return;
@@ -127,7 +123,7 @@ document.addEventListener("click", e => {
   setTimeout(() => (btn.textContent = "Copiar respuesta"), 1500);
 });
 
-// ==================== VALIDADOR ====================
+// ===== VALIDADOR =====
 const fileInput = document.getElementById("fileInput");
 const validateBtn = document.getElementById("validateBtn");
 const validationResult = document.getElementById("validationResult");
