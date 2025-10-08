@@ -1,151 +1,173 @@
-// ===========================
-// CHATBOT Y VALIDADOR DIF JALISCO 2025
-// ===========================
+// ===============================
+// DIF Jalisco — Chatbot + Validador 2025
+// ===============================
 
-// Variables globales
 let fuse;
 let baseConocimiento = [];
 
-// ===========================
-// CARGAR ARCHIVOS DE CONOCIMIENTO
-// ===========================
-async function cargarBaseDesdeExcel() {
-  try {
-    const archivos = [
-      "catalogos/INSTRUCTIVO_LLENADO_PUB.xlsx",
-      "catalogos/CUESTIONARIO_ACTORES_SOCIALES.xlsx"
-    ];
+// Normalización básica para mejor match (acentos, mayúsculas, espacios)
+function normaliza(str=""){
+  return str
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/\s+/g," ")
+    .trim();
+}
 
+// Cargar 2 fuentes: Personas + Actores Sociales
+async function cargarBaseDesdeExcel(){
+  try{
+    const fuentes = [
+      "catalogos/INSTRUCTIVO_LLENADO_PUB.xlsx",       // Personas
+      "catalogos/CUESTIONARIO_ACTORES_SOCIALES.xlsx"  // Actores Sociales
+    ];
     baseConocimiento = [];
 
-    for (const archivo of archivos) {
-      const response = await fetch(archivo);
-      const data = await response.arrayBuffer();
-      const workbook = XLSX.read(data, { type: "array" });
-      const hoja = workbook.Sheets[workbook.SheetNames[0]];
-      const filas = XLSX.utils.sheet_to_json(hoja, { header: 1 });
+    for(const url of fuentes){
+      const res = await fetch(url);
+      const buf = await res.arrayBuffer();
+      const wb  = XLSX.read(buf,{type:"array"});
+      const sheet = wb.Sheets[wb.SheetNames[0]];
+      const rows  = XLSX.utils.sheet_to_json(sheet,{header:1});
 
-      // Cada fila: [Pregunta, Respuesta]
-      const contenido = filas.slice(1).map(row => ({
-        pregunta: (row[0] || "").toLowerCase(),
-        respuesta: row[1] || ""
-      }));
-
-      baseConocimiento.push(...contenido);
+      // Esperamos: [Pregunta, Respuesta]
+      rows.slice(1).forEach(r=>{
+        const pregunta = normaliza(r[0]||"");
+        const respuesta = (r[1]||"").toString();
+        if(pregunta && respuesta){
+          baseConocimiento.push({pregunta, respuesta});
+        }
+      });
     }
 
-    fuse = new Fuse(baseConocimiento, {
-      keys: ["pregunta"],
-      threshold: 0.4,
-      distance: 300,
-      minMatchCharLength: 2
+    fuse = new Fuse(baseConocimiento,{
+      keys:["pregunta"],
+      threshold:0.45,     // tolerante a errores
+      distance:300,
+      minMatchCharLength:2,
+      ignoreLocation:true
     });
-  } catch (error) {
-    console.error("Error al cargar archivos Excel:", error);
+  }catch(e){
+    console.error("Error cargando Excel:", e);
   }
 }
 
-// ===========================
-// CHATBOT FUNCIONALIDAD
-// ===========================
-document.addEventListener("DOMContentLoaded", async () => {
+// UI helpers
+const chatbox = document.getElementById("chatbox-messages");
+function addMsg(html, type="bot"){
+  const div = document.createElement("div");
+  div.className = `message ${type}`;
+  div.innerHTML = html;
+  chatbox.appendChild(div);
+  chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+function resaltarRespuesta(txt){
+  // Resalta "El campo ...", "corresponde a ...", "Ejemplo: ..."
+  return txt
+    .replace(/(El campo\s+[A-Z0-9_]+)/gi,"<b>$1</b>")
+    .replace(/(corresponde a\s+[^;]+;?)/gi,"<b>$1</b>")
+    .replace(/(Ejemplo:\s*[^<]+)/gi,"<b>$1</b>");
+}
+
+function botonCopiar(respuestaPlano){
+  return `<button class="copy-btn" data-copy="${respuestaPlano.replace(/"/g,'&quot;')}">Copiar respuesta</button>`;
+}
+
+// CHATBOT
+document.addEventListener("DOMContentLoaded", async ()=>{
   await cargarBaseDesdeExcel();
 
-  const chatbox = document.getElementById("chatbox");
-  const userInput = document.getElementById("userInput");
-  const sendBtn = document.getElementById("sendBtn");
+  const input = document.getElementById("userInput");
+  const send  = document.getElementById("sendBtn");
 
-  function agregarMensaje(mensaje, tipo) {
-    const msg = document.createElement("div");
-    msg.classList.add("message", tipo);
-    msg.innerHTML = mensaje;
-    chatbox.appendChild(msg);
-    chatbox.scrollTop = chatbox.scrollHeight;
-  }
+  // Copiar respuesta (delegación)
+  document.addEventListener("click",(e)=>{
+    const btn = e.target.closest(".copy-btn");
+    if(!btn) return;
+    const text = btn.getAttribute("data-copy");
+    navigator.clipboard.writeText(text||"");
+    btn.textContent = "¡Copiada!";
+    setTimeout(()=>btn.textContent="Copiar respuesta",1500);
+  });
 
-  function formatearRespuesta(texto) {
-    return texto
-      .replace(/(El campo\s[A-Z0-9_]+)/gi, "<b>$1</b>")
-      .replace(/(corresponde a\s[^;]+)/gi, "<b>$1</b>")
-      .replace(/(Ejemplo:\s[^<]+)/gi, "<b>$1</b>");
-  }
+  send.addEventListener("click", ()=>{
+    const raw = input.value.trim();
+    if(!raw) return;
 
-  function copiarRespuesta(texto) {
-    navigator.clipboard.writeText(texto);
-    alert("Respuesta copiada al portapapeles ✅");
-  }
+    const preguntaUser = normaliza(raw);
+    addMsg(raw, "user");
 
-  sendBtn.addEventListener("click", () => {
-    const pregunta = userInput.value.trim().toLowerCase();
-    if (!pregunta) return;
-
-    agregarMensaje(pregunta, "user");
-    userInput.value = "";
-
-    let resultado = fuse.search(pregunta);
-
-    if (resultado.length > 0) {
-      const mejorCoincidencia = resultado[0].item.respuesta;
-      const respuestaHTML = formatearRespuesta(mejorCoincidencia);
-
-      const contenedor = document.createElement("div");
-      contenedor.classList.add("message", "bot");
-      contenedor.innerHTML = `${respuestaHTML} <br><button class="copy-btn">📋 Copiar respuesta</button>`;
-      chatbox.appendChild(contenedor);
-
-      const copyBtn = contenedor.querySelector(".copy-btn");
-      copyBtn.addEventListener("click", () => copiarRespuesta(mejorCoincidencia));
-    } else {
-      agregarMensaje("No encontré información relacionada. Verifica tu pregunta o intenta con otra palabra clave.", "bot");
+    let respuesta = "";
+    // 1) Fuzzy
+    const resultados = fuse.search(preguntaUser);
+    if(resultados.length>0){
+      respuesta = resultados[0].item.respuesta;
+    }else{
+      // 2) Fallback por palabra clave
+      const tokens = preguntaUser.split(" ").filter(Boolean);
+      const hit = baseConocimiento.find(it =>
+        tokens.some(t => it.pregunta.includes(t))
+      );
+      respuesta = hit ? hit.respuesta : "No encontré una coincidencia. Intenta con otra palabra o revisa los catálogos.";
     }
 
-    chatbox.scrollTop = chatbox.scrollHeight;
+    const html = `${resaltarRespuesta(respuesta)}<br>${botonCopiar(respuesta)}`;
+    addMsg(html,"bot");
+    input.value = "";
   });
 });
 
-// ===========================
-// VALIDADOR INTELIGENTE
-// ===========================
-document.getElementById("validateBtn").addEventListener("click", async () => {
+// ===============================
+// VALIDADOR INTELIGENTE (Personas / Actores Sociales)
+// ===============================
+const validateBtn = document.getElementById("validateBtn");
+validateBtn.addEventListener("click", async ()=>{
   const fileInput = document.getElementById("fileInput");
-  const validationResult = document.getElementById("validationResult");
-  const archivo = fileInput.files[0];
+  const resultEl  = document.getElementById("validationResult");
+  const file = fileInput.files[0];
 
-  if (!archivo) {
-    validationResult.innerHTML = `<p style="color:red;">⚠️ Por favor, selecciona un archivo Excel.</p>`;
+  if(!file){
+    resultEl.innerHTML = `<p style="color:#b22;">⚠️ Selecciona un archivo Excel.</p>`;
     return;
   }
 
-  try {
-    const data = await archivo.arrayBuffer();
-    const workbook = XLSX.read(data, { type: "array" });
-    const hoja = workbook.Sheets[workbook.SheetNames[0]];
-    const filas = XLSX.utils.sheet_to_json(hoja, { header: 1 });
+  try{
+    const buf = await file.arrayBuffer();
+    const wb  = XLSX.read(buf,{type:"array"});
+    const sheet = wb.Sheets[wb.SheetNames[0]];
+    const rows  = XLSX.utils.sheet_to_json(sheet,{header:1});
+    if(rows.length===0){ throw new Error("Hoja vacía"); }
 
-    const encabezados = filas[0].map(e => e.toString().trim().toUpperCase());
-    let faltantes = [];
+    // Encabezados normalizados
+    const headers = (rows[0]||[]).map(v => normaliza((v||"").toString()).toUpperCase());
 
-    // Validación automática según tipo de archivo
-    if (encabezados.includes("CURP") && encabezados.includes("NOMBRE")) {
-      const requeridos = ["CURP", "NOMBRE", "SEXO", "EDAD", "OCUPACION"];
-      faltantes = requeridos.filter(campo => !encabezados.includes(campo));
-      validationResult.innerHTML =
-        faltantes.length === 0
-          ? `<p style="color:green;"><b>✅ Archivo válido (Padrón de Personas).</b> Todos los campos requeridos están presentes.</p>`
-          : `<p style="color:red;"><b>⚠️ Campos faltantes (Padrón de Personas):</b> ${faltantes.join(", ")}</p>`;
-    } else if (encabezados.includes("SA_ID_FAS") && encabezados.includes("CURP_ACTOR")) {
-      const requeridosActores = ["SA_ID_FAS", "CURP_ACTOR", "NOMBRE_ACTOR", "SEXO", "RFC_ACTOR"];
-      faltantes = requeridosActores.filter(campo => !encabezados.includes(campo));
-      validationResult.innerHTML =
-        faltantes.length === 0
-          ? `<p style="color:green;"><b>✅ Archivo válido (Actores Sociales).</b> Todos los campos requeridos están presentes.</p>`
-          : `<p style="color:red;"><b>⚠️ Campos faltantes (Actores Sociales):</b> ${faltantes.join(", ")}</p>`;
-    } else {
-      validationResult.innerHTML = `<p style="color:orange;"><b>⚠️ No se pudo determinar el tipo de archivo.</b> Verifica los encabezados.</p>`;
+    // Heurística de tipo
+    const esPersonas = headers.includes("CURP") && headers.includes("NOMBRE");
+    const esActores  = headers.includes("SA_ID_FAS") && headers.includes("CURP_ACTOR");
+
+    if(esPersonas){
+      const requeridos = ["CURP","NOMBRE","SEXO","EDAD","OCUPACION"].map(normaliza).map(s=>s.toUpperCase());
+      const faltantes = requeridos.filter(req => !headers.includes(req));
+      resultEl.innerHTML = faltantes.length===0
+        ? `<p style="color:green;"><b>✅ Archivo válido (Padrón de Personas).</b> Todos los campos requeridos están presentes.</p>`
+        : `<p style="color:#b22;"><b>⚠️ Campos faltantes (Padrón de Personas):</b> ${faltantes.join(", ")}</p>`;
+      return;
     }
-  } catch (error) {
-    console.error(error);
-    validationResult.innerHTML = `<p style="color:red;">❌ Error al procesar el archivo. Asegúrate de subir un Excel válido.</p>`;
+
+    if(esActores){
+      const reqAct = ["SA_ID_FAS","CURP_ACTOR","NOMBRE_ACTOR","SEXO","RFC_ACTOR"].map(normaliza).map(s=>s.toUpperCase());
+      const faltantes = reqAct.filter(req => !headers.includes(req));
+      resultEl.innerHTML = faltantes.length===0
+        ? `<p style="color:green;"><b>✅ Archivo válido (Actores Sociales).</b> Todos los campos requeridos están presentes.</p>`
+        : `<p style="color:#b22;"><b>⚠️ Campos faltantes (Actores Sociales):</b> ${faltantes.join(", ")}</p>`;
+      return;
+    }
+
+    resultEl.innerHTML = `<p style="color:#d18a00;"><b>⚠️ No se pudo determinar el tipo de archivo.</b> Revisa encabezados o selecciona otra hoja.</p>`;
+  }catch(e){
+    console.error(e);
+    document.getElementById("validationResult").innerHTML =
+      `<p style="color:#b22;">❌ Error al procesar el archivo. Verifica que sea un .xlsx válido.</p>`;
   }
 });
-
