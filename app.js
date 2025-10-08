@@ -1,11 +1,11 @@
 // ============================================================
-// DIF JALISCO — ASISTENTE PUB (Versión 2025 Inteligente con Excel)
+// DIF JALISCO — ASISTENTE PUB (2025) Chatbot + Validador
 // ============================================================
 
 let fuse;
 let baseConocimiento = [];
 
-// ---------- Utilidad: normalizar texto (acentos/espacios) ----------
+// ---------- Utilidad: normalizar texto ----------
 function normaliza(str = "") {
   return str
     .toLowerCase()
@@ -14,12 +14,28 @@ function normaliza(str = "") {
     .trim();
 }
 
+// ---------- Detectar columnas de Pregunta/Respuesta ----------
+function detectarColumnas(headers) {
+  const H = headers.map(h => normaliza(String(h || "")));
+  // Búsqueda explícita
+  let qIdx = H.findIndex(h => h.includes("pregunta"));
+  let aIdx = H.findIndex(h => h.includes("respuesta"));
+  // Fallback más común: [N°, Pregunta, Respuesta]
+  if (qIdx === -1 && aIdx === -1 && headers.length >= 3) {
+    qIdx = 1; aIdx = 2;
+  }
+  // Fallback genérico: primeras dos columnas con texto
+  if (qIdx === -1) qIdx = 0;
+  if (aIdx === -1) aIdx = 1;
+  return { qIdx, aIdx };
+}
+
 // ==================== CARGA BASES (2 fuentes internas) ====================
 async function cargarBaseDesdeExcel() {
   try {
     const archivos = [
-      "catalogos/INSTRUCTIVO_LLENADO_PUB.xlsx",        // Personas (no visible)
-      "catalogos/CUESTIONARIO_ACTORES_SOCIALES.xlsx"   // Actores Sociales (no visible)
+      "catalogos/INSTRUCTIVO_LLENADO_PUB.xlsx",        // Personas (fuente interna)
+      "catalogos/CUESTIONARIO_ACTORES_SOCIALES.xlsx"   // Actores Sociales (fuente interna)
     ];
 
     baseConocimiento = [];
@@ -33,32 +49,24 @@ async function cargarBaseDesdeExcel() {
 
       if (!filas || !filas.length) continue;
 
-      // Detectar columnas "Pregunta" y "Respuesta" por encabezado
-      const headers = (filas[0] || []).map(h => normaliza(String(h || "")));
-      let qIdx = headers.findIndex(h => h.includes("pregunta"));
-      let aIdx = headers.findIndex(h => h.includes("respuesta"));
-
-      // Fallback para formato [N°, Pregunta, Respuesta]
-      if (qIdx === -1 && aIdx === -1 && (filas[0] || []).length >= 3) {
-        qIdx = 1; aIdx = 2;
-      }
+      const { qIdx, aIdx } = detectarColumnas(filas[0]);
 
       filas.slice(1).forEach(row => {
-        const preguntaRaw = (row[qIdx] || "").toString();
-        const respuestaRaw = (row[aIdx] || "").toString();
-        const pregunta = normaliza(preguntaRaw);
-        const respuesta = respuestaRaw.trim();
+        const preg = (row[qIdx] || "").toString();
+        const resp = (row[aIdx] || "").toString();
+        const pregunta = normaliza(preg);
+        const respuesta = resp.trim();
         if (pregunta && respuesta) {
           baseConocimiento.push({ pregunta, respuesta });
         }
       });
     }
 
-    // Configuración flexible de Fuse.js
+    // Configuración flexible de Fuse.js (tolerante a errores y frases incompletas)
     fuse = new Fuse(baseConocimiento, {
       keys: ["pregunta"],
       threshold: 0.45,
-      distance: 300,
+      distance: 350,
       minMatchCharLength: 2,
       ignoreLocation: true
     });
@@ -82,7 +90,7 @@ function agregarMensaje(texto, clase) {
   chatOutput.scrollTop = chatOutput.scrollHeight;
 }
 
-// Permite HTML (para negritas + botón copiar)
+// Permitir HTML (negritas y botón copiar)
 function agregarMensajeHTML(html) {
   const div = document.createElement("div");
   div.classList.add("bot-message");
@@ -92,6 +100,7 @@ function agregarMensajeHTML(html) {
 }
 
 function resaltarRespuesta(txt) {
+  // Resalta partes clave sin alterar tu frase tipo
   return txt
     .replace(/(El campo\s+[A-Z0-9_]+)/gi, "<b>$1</b>")
     .replace(/(corresponde a\s+[^;]+;?)/gi, "<b>$1</b>")
@@ -109,28 +118,30 @@ async function responder(mensajeUsuario) {
   }
 
   const texto = normaliza(mensajeUsuario);
-  let resultados = fuse.search(texto);
-
   let respuesta = "";
+
+  // 1) Fuzzy
+  const resultados = fuse.search(texto);
   if (resultados.length > 0) {
     respuesta = resultados[0].item.respuesta;
   } else {
-    // Búsqueda por palabra clave (fallback)
+    // 2) Fallback por palabra clave (tokens)
     const tokens = texto.split(" ").filter(Boolean);
-    const hit = baseConocimiento.find(item =>
-      tokens.some(pal => item.pregunta.includes(pal))
+    const hit = baseConocimiento.find(it =>
+      tokens.some(t => it.pregunta.includes(t))
     );
-    respuesta = hit ? hit.respuesta : "No encontré una coincidencia. Intenta otra palabra o revisa los catálogos.";
+    respuesta = hit ? hit.respuesta :
+      "No encontré una coincidencia. Intenta otra palabra o revisa los catálogos.";
   }
 
   const html = `${resaltarRespuesta(respuesta)}<br>${botonCopiar(respuesta)}`;
   agregarMensajeHTML(html);
 }
 
-// Eventos
+// Eventos del chat
 sendBtn.addEventListener("click", () => {
   const texto = userInput.value.trim();
-  if (texto === "") return;
+  if (!texto) return;
   agregarMensaje(texto.toUpperCase(), "user-message");
   responder(texto);
   userInput.value = "";
@@ -144,17 +155,17 @@ clearBtn.addEventListener("click", () => {
   chatOutput.innerHTML = '<div class="bot-message">🧹 Historial borrado. Puedes comenzar una nueva consulta.</div>';
 });
 
-// Copiar respuesta (delegación a document)
+// Copiar respuesta (delegación)
 document.addEventListener("click", (ev) => {
   const btn = ev.target.closest(".copy-btn");
   if (!btn) return;
   const txt = btn.getAttribute("data-copy") || "";
   navigator.clipboard.writeText(txt);
   btn.textContent = "¡Copiada!";
-  setTimeout(() => (btn.textContent = "Copiar respuesta"), 1500);
+  setTimeout(() => (btn.textContent = "Copiar respuesta"), 1200);
 });
 
-// ==================== VALIDADOR DE ARCHIVOS ====================
+// ==================== VALIDADOR ====================
 const fileInput = document.getElementById("fileInput");
 const validateBtn = document.getElementById("validateBtn");
 const validationResult = document.getElementById("validationResult");
@@ -171,11 +182,11 @@ validateBtn.addEventListener("click", () => {
     try {
       const data = new Uint8Array(e.target.result);
       const workbook = XLSX.read(data, { type: "array" });
-      const primeraHoja = workbook.SheetNames[0];
-      const hoja = workbook.Sheets[primeraHoja];
-      const datos = XLSX.utils.sheet_to_json(hoja, { header: 1 });
+      const hoja = workbook.Sheets[workbook.SheetNames[0]];
+      const filas = XLSX.utils.sheet_to_json(hoja, { header: 1 });
+      if (!filas || !filas.length) throw new Error("Hoja vacía");
 
-      const encabezados = (datos[0] || []).map(x => String(x || "").trim().toUpperCase());
+      const encabezados = (filas[0] || []).map(x => String(x || "").trim().toUpperCase());
 
       // Heurística de tipo de archivo
       const esPersonas = encabezados.includes("CURP") && encabezados.includes("NOMBRE");
@@ -183,7 +194,7 @@ validateBtn.addEventListener("click", () => {
 
       if (esPersonas) {
         const requeridos = ["CURP", "NOMBRE", "SEXO", "EDAD", "OCUPACION"];
-        const faltantes = requeridos.filter((c) => !encabezados.includes(c));
+        const faltantes = requeridos.filter(c => !encabezados.includes(c));
         validationResult.innerHTML =
           faltantes.length === 0
             ? `<p style="color:green;"><b>✅ Archivo válido (Padrón de Personas).</b> Todos los campos requeridos están presentes.</p>`
@@ -193,7 +204,7 @@ validateBtn.addEventListener("click", () => {
 
       if (esActores) {
         const requeridosActores = ["SA_ID_FAS", "CURP_ACTOR", "NOMBRE_ACTOR", "SEXO", "RFC_ACTOR"];
-        const faltantesActores = requeridosActores.filter((c) => !encabezados.includes(c));
+        const faltantesActores = requeridosActores.filter(c => !encabezados.includes(c));
         validationResult.innerHTML =
           faltantesActores.length === 0
             ? `<p style="color:green;"><b>✅ Archivo válido (Actores Sociales).</b> Todos los campos requeridos están presentes.</p>`
@@ -202,7 +213,6 @@ validateBtn.addEventListener("click", () => {
       }
 
       validationResult.innerHTML = `<p style="color:#d18a00;"><b>⚠️ No se pudo determinar el tipo de archivo.</b> Verifica los encabezados.</p>`;
-
     } catch (err) {
       console.error(err);
       validationResult.innerHTML = `<p style="color:#b22;">❌ Error al procesar el archivo. Asegúrate de subir un Excel válido.</p>`;
