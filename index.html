@@ -3,45 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIF Jalisco — Asistente Inteligente PUB</title>
+  <title>DIF Jalisco — Asistente PUB</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- ENCABEZADO -->
   <header class="header">
     <div class="header-text">
       <h1>Padrón Único de Beneficiarios</h1>
-      <p>Asesoría y validación inteligente — DIF Jalisco</p>
+      <p>Asesoría inteligente y validación automática — DIF Jalisco</p>
     </div>
     <img src="./catalogos/logo_dif.png" alt="Logo DIF Jalisco" class="logo-header" />
   </header>
 
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="main-container">
-    <!-- SECCIÓN 1: CHATBOT -->
+    <!-- 1) CHATBOT -->
     <section class="section card chat-section">
-      <h2>💬 Asistente de Llenado PUB</h2>
-      <p class="subtitle">Haz tu consulta (palabras o frases, aunque contengan errores)</p>
+      <h2>Asistente de Llenado PUB</h2>
 
       <div id="chatOutput" class="chat-box">
         <div class="bot-message">
-          👋 ¡Hola! Soy tu asistente DIF Jalisco.  
-          Te ayudo a llenar los formatos PUB para <b>Personas</b> y <b>Actores Sociales</b>, validar tus archivos y resolver dudas sobre los catálogos oficiales.
+          👋 ¡Hola! Soy tu asistente DIF Jalisco.<br>
+          Puedo ayudarte a llenar correctamente los formatos PUB de <b>Personas</b> y <b>Actores Sociales</b>,
+          así como validar tus archivos según los requisitos oficiales.
         </div>
       </div>
 
       <div class="chat-input">
-        <input type="text" id="userInput" placeholder="Ej. CURP, sexo, RFC actor social..." aria-label="Consulta del usuario" />
+        <input type="text" id="userInput" placeholder="Escribe tu consulta aquí..." />
         <button id="sendBtn">Enviar</button>
       </div>
 
       <button id="clearChat" class="clear-btn">🧹 Limpiar historial</button>
     </section>
 
-    <!-- SECCIÓN 2: VALIDADOR -->
+    <!-- 2) VALIDADOR -->
     <section class="section card validator-section">
-      <h2>✅ Validador Inteligente del PUB</h2>
-      <p class="subtitle">Sube tu archivo Excel (Personas o Actores Sociales) para verificar campos obligatorios</p>
+      <h2>Validador Inteligente del PUB</h2>
+      <p class="subtitle">Sube tu archivo Excel (Personas o Actores Sociales) para verificar los campos requeridos</p>
 
       <div class="validator-box">
         <input type="file" id="fileInput" accept=".xlsx" />
@@ -50,41 +51,40 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 3: CATÁLOGOS -->
+    <!-- 3) DESCARGAS -->
     <section class="section card downloads-section">
-      <h2>📂 Descargas de Catálogos Oficiales</h2>
+      <h2>Descargas de Catálogos</h2>
       <p class="subtitle">Selecciona el documento que necesites</p>
 
       <div class="buttons">
-        <!-- FORMATO PRINCIPAL -->
+        <!-- Formatos principales -->
         <a href="catalogos/PLANTILLA_PUB.xlsx" download>Formato PUB Personas</a>
         <a href="catalogos/ACTORES_SOCIALES.xlsx" download>Formato PUB Actores Sociales</a>
 
-        <!-- CATÁLOGOS COMPLEMENTARIOS -->
-        <a href="catalogos/CLAVE_ENT.xlsx" download>CLAVE_ENT</a>
-        <a href="catalogos/CLAVE_MUN.xlsx" download>CLAVE_MUN</a>
-        <a href="catalogos/ASENTAMIENTO.xlsx" download>ASENTAMIENTO</a>
-        <a href="catalogos/ENTIDAD_DE_NAC.xlsx" download>ENTIDAD_DE_NAC</a>
-        <a href="catalogos/GENERO.xlsx" download>GENERO</a>
-        <a href="catalogos/EDO_CIVIL.xlsx" download>EDO_CIVIL</a>
-        <a href="catalogos/ESCOLARIDAD.xlsx" download>ESCOLARIDAD</a>
-        <a href="catalogos/OCUPACION.xlsx" download>OCUPACION</a>
-        <a href="catalogos/GRUPO_ETNICO.xlsx" download>GRUPO_ETNICO</a>
-        <a href="catalogos/LENGUA_I.xlsx" download>LENGUA_I</a>
-        <a href="catalogos/DISCAPACIDAD.xlsx" download>DISCAPACIDAD</a>
-        <a href="catalogos/TIPO_LOCALIDAD.xlsx" download>TIPO_LOCALIDAD</a>
-        <a href="catalogos/TIPO_VIVIENDA.xlsx" download>TIPO_VIVIENDA</a>
-        <a href="catalogos/PARENTESCO.xlsx" download>PARENTESCO</a>
-        <a href="catalogos/MOTIVO_BAJA.xlsx" download>MOTIVO_BAJA</a>
-        <a href="catalogos/VARIABLES.xlsx" download>VARIABLES</a>
+        <!-- Catálogos complementarios -->
+        <a href="catalogos/CLAVE_ENT.xlsx" download>CLAVE_ENT.xlsx</a>
+        <a href="catalogos/CLAVE_MUN.xlsx" download>CLAVE_MUN.xlsx</a>
+        <a href="catalogos/ASENTAMIENTO.xlsx" download>ASENTAMIENTO.xlsx</a>
+        <a href="catalogos/ENTIDAD_DE_NAC.xlsx" download>ENTIDAD_DE_NAC.xlsx</a>
+        <a href="catalogos/GENERO.xlsx" download>GENERO.xlsx</a>
+        <a href="catalogos/EDO_CIVIL.xlsx" download>EDO_CIVIL.xlsx</a>
+        <a href="catalogos/ESCOLARIDAD.xlsx" download>ESCOLARIDAD.xlsx</a>
+        <a href="catalogos/OCUPACION.xlsx" download>OCUPACION.xlsx</a>
+        <a href="catalogos/GRUPO_ETNICO.xlsx" download>GRUPO_ETNICO.xlsx</a>
+        <a href="catalogos/LENGUA_I.xlsx" download>LENGUA_I.xlsx</a>
+        <a href="catalogos/DISCAPACIDAD.xlsx" download>DISCAPACIDAD.xlsx</a>
+        <a href="catalogos/TIPO_LOCALIDAD.xlsx" download>TIPO_LOCALIDAD.xlsx</a>
+        <a href="catalogos/TIPO_VIVIENDA.xlsx" download>TIPO_VIVIENDA.xlsx</a>
+        <a href="catalogos/PARENTESCO.xlsx" download>PARENTESCO.xlsx</a>
+        <a href="catalogos/MOTIVO_BAJA.xlsx" download>MOTIVO_BAJA.xlsx</a>
+        <a href="catalogos/VARIABLES.xlsx" download>VARIABLES.xlsx</a>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <p>© 2025 DIF Jalisco — Plataforma Asistente PUB</p>
-    <p class="subtitle">💡 Sistema actualizado con Chatbot y Validador automático (fuentes: Personas / Actores Sociales).</p>
+    <p class="subtitle">💡 Sistema actualizado con Chatbot y Validador inteligente (Personas / Actores Sociales)</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
