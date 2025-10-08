@@ -1,11 +1,11 @@
 // ============================================================
-// DIF JALISCO — ASISTENTE PUB (2025) Chatbot + Validador Inteligente
+// DIF JALISCO — ASISTENTE PUB 2025 (Chatbot + Validador Limpio)
 // ============================================================
 
 let fuse;
 let baseConocimiento = [];
 
-// ---------- Normalizar texto ----------
+// Normalizar texto
 function normaliza(str = "") {
   return str.toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -13,7 +13,7 @@ function normaliza(str = "") {
     .trim();
 }
 
-// ---------- Detectar columnas ----------
+// Detectar columnas Pregunta/Respuesta
 function detectarColumnas(headers) {
   const H = headers.map(h => normaliza(String(h || "")));
   let qIdx = H.findIndex(h => h.includes("pregunta"));
@@ -24,7 +24,7 @@ function detectarColumnas(headers) {
   return { qIdx, aIdx };
 }
 
-// ==================== CARGAR BASE DE CONOCIMIENTO ====================
+// ==================== CARGA BASE DE CONOCIMIENTO ====================
 async function cargarBaseDesdeExcel() {
   try {
     const archivos = [
@@ -46,9 +46,16 @@ async function cargarBaseDesdeExcel() {
       const { qIdx, aIdx } = detectarColumnas(filas[0]);
       filas.slice(1).forEach(row => {
         const pregunta = normaliza(row[qIdx] || "");
-        const respuesta = (row[aIdx] || "").toString().trim();
-        // 🔒 Evitar mostrar respuestas con "catálogo"
-        if (pregunta && respuesta && !respuesta.toLowerCase().includes("catálogo")) {
+        let respuesta = (row[aIdx] || "").toString().trim();
+
+        // 🧹 Elimina “Catálogo”, “1 Catálogo”, “Cat.”, etc.
+        respuesta = respuesta
+          .replace(/\b\d*\s*cat[aá]logo\b:?/gi, "")
+          .replace(/\bcat[aá]logo\b:?/gi, "")
+          .replace(/\s{2,}/g, " ")
+          .trim();
+
+        if (pregunta && respuesta) {
           baseConocimiento.push({ pregunta, respuesta });
         }
       });
@@ -60,9 +67,8 @@ async function cargarBaseDesdeExcel() {
       distance: 350,
       ignoreLocation: true
     });
-
   } catch (error) {
-    console.error("❌ Error al cargar las bases Excel:", error);
+    console.error("❌ Error al cargar las bases:", error);
   }
 }
 
@@ -91,16 +97,12 @@ function agregarMensajeHTML(html) {
 async function responder(mensajeUsuario) {
   if (baseConocimiento.length === 0) await cargarBaseDesdeExcel();
   const texto = normaliza(mensajeUsuario);
-  let respuesta = "No encontré una coincidencia. Intenta con otra palabra.";
+  let respuesta = "No encontré una coincidencia. Intenta otra palabra o revisa tu archivo.";
 
   const resultados = fuse.search(texto);
   if (resultados.length > 0) respuesta = resultados[0].item.respuesta;
 
-  if (respuesta.toLowerCase().includes("catálogo")) {
-    respuesta = "Por favor, realiza una pregunta específica sobre el llenado o validación.";
-  }
-
-  agregarMensajeHTML(`${respuesta}<br><button class="copy-btn" data-copy="${respuesta}">Copiar respuesta</button>`);
+  agregarMensajeHTML(`${respuesta}<br><button class='copy-btn' data-copy='${respuesta}'>Copiar respuesta</button>`);
 }
 
 // Eventos
@@ -121,8 +123,8 @@ clearBtn.addEventListener("click", () => {
 document.addEventListener("click", e => {
   const btn = e.target.closest(".copy-btn");
   if (!btn) return;
-  const texto = btn.getAttribute("data-copy");
-  navigator.clipboard.writeText(texto);
+  const txt = btn.getAttribute("data-copy");
+  navigator.clipboard.writeText(txt);
   btn.textContent = "✅ Copiada";
   setTimeout(() => (btn.textContent = "Copiar respuesta"), 1500);
 });
@@ -155,18 +157,20 @@ validateBtn.addEventListener("click", () => {
       if (esPersonas) {
         const requeridos = ["CURP", "NOMBRE", "SEXO", "EDAD", "OCUPACION"];
         const faltantes = requeridos.filter(c => !encabezados.includes(c));
-        validationResult.innerHTML = faltantes.length === 0
-          ? `<p style="color:green;"><b>✅ Archivo válido (Personas).</b></p>`
-          : `<p style="color:#b22;"><b>⚠️ Faltan campos:</b> ${faltantes.join(", ")}</p>`;
+        validationResult.innerHTML =
+          faltantes.length === 0
+            ? `<p style="color:green;"><b>✅ Archivo válido (Personas).</b></p>`
+            : `<p style="color:#b22;"><b>⚠️ Faltan campos:</b> ${faltantes.join(", ")}</p>`;
         return;
       }
 
       if (esActores) {
         const requeridos = ["SA_ID_FAS", "CURP_ACTOR", "NOMBRE_ACTOR", "SEXO", "RFC_ACTOR"];
         const faltantes = requeridos.filter(c => !encabezados.includes(c));
-        validationResult.innerHTML = faltantes.length === 0
-          ? `<p style="color:green;"><b>✅ Archivo válido (Actores Sociales).</b></p>`
-          : `<p style="color:#b22;"><b>⚠️ Faltan campos:</b> ${faltantes.join(", ")}</p>`;
+        validationResult.innerHTML =
+          faltantes.length === 0
+            ? `<p style="color:green;"><b>✅ Archivo válido (Actores Sociales).</b></p>`
+            : `<p style="color:#b22;"><b>⚠️ Faltan campos:</b> ${faltantes.join(", ")}</p>`;
         return;
       }
 
