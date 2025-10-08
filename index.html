@@ -2,62 +2,73 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIF Jalisco - Asesorías PUB</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DIF Jalisco — Asistente PUB</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 </head>
-
 <body>
-  <header>
-    <img src="logo_dif.png" alt="Logo DIF Jalisco" class="logo" />
-    <h1>Asesorías PUB 2025</h1>
-    <p>Plataforma de consulta, validación y asistencia inteligente</p>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <img src="./catalogos/logo_dif.png" alt="Logo DIF Jalisco" class="logo-header"/>
+      <div class="brand">
+        <h1>Padrón Único de Beneficiarios</h1>
+        <p>Asesoría y validación inteligente — DIF Jalisco</p>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <!-- Sección de descargas -->
+  <main class="main-container">
+    <!-- 1) CHATBOT -->
+    <section class="section card chat-section">
+      <h2>Asistente de Llenado</h2>
+      <p class="subtitle">Haz tu consulta (palabras sueltas o frases, aunque tengan errores)</p>
+
+      <div id="chatbot" class="chatbox">
+        <div id="chatbox-messages" class="chat-messages">
+          <div class="message bot">
+            👋 ¡Hola! Soy tu asistente. Puedo responder cómo llenar/captura cada campo del PUB y de Actores Sociales.
+          </div>
+        </div>
+        <div class="chat-input">
+          <input id="userInput" type="text" placeholder="Ej. curp, sexo, folio, rfc actor social…" />
+          <button id="sendBtn">Enviar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) VALIDADOR -->
+    <section class="section card validator-section">
+      <h2>Validador Inteligente</h2>
+      <p class="subtitle">Sube tu Excel para verificar campos requeridos (Personas o Actores Sociales)</p>
+      <div class="validator-box">
+        <input type="file" id="fileInput" accept=".xlsx"/>
+        <button id="validateBtn">Validar Archivo</button>
+        <div id="validationResult"></div>
+      </div>
+    </section>
+
+    <!-- 3) DESCARGAS -->
     <section class="section card downloads-section">
       <h2>Descargas de Catálogos</h2>
       <p class="subtitle">Selecciona el documento que necesites</p>
-
       <div class="buttons">
+        <!-- Existentes -->
         <a href="catalogos/PLANTILLA_PUB.xlsx" download>PLANTILLA_PUB.xlsx</a>
         <a href="catalogos/INSTRUCTIVO_LLENADO_PUB.xlsx" download>INSTRUCTIVO_LLENADO_PUB.xlsx</a>
+        <!-- Nuevos -->
         <a href="catalogos/Formato Unificado PUB 2025_Actores Sociales.xlsx" download>Formato Unificado PUB 2025_Actores Sociales.xlsx</a>
         <a href="catalogos/CUESTIONARIO_ACTORES_SOCIALES.xlsx" download>CUESTIONARIO_ACTORES_SOCIALES.xlsx</a>
         <a href="catalogos/Cuestionario_Actores_Sociales_v10.xlsx" download>Cuestionario_Actores_Sociales_v10.xlsx</a>
       </div>
     </section>
-
-    <!-- Sección de validador -->
-    <section class="section card validator-section">
-      <h2>Validador Inteligente</h2>
-      <p class="subtitle">Carga tu archivo Excel para validar campos requeridos</p>
-      <input type="file" id="fileInput" accept=".xlsx, .xls" />
-      <button id="validateBtn">Validar Archivo</button>
-      <div id="validationResult"></div>
-    </section>
-
-    <!-- Chatbot -->
-    <section class="section card chatbot-section">
-      <h2>Asistente Virtual PUB</h2>
-      <p class="subtitle">Consulta cómo llenar los campos correctamente</p>
-
-      <div id="chatbot">
-        <div id="chatbox"></div>
-        <div class="chat-input">
-          <input type="text" id="userInput" placeholder="Escribe tu pregunta aquí..." />
-          <button id="sendBtn">Enviar</button>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
-    <p>© 2025 DIF Jalisco — Sistema Estatal de Asistencia Social</p>
-    <p class="nota">💡 Este sistema ha sido actualizado para incluir validación automática y chatbot inteligente (versión 2025).</p>
+    <p>© 2025 DIF Jalisco — Plataforma Asistente PUB</p>
+    <p class="nota">💡 Sistema actualizado: chatbot inteligente (2 fuentes) y validador automático (Personas / Actores Sociales).</p>
   </footer>
 
   <script src="app.js"></script>
