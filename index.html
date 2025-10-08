@@ -2,75 +2,96 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DIF Jalisco — Asistente PUB</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- ENCABEZADO -->
   <header class="header">
-    <div class="header-left">
-      <img src="./catalogos/logo_dif.png" alt="Logo DIF Jalisco" class="logo-header"/>
-      <div class="brand">
-        <h1>Padrón Único de Beneficiarios</h1>
-        <p>Asesoría y validación inteligente — DIF Jalisco</p>
-      </div>
+    <div class="header-text">
+      <h1>Padrón Único de Beneficiarios</h1>
+      <p>Asesoría inteligente para el correcto llenado — DIF Jalisco</p>
     </div>
+    <img src="./catalogos/logo_dif.png" alt="Logo DIF Jalisco" class="logo-header" />
   </header>
 
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="main-container">
+    
     <!-- 1) CHATBOT -->
     <section class="section card chat-section">
-      <h2>Asistente de Llenado</h2>
+      <h2>Asistente de Llenado PUB</h2>
       <p class="subtitle">Haz tu consulta (palabras sueltas o frases, aunque tengan errores)</p>
 
-      <div id="chatbot" class="chatbox">
-        <div id="chatbox-messages" class="chat-messages">
-          <div class="message bot">
-            👋 ¡Hola! Soy tu asistente. Puedo responder cómo llenar/captura cada campo del PUB y de Actores Sociales.
-          </div>
-        </div>
-        <div class="chat-input">
-          <input id="userInput" type="text" placeholder="Ej. curp, sexo, folio, rfc actor social…" />
-          <button id="sendBtn">Enviar</button>
+      <div id="chatOutput" class="chat-box">
+        <div class="bot-message">
+          👋 ¡Hola! Soy tu asistente DIF Jalisco.
+          Puedo ayudarte a llenar el formato PUB (Personas) y Actores Sociales,
+          validar tu archivo o aclarar dudas sobre los catálogos oficiales.
         </div>
       </div>
+
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Ej. curp, sexo, folio, rfc actor social…" />
+        <button id="sendBtn">Enviar</button>
+      </div>
+
+      <button id="clearChat" class="clear-btn">🧹 Borrar historial de consulta</button>
     </section>
 
     <!-- 2) VALIDADOR -->
     <section class="section card validator-section">
-      <h2>Validador Inteligente</h2>
-      <p class="subtitle">Sube tu Excel para verificar campos requeridos (Personas o Actores Sociales)</p>
+      <h2>Validador Inteligente del PUB</h2>
+      <p class="subtitle">Sube tu archivo Excel (Personas o Actores Sociales) para verificar campos requeridos</p>
+
       <div class="validator-box">
-        <input type="file" id="fileInput" accept=".xlsx"/>
+        <input type="file" id="fileInput" accept=".xlsx" />
         <button id="validateBtn">Validar Archivo</button>
         <div id="validationResult"></div>
       </div>
     </section>
 
-    <!-- 3) DESCARGAS -->
+    <!-- 3) CATÁLOGOS (solo descarga pública) -->
     <section class="section card downloads-section">
       <h2>Descargas de Catálogos</h2>
       <p class="subtitle">Selecciona el documento que necesites</p>
+
       <div class="buttons">
-        <!-- Existentes -->
-        <a href="catalogos/PLANTILLA_PUB.xlsx" download>PLANTILLA_PUB.xlsx</a>
-        <a href="catalogos/INSTRUCTIVO_LLENADO_PUB.xlsx" download>INSTRUCTIVO_LLENADO_PUB.xlsx</a>
-        <!-- Nuevos -->
-        <a href="catalogos/Formato Unificado PUB 2025_Actores Sociales.xlsx" download>Formato Unificado PUB 2025_Actores Sociales.xlsx</a>
-        <a href="catalogos/CUESTIONARIO_ACTORES_SOCIALES.xlsx" download>CUESTIONARIO_ACTORES_SOCIALES.xlsx</a>
-        <a href="catalogos/Cuestionario_Actores_Sociales_v10.xlsx" download>Cuestionario_Actores_Sociales_v10.xlsx</a>
+        <!-- Formatos principales -->
+        <a href="catalogos/PLANTILLA_PUB.xlsx" download>Formato PUB Personas</a>
+        <a href="catalogos/Formato Unificado PUB 2025_Actores Sociales.xlsx" download>Formato PUB Actores Sociales</a>
+
+        <!-- Catálogos complementarios (los que ya tenías) -->
+        <a href="MANUAL_ACESORIA_PUB.docx" download>MANUAL_ACESORIA_PUB.docx</a>
+        <a href="catalogos/CLAVE_ENT.xlsx" download>CLAVE_ENT.xlsx</a>
+        <a href="catalogos/CLAVE_MUN.xlsx" download>CLAVE_MUN.xlsx</a>
+        <a href="catalogos/ASENTAMIENTO.xlsx" download>ASENTAMIENTO.xlsx</a>
+        <a href="catalogos/ENTIDAD_DE_NAC.xlsx" download>ENTIDAD_DE_NAC.xlsx</a>
+        <a href="catalogos/GENERO.xlsx" download>GENERO.xlsx</a>
+        <a href="catalogos/EDO_CIVIL.xlsx" download>EDO_CIVIL.xlsx</a>
+        <a href="catalogos/ESCOLARIDAD.xlsx" download>ESCOLARIDAD.xlsx</a>
+        <a href="catalogos/OCUPACION.xlsx" download>OCUPACION.xlsx</a>
+        <a href="catalogos/GRUPO_ETNICO.xlsx" download>GRUPO_ETNICO.xlsx</a>
+        <a href="catalogos/LENGUA_I.xlsx" download>LENGUA_I.xlsx</a>
+        <a href="catalogos/DISCAPACIDAD.xlsx" download>DISCAPACIDAD.xlsx</a>
+        <a href="catalogos/TIPO_LOCALIDAD.xlsx" download>TIPO_LOCALIDAD.xlsx</a>
+        <a href="catalogos/TIPO_VIVIENDA.xlsx" download>TIPO_VIVIENDA.xlsx</a>
+        <a href="catalogos/PARENTESCO.xlsx" download>PARENTESCO.xlsx</a>
+        <a href="catalogos/MOTIVO_BAJA.xlsx" download>MOTIVO_BAJA.xlsx</a>
+        <a href="catalogos/VARIABLES.xlsx" download>VARIABLES.xlsx</a>
       </div>
     </section>
   </main>
 
   <footer>
     <p>© 2025 DIF Jalisco — Plataforma Asistente PUB</p>
-    <p class="nota">💡 Sistema actualizado: chatbot inteligente (2 fuentes) y validador automático (Personas / Actores Sociales).</p>
+    <p class="subtitle">💡 Sistema actualizado: Chatbot (2 fuentes internas) y Validador automático (Personas / Actores Sociales).</p>
   </footer>
 
+  <!-- Librerías -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
