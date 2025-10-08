@@ -15,6 +15,7 @@ body {
   margin: 0;
 }
 
+/* ================= HEADER ================= */
 .header {
   display: flex;
   justify-content: space-between;
@@ -29,6 +30,18 @@ body {
   height: 80px;
 }
 
+.header-text h1 {
+  margin: 0;
+  font-size: 1.8em;
+  color: var(--gris-oscuro);
+}
+
+.header-text p {
+  margin: 0;
+  color: var(--gris-medio);
+}
+
+/* ================= CONTENEDOR PRINCIPAL ================= */
 .main-container {
   max-width: 1100px;
   margin: 30px auto;
@@ -45,6 +58,7 @@ body {
   box-shadow: var(--sombra);
 }
 
+/* ================= ENCABEZADOS ================= */
 h2 {
   text-align: center;
   color: var(--naranja);
@@ -56,6 +70,7 @@ h2 {
   margin-bottom: 10px;
 }
 
+/* ================= CHATBOT ================= */
 .chat-box {
   background: #fffaf6;
   border-radius: 10px;
@@ -93,11 +108,11 @@ h2 {
   padding: 12px;
   border-radius: 8px;
   border: 1px solid var(--borde);
+  font-size: 15px;
 }
 
 .chat-input button,
-.clear-btn,
-#validateBtn {
+.clear-btn {
   background: var(--naranja);
   color: white;
   border: none;
@@ -105,40 +120,109 @@ h2 {
   padding: 12px 18px;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .chat-input button:hover,
-#validateBtn:hover,
 .clear-btn:hover {
   background: #e35b12;
+  transform: scale(1.05);
 }
 
+/* ================= VALIDADOR ================= */
+.validator-section h2 {
+  text-align: center;
+  color: #3cb371;
+}
+
+.validator-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+#fileInput {
+  font-size: 15px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #fff;
+}
+
+#validateBtn {
+  background: var(--naranja);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+#validateBtn:hover {
+  background: #e35b12;
+  transform: scale(1.05);
+}
+
+/* ================= BOTONES DE DESCARGA ================= */
 .buttons {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .buttons a {
-  display: block;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
+  display: inline-block;
+  background: var(--blanco);
   color: var(--naranja);
   font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px 0;
   border: 2px solid var(--naranja);
   border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(243, 112, 33, 0.2);
+  transition: all 0.2s ease-in-out;
 }
 
 .buttons a:hover {
   background: var(--naranja);
   color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(243, 112, 33, 0.35);
 }
 
+/* ================= FOOTER ================= */
 footer {
   background: var(--gris-oscuro);
   color: white;
   text-align: center;
   padding: 15px;
   border-top: 3px solid var(--naranja);
+}
+
+footer .subtitle {
+  color: #ccc;
+  margin-top: 5px;
+}
+
+/* ================= SCROLLBAR PERSONALIZADA ================= */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--naranja);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e35b12;
 }
