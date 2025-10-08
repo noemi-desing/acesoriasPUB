@@ -25,4 +25,66 @@
       <div id="chatOutput" class="chat-box">
         <div class="bot-message">
           👋 ¡Hola! Soy tu asistente DIF Jalisco.<br />
-          Te ayudo a llenar correctamente los formatos PUB de <b>Personas</b> y <b>Actores S
+          Te ayudo a llenar correctamente los formatos PUB de <b>Personas</b> y <b>Actores Sociales</b>, 
+          además de validar tus archivos Excel conforme a las reglas oficiales.
+        </div>
+      </div>
+
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Escribe tu consulta aquí..." />
+        <button id="sendBtn">Enviar</button>
+      </div>
+
+      <button id="clearChat" class="clear-btn">🧹 Limpiar historial</button>
+    </section>
+
+    <!-- VALIDADOR -->
+    <section class="section card validator-section">
+      <h2>Validador Inteligente del PUB</h2>
+      <p class="subtitle">Sube tu archivo Excel (Personas o Actores Sociales) para verificar los campos requeridos</p>
+
+      <div class="validator-box">
+        <input type="file" id="fileInput" accept=".xlsx" />
+        <button id="validateBtn">Validar Archivo</button>
+        <div id="validationResult"></div>
+      </div>
+    </section>
+
+    <!-- DESCARGAS -->
+    <section class="section card downloads-section">
+      <h2>Descargas de Catálogos</h2>
+      <p class="subtitle">Selecciona el documento que necesites</p>
+
+      <div class="buttons">
+        <a href="catalogos/PLANTILLA_PUB.xlsx" download>Formato PUB Personas</a>
+        <a href="catalogos/ACTORES_SOCIALES.xlsx" download>Formato PUB Actores Sociales</a>
+
+        <a href="catalogos/CLAVE_ENT.xlsx" download>CLAVE_ENT.xlsx</a>
+        <a href="catalogos/CLAVE_MUN.xlsx" download>CLAVE_MUN.xlsx</a>
+        <a href="catalogos/ASENTAMIENTO.xlsx" download>ASENTAMIENTO.xlsx</a>
+        <a href="catalogos/ENTIDAD_DE_NAC.xlsx" download>ENTIDAD_DE_NAC.xlsx</a>
+        <a href="catalogos/GENERO.xlsx" download>GENERO.xlsx</a>
+        <a href="catalogos/EDO_CIVIL.xlsx" download>EDO_CIVIL.xlsx</a>
+        <a href="catalogos/ESCOLARIDAD.xlsx" download>ESCOLARIDAD.xlsx</a>
+        <a href="catalogos/OCUPACION.xlsx" download>OCUPACION.xlsx</a>
+        <a href="catalogos/GRUPO_ETNICO.xlsx" download>GRUPO_ETNICO.xlsx</a>
+        <a href="catalogos/LENGUA_I.xlsx" download>LENGUA_I.xlsx</a>
+        <a href="catalogos/DISCAPACIDAD.xlsx" download>DISCAPACIDAD.xlsx</a>
+        <a href="catalogos/TIPO_LOCALIDAD.xlsx" download>TIPO_LOCALIDAD.xlsx</a>
+        <a href="catalogos/TIPO_VIVIENDA.xlsx" download>TIPO_VIVIENDA.xlsx</a>
+        <a href="catalogos/PARENTESCO.xlsx" download>PARENTESCO.xlsx</a>
+        <a href="catalogos/MOTIVO_BAJA.xlsx" download>MOTIVO_BAJA.xlsx</a>
+        <a href="catalogos/VARIABLES.xlsx" download>VARIABLES.xlsx</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 DIF Jalisco — Plataforma Asistente PUB</p>
+    <p class="subtitle">💡 Chatbot y Validador Inteligente (Personas / Actores Sociales)</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
