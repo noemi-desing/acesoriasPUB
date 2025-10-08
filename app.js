@@ -1,11 +1,11 @@
 // ============================================================
-// DIF JALISCO — ASISTENTE PUB 2025 (Chatbot + Validador Limpio)
+// DIF JALISCO — ASISTENTE PUB (Chatbot + Validador Inteligente)
 // ============================================================
 
 let fuse;
 let baseConocimiento = [];
 
-// Normalizar texto
+// ---------- Normaliza texto ----------
 function normaliza(str = "") {
   return str.toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -13,7 +13,7 @@ function normaliza(str = "") {
     .trim();
 }
 
-// Detectar columnas Pregunta/Respuesta
+// ---------- Detecta columnas ----------
 function detectarColumnas(headers) {
   const H = headers.map(h => normaliza(String(h || "")));
   let qIdx = H.findIndex(h => h.includes("pregunta"));
@@ -24,7 +24,7 @@ function detectarColumnas(headers) {
   return { qIdx, aIdx };
 }
 
-// ==================== CARGA BASE DE CONOCIMIENTO ====================
+// ==================== CARGA DE BASE DE CONOCIMIENTO ====================
 async function cargarBaseDesdeExcel() {
   try {
     const archivos = [
@@ -40,24 +40,21 @@ async function cargarBaseDesdeExcel() {
       const workbook = XLSX.read(data, { type: "array" });
       const hoja = workbook.Sheets[workbook.SheetNames[0]];
       const filas = XLSX.utils.sheet_to_json(hoja, { header: 1 });
-
-      if (!filas || !filas.length) continue;
+      if (!filas.length) continue;
 
       const { qIdx, aIdx } = detectarColumnas(filas[0]);
+
       filas.slice(1).forEach(row => {
         const pregunta = normaliza(row[qIdx] || "");
         let respuesta = (row[aIdx] || "").toString().trim();
 
-        // 🧹 Elimina “Catálogo”, “1 Catálogo”, “Cat.”, etc.
-        respuesta = respuesta
-          .replace(/\b\d*\s*cat[aá]logo\b:?/gi, "")
-          .replace(/\bcat[aá]logo\b:?/gi, "")
-          .replace(/\s{2,}/g, " ")
-          .trim();
+        // 🚫 Eliminar cualquier referencia a “Catálogo” o “1 Catálogo”
+        respuesta = respuesta.replace(/\b\d*\s*cat[aá]logo\b:?/gi, "")
+                             .replace(/\bcat[aá]logo\b:?/gi, "")
+                             .replace(/\s{2,}/g, " ")
+                             .trim();
 
-        if (pregunta && respuesta) {
-          baseConocimiento.push({ pregunta, respuesta });
-        }
+        if (pregunta && respuesta) baseConocimiento.push({ pregunta, respuesta });
       });
     }
 
@@ -67,8 +64,9 @@ async function cargarBaseDesdeExcel() {
       distance: 350,
       ignoreLocation: true
     });
+
   } catch (error) {
-    console.error("❌ Error al cargar las bases:", error);
+    console.error("❌ Error al cargar los archivos Excel:", error);
   }
 }
 
@@ -96,8 +94,9 @@ function agregarMensajeHTML(html) {
 
 async function responder(mensajeUsuario) {
   if (baseConocimiento.length === 0) await cargarBaseDesdeExcel();
+
   const texto = normaliza(mensajeUsuario);
-  let respuesta = "No encontré una coincidencia. Intenta otra palabra o revisa tu archivo.";
+  let respuesta = "No encontré una coincidencia. Intenta otra palabra.";
 
   const resultados = fuse.search(texto);
   if (resultados.length > 0) respuesta = resultados[0].item.respuesta;
@@ -105,7 +104,7 @@ async function responder(mensajeUsuario) {
   agregarMensajeHTML(`${respuesta}<br><button class='copy-btn' data-copy='${respuesta}'>Copiar respuesta</button>`);
 }
 
-// Eventos
+// Eventos del Chatbot
 sendBtn.addEventListener("click", () => {
   const texto = userInput.value.trim();
   if (!texto) return;
@@ -123,8 +122,7 @@ clearBtn.addEventListener("click", () => {
 document.addEventListener("click", e => {
   const btn = e.target.closest(".copy-btn");
   if (!btn) return;
-  const txt = btn.getAttribute("data-copy");
-  navigator.clipboard.writeText(txt);
+  navigator.clipboard.writeText(btn.getAttribute("data-copy"));
   btn.textContent = "✅ Copiada";
   setTimeout(() => (btn.textContent = "Copiar respuesta"), 1500);
 });
@@ -142,7 +140,7 @@ validateBtn.addEventListener("click", () => {
   }
 
   const reader = new FileReader();
-  reader.onload = function (e) {
+  reader.onload = e => {
     try {
       const data = new Uint8Array(e.target.result);
       const workbook = XLSX.read(data, { type: "array" });
@@ -155,22 +153,20 @@ validateBtn.addEventListener("click", () => {
       const esActores = encabezados.includes("SA_ID_FAS") && encabezados.includes("CURP_ACTOR");
 
       if (esPersonas) {
-        const requeridos = ["CURP", "NOMBRE", "SEXO", "EDAD", "OCUPACION"];
-        const faltantes = requeridos.filter(c => !encabezados.includes(c));
-        validationResult.innerHTML =
-          faltantes.length === 0
-            ? `<p style="color:green;"><b>✅ Archivo válido (Personas).</b></p>`
-            : `<p style="color:#b22;"><b>⚠️ Faltan campos:</b> ${faltantes.join(", ")}</p>`;
+        const req = ["CURP", "NOMBRE", "SEXO", "EDAD", "OCUPACION"];
+        const faltan = req.filter(c => !encabezados.includes(c));
+        validationResult.innerHTML = faltan.length === 0
+          ? `<p style="color:green;"><b>✅ Archivo válido (Personas).</b></p>`
+          : `<p style="color:#b22;"><b>⚠️ Faltan campos:</b> ${faltan.join(", ")}</p>`;
         return;
       }
 
       if (esActores) {
-        const requeridos = ["SA_ID_FAS", "CURP_ACTOR", "NOMBRE_ACTOR", "SEXO", "RFC_ACTOR"];
-        const faltantes = requeridos.filter(c => !encabezados.includes(c));
-        validationResult.innerHTML =
-          faltantes.length === 0
-            ? `<p style="color:green;"><b>✅ Archivo válido (Actores Sociales).</b></p>`
-            : `<p style="color:#b22;"><b>⚠️ Faltan campos:</b> ${faltantes.join(", ")}</p>`;
+        const req = ["SA_ID_FAS", "CURP_ACTOR", "NOMBRE_ACTOR", "SEXO", "RFC_ACTOR"];
+        const faltan = req.filter(c => !encabezados.includes(c));
+        validationResult.innerHTML = faltan.length === 0
+          ? `<p style="color:green;"><b>✅ Archivo válido (Actores Sociales).</b></p>`
+          : `<p style="color:#b22;"><b>⚠️ Faltan campos:</b> ${faltan.join(", ")}</p>`;
         return;
       }
 
