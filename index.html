@@ -42,7 +42,15 @@
       <div class="validator-box">
         <input type="file" id="fileInput" accept=".xlsx" />
         <button id="validateBtn">Validar Archivo</button>
+
+        <!-- 🔹 PREVIO CON CELDAS MARCADAS EN ROJO -->
+        <div id="gridPreview" class="grid-preview"></div>
+
+        <!-- 🔹 RESULTADO RESUMEN -->
         <div id="validationResult"></div>
+
+        <!-- 🔹 DESCARGA DEL EXCEL CON HOJA DE ERRORES -->
+        <button id="downloadFixedBtn" class="download-fixed-btn" style="display:none;">Descargar Excel con hoja de errores</button>
       </div>
     </section>
 
@@ -55,33 +63,9 @@
         <a href="catalogos/PLANTILLA_PUB.xlsx" download>Formato PUB Personas</a>
         <a href="catalogos/ACTORES_SOCIALES.xlsx" download>Formato PUB Actores Sociales</a>
 
-        <!-- CATÁLOGOS COMPLEMENTARIOS -->
+        <!-- CATÁLOGOS COMPLEMENTARIOS (se conservan: no se muestran las bases internas de cuestionarios) -->
         <a href="catalogos/CLAVE_ENT.xlsx" download>CLAVE_ENT.xlsx</a>
         <a href="catalogos/CLAVE_MUN.xlsx" download>CLAVE_MUN.xlsx</a>
         <a href="catalogos/ASENTAMIENTO.xlsx" download>ASENTAMIENTO.xlsx</a>
         <a href="catalogos/ENTIDAD_DE_NAC.xlsx" download>ENTIDAD_DE_NAC.xlsx</a>
-        <a href="catalogos/GENERO.xlsx" download>GENERO.xlsx</a>
-        <a href="catalogos/EDO_CIVIL.xlsx" download>EDO_CIVIL.xlsx</a>
-        <a href="catalogos/ESCOLARIDAD.xlsx" download>ESCOLARIDAD.xlsx</a>
-        <a href="catalogos/OCUPACION.xlsx" download>OCUPACION.xlsx</a>
-        <a href="catalogos/GRUPO_ETNICO.xlsx" download>GRUPO_ETNICO.xlsx</a>
-        <a href="catalogos/LENGUA_I.xlsx" download>LENGUA_I.xlsx</a>
-        <a href="catalogos/DISCAPACIDAD.xlsx" download>DISCAPACIDAD.xlsx</a>
-        <a href="catalogos/TIPO_LOCALIDAD.xlsx" download>TIPO_LOCALIDAD.xlsx</a>
-        <a href="catalogos/TIPO_VIVIENDA.xlsx" download>TIPO_VIVIENDA.xlsx</a>
-        <a href="catalogos/PARENTESCO.xlsx" download>PARENTESCO.xlsx</a>
-        <a href="catalogos/MOTIVO_BAJA.xlsx" download>MOTIVO_BAJA.xlsx</a>
-        <a href="catalogos/VARIABLES.xlsx" download>VARIABLES.xlsx</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 DIF Jalisco — Plataforma Asistente PUB</p>
-    <p class="subtitle">💡 Chatbot y Validador Inteligente (Personas / Actores Sociales)</p>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
+        <a href="catalog
