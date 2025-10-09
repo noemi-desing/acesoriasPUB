@@ -1,72 +1,144 @@
-/* ...estilos existentes... */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f9f9f9;
+}
 
-/* ============ PREVIO DE VALIDACIÓN (GRID) ============ */
-.grid-preview {
-  width: 100%;
-  overflow: auto;
-  border: 1px solid var(--borde);
-  border-radius: 8px;
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
   background: #fff;
+  border-radius: 10px;
+}
+
+header {
+  text-align: center;
+}
+
+.logo {
+  width: 100px;
+}
+
+h1 {
+  margin: 10px 0;
+  color: #333;
+}
+
+h2 {
+  color: #444;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.chat-box {
+  border: 1px solid #ddd;
+  background: #fafafa;
   padding: 10px;
-  max-height: 420px;
+  height: 200px;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+
+.user-message {
+  text-align: right;
+  background: #dcf8c6;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+
+.bot-message {
+  text-align: left;
+  background: #f1f0f0;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+
+.chat-input {
+  display: flex;
+  margin-top: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.chat-input button {
+  padding: 8px 12px;
+  margin-left: 5px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.clear-btn {
+  margin-top: 10px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttons a {
+  display: inline-block;
+  margin: 5px;
+  padding: 8px 10px;
+  background: #3498db;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #777;
+}
+
+/* ======= Estilos añadidos mínimos ======= */
+.grid-preview {
+  margin-top: 15px;
+  max-height: 350px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .grid-preview table {
   border-collapse: collapse;
   width: 100%;
-  font-size: 13px;
 }
 
 .grid-preview th, .grid-preview td {
-  border: 1px solid #eee;
-  padding: 6px 8px;
-  white-space: nowrap;
+  border: 1px solid #ddd;
+  padding: 5px;
+  font-size: 13px;
+  text-align: left;
 }
 
-.grid-preview th {
-  position: sticky;
-  top: 0;
-  background: #fafafa;
-  z-index: 2;
-}
-
-/* Celdas con error */
 .cell-error {
   background: #ffe8e8;
-  border: 2px solid #ff6b6b !important;
-}
-
-/* Tooltip simple con comentario */
-.cell-error[data-comment] {
-  position: relative;
-  cursor: help;
+  border: 1px solid #ff4d4d;
 }
 
 .cell-error[data-comment]:hover::after {
   content: attr(data-comment);
   position: absolute;
-  left: 0;
-  bottom: 100%;
-  transform: translateY(-6px);
-  background: #2e2e2e;
+  background: #333;
   color: #fff;
+  padding: 5px 8px;
+  border-radius: 5px;
   font-size: 12px;
-  padding: 6px 8px;
-  border-radius: 6px;
   white-space: pre-line;
-  box-shadow: var(--sombra);
-  max-width: 320px;
 }
 
-/* Botón de descarga de Excel corregido */
-.download-fixed-btn {
-  background: var(--gris-oscuro);
-  border: none;
-  color: #fff;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 10px 16px;
-  cursor: pointer;
-  transition: 0.25s;
-}
-.download-fixed-btn:hover { opacity: .9; }
